@@ -1,0 +1,6 @@
+create user 'opgg'@'localhost' identified by '1029';
+grant all privileges on *.* to 'opgg'@'localhost';
+
+create database opggpro;
+
+use opggpro;
