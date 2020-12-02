@@ -4,7 +4,3 @@ grant all privileges on *.* to 'opgg'@'localhost';
 create database opggpro;
 
 use opggpro;
-
-
-
-test
