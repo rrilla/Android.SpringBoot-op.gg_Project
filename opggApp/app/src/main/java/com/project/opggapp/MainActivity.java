@@ -25,6 +25,7 @@ import com.project.opggapp.fragment.MainFragment2;
 import com.project.opggapp.fragment.MainFragment3;
 import com.project.opggapp.fragment.MainFragment4;
 import com.project.opggapp.fragment.MainFragment5;
+import com.project.opggapp.fragment.NavFragment1;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Fragment mFrag5 = null;
 
     TextView tText;
+    Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View header = navigationView.getHeaderView(0);
 
         //Button btnLogout = header.findViewById(R.id.navHeader_btn_logout);
+        btnLogin = header.findViewById(R.id.navHeader_btn_login);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                //intent.putExtra("jwtToken", jwtToken);
+                startActivity(intent);
+                overridePendingTransition(R.anim.translate_up, R.anim.translate_up);
+                drawer.closeDrawer(GravityCompat.START);
+
+//                getSupportFragmentManager().beginTransaction()
+//                        .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left,R.anim.exit_to_right)
+//                        .addToBackStack(null)   //뒤로가기시 이전 화면
+//                        .replace(R.id.drawer_layout, new NavFragment1()).commit();
+            }
+        });
 
 
         //하단 탭 네비
