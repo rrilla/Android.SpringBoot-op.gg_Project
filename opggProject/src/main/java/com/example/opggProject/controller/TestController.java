@@ -8,13 +8,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TestController {
 	
 	
-	@GetMapping("/test")
-	public @ResponseBody String test() {
-		return "준슥";
+	@GetMapping("/main")
+	public String test() {
+		return "main";
 	}
 	
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "loginForm";
+	}
+	
+	@GetMapping("/signUpForm") 
+	public String signUpForm() {
+		return "signUpForm";
+	}
+	
+	@GetMapping("/board") 
+	public String board() {
+		return "board";
+	}
+	
+	@GetMapping("/multi")
+	public String multiSearchForm() {
+		return "multiSearchForm";
 	}
 }
