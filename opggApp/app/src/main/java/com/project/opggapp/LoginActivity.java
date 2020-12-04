@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 public class LoginActivity extends AppCompatActivity {
@@ -14,7 +13,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ImageView btnClose = findViewById(R.id.login_img_close);
+        ImageView btnClose = findViewById(R.id.login_iv_close);
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -22,5 +21,11 @@ public class LoginActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.translate_down, R.anim.translate_down);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        overridePendingTransition(R.anim.translate_down, R.anim.translate_down);
     }
 }

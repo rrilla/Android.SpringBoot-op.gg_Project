@@ -8,7 +8,7 @@
     tools:context=".LoginActivity">
 
     <ImageView
-        android:id="@+id/login_img_close"
+        android:id="@+id/login_iv_close"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="left"
