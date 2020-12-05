@@ -23,6 +23,7 @@ import lombok.extern.java.Log;
 public class TestController {
 	private PythonInterpreter intPre;
 	
+
 	@GetMapping("/test")
 	public String getTest(Model model) {
 		intPre = new PythonInterpreter();
@@ -49,6 +50,11 @@ public class TestController {
 		model.addAttribute("pytestResult", pyobj.toString());
 		log.info(pyobj.toString());
 		return "test2";
+
+	@GetMapping("/main")
+	public String test() {
+		return "main";
+
 	}
 	
 	@GetMapping("/loginForm")
@@ -56,5 +62,18 @@ public class TestController {
 		return "loginForm";
 	}
 	
+	@GetMapping("/signUpForm") 
+	public String signUpForm() {
+		return "signUpForm";
+	}
 	
+	@GetMapping("/board") 
+	public String board() {
+		return "board";
+	}
+	
+	@GetMapping("/multi")
+	public String multiSearchForm() {
+		return "multiSearchForm";
+	}
 }

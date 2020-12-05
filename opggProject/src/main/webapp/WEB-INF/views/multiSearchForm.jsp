@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -109,3 +110,12 @@ textarea{
 	</div>
 </body>
 </html>
+
+<%-- 원격 dev랑 재학branch 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="includes/header.jsp" %>
+
+<%@ include file="includes/footer.jsp" %>
+--%>
+

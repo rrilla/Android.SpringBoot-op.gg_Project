@@ -30,11 +30,4 @@
         android:icon="@android:drawable/ic_delete"
         android:title="@string/tab_under_menu_4" />
 
-    <item
-        android:id="@+id/tab5"
-        app:showAsAction="always"
-        android:enabled="true"
-        android:icon="@android:drawable/ic_delete"
-        android:title="@string/tab_under_menu_5" />
-
 </menu>
