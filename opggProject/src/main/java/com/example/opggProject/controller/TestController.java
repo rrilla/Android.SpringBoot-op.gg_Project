@@ -50,6 +50,7 @@ public class TestController {
 		model.addAttribute("pytestResult", pyobj.toString());
 		log.info(pyobj.toString());
 		return "test2";
+	}
 
 	@GetMapping("/main")
 	public String test() {
