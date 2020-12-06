@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SettingActivity">
+    tools:context=".UserActivity">
 
     <LinearLayout
         android:paddingHorizontal="20dp"
@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/setting_iv_close"
+            android:id="@+id/user_iv_close"
             android:layout_width="30dp"
             android:layout_height="50dp"
             android:layout_gravity="left"
@@ -23,196 +23,33 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="설정"
+            android:layout_marginTop="10dp"
+            android:text="계정"
             android:textColor="#000000"
             android:textSize="20sp"
-            android:layout_marginVertical="10dp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/user_tv_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="푸쉬 알림"
-            android:textColor="#4374D9" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
             android:layout_marginVertical="10dp"
-            android:orientation="horizontal">
+            android:text="닉넴"
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:textSize="15sp"
-                android:text="리그오브레전드"
-                android:textColor="#000000" />
-
-            <Switch
-                android:id="@+id/setting_st_lol"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <View
+        <TextView
+            android:id="@+id/user_tv_email"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerInParent="true"
-            android:background="#EAEAEA" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginVertical="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="배틀그라운드"
-                android:textSize="15sp"
-                android:textColor="#000000" />
-
-            <Switch
-                android:id="@+id/setting_st_battle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerInParent="true"
-            android:background="#EAEAEA" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginVertical="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="오버워치"
-                android:textSize="15sp"
-                android:textColor="#000000" />
-
-            <Switch
-                android:id="@+id/setting_st_overWatch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerInParent="true"
-            android:background="#EAEAEA" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginVertical="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="커뮤니티"
-                android:textSize="15sp"
-                android:textColor="#000000" />
-
-            <Switch
-                android:id="@+id/setting_st_comm"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-        </LinearLayout>
-
+            android:layout_height="wrap_content"
+            android:text="이메일"
+            android:textColor="#4374D9"
+            android:layout_marginBottom="10dp"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_centerInParent="true"
-        android:background="#EAEAEA" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/setting_ll_bug"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginVertical="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="버그제보 및 제안하기"
-                android:textSize="15sp"
-                android:textColor="#000000" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:rotation="180"
-                app:srcCompat="@drawable/abc_vector_test" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerInParent="true"
-            android:background="#EAEAEA" />
-
-        <LinearLayout
-            android:id="@+id/setting_ll_review"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginVertical="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="리뷰쓰러 가기"
-                android:textSize="15sp"
-                android:textColor="#000000" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:rotation="180"
-                app:srcCompat="@drawable/abc_vector_test" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
+        android:id="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_centerInParent="true"
@@ -225,7 +62,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/setting_ll_use"
+            android:id="@+id/user_ll_info"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:layout_marginVertical="10dp"
@@ -236,7 +73,37 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="이용약관"
+                android:textSize="15sp"
+                android:text="개인정보 관리"
+                android:textColor="#000000" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:rotation="180"
+                app:srcCompat="@drawable/abc_vector_test" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:background="#EAEAEA" />
+
+        <LinearLayout
+            android:id="@+id/user_ll_social"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginVertical="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="소셜 계정 연결"
                 android:textSize="15sp"
                 android:textColor="#000000" />
 
@@ -255,7 +122,7 @@
             android:background="#EAEAEA" />
 
         <LinearLayout
-            android:id="@+id/setting_ll_info"
+            android:id="@+id/user_ll_password"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:layout_marginVertical="10dp"
@@ -266,7 +133,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="개인정보 취급방침"
+                android:text="비밀번호 변경"
                 android:textSize="15sp"
                 android:textColor="#000000" />
 
@@ -285,7 +152,7 @@
             android:background="#EAEAEA" />
 
         <LinearLayout
-            android:id="@+id/setting_ll_agree"
+            android:id="@+id/user_ll_secession"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:layout_marginVertical="10dp"
@@ -296,7 +163,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="개인정보 수집동의"
+                android:text="회원탈퇴"
                 android:textSize="15sp"
                 android:textColor="#000000" />
 
@@ -306,7 +173,6 @@
                 android:layout_weight="1"
                 android:rotation="180"
                 app:srcCompat="@drawable/abc_vector_test" />
-
         </LinearLayout>
 
     </LinearLayout>
@@ -318,6 +184,7 @@
         android:background="#EAEAEA" />
 
     <LinearLayout
+        android:id="@+id/user_ll_logout"
         android:paddingHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="25dp"
@@ -329,18 +196,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="버전"
+            android:text="로그아웃"
             android:textSize="15sp"
             android:textColor="#000000" />
 
-        <TextView
-            android:id="@+id/setting_tv_version"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center|right"
-            android:text="5.5.3"
-            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
