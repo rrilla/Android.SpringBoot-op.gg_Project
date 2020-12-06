@@ -55,7 +55,7 @@
 
         <ImageView
             android:id="@+id/nav_iv_user"
-            android:background="#4C4C4C"
+            android:background="#353535"
             android:layout_gravity="center"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -64,7 +64,7 @@
 
         <ImageView
             android:id="@+id/nav_iv_setting"
-            android:background="#4C4C4C"
+            android:background="#353535"
             android:layout_gravity="center"
             android:layout_width="50dp"
             android:layout_height="50dp"
