@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
-public class RestAPI extends AsyncTask<String, Object, String[]> {
+public class RestAPIComm extends AsyncTask<String, Object, String[]> {
 
     private String serverUrl = "http://" + IP.ip + ":8000/"; // 연결할 서버주소
     private String reqUrl = "";
@@ -24,9 +24,9 @@ public class RestAPI extends AsyncTask<String, Object, String[]> {
     private String reqData = "noData";
     private String resData = "noData";
 
-    public RestAPI(){}
+    public RestAPIComm(){}
 
-    public RestAPI(String authorization){
+    public RestAPIComm(String authorization){
         this.authorization = authorization;
     }
 

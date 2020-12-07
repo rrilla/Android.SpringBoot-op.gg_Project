@@ -14,20 +14,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 import com.project.opggapp.fragment.MainFragment1;
 import com.project.opggapp.fragment.MainFragment2;
 import com.project.opggapp.fragment.MainFragment3;
 import com.project.opggapp.fragment.MainFragment4;
-import com.project.opggapp.fragment.MainFragment5;
-import com.project.opggapp.fragment.NavFragment1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -91,28 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.translate_up, R.anim.translate_up);
             }
         });
-
-        //navigationView.setNavigationItemSelectedListener(this);
-        //네비뷰 설정
-        //View header = navigationView.getHeaderView(0);
-
-        //Button btnLogout = header.findViewById(R.id.navHeader_btn_logout);
-//        btnLogin = header.findViewById(R.id.navHeader_btn_login);
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//                //intent.putExtra("jwtToken", jwtToken);
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.translate_up, R.anim.translate_up);
-//                drawer.closeDrawer(GravityCompat.START);
-//
-////                getSupportFragmentManager().beginTransaction()
-////                        .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left,R.anim.exit_to_right)
-////                        .addToBackStack(null)   //뒤로가기시 이전 화면
-////                        .replace(R.id.drawer_layout, new NavFragment1()).commit();
-//            }
-//        });
 
 
         //하단 탭 네비

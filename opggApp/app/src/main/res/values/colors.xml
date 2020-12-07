@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#ABABAB</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="basiccolor">#000000</color>
+    <color name="basiccolor">#000000</color>    <!--햄버거 아이콘 색-->
 
     <color name="colorTabIcon">#949494</color>  <!--탭의 아이콘 색-->
     <color name="colorTabText">#ABABAB</color>  <!--탭의 글자 색-->
