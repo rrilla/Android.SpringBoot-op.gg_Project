@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class TestController {
 	
-	
 	@GetMapping("/main")
 	public String test() {
 		return "main";
@@ -15,12 +14,12 @@ public class TestController {
 	
 	@GetMapping("/loginForm")
 	public String loginForm() {
-		return "loginForm";
+		return "user/loginForm";
 	}
 	
 	@GetMapping("/signUpForm") 
 	public String signUpForm() {
-		return "signUpForm";
+		return "user/signUpForm";
 	}
 	
 	@GetMapping("/board") 
@@ -30,6 +29,11 @@ public class TestController {
 	
 	@GetMapping("/multi")
 	public String multiSearchForm() {
-		return "multiSearchForm";
+		return "multiSearch/multiSearchForm";
+	}
+	
+	@GetMapping("/summoner")
+	public String summoner() {
+		return "record/summoner";
 	}
 }

@@ -12,6 +12,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	min-height: 115vh;
+	min-width: 600px;
 }
 
 /* 로그인 카드 스타일  */
@@ -123,7 +124,7 @@ input:focus + .password_label::after {
 	bottom: 10px;
 	transition: all 0.3s ease;
 }
-/* 회원가입 텍스트 텍스트 */
+/* 회원가입 텍스트 스타일 */
 .signUp_text {
 	text-align: center;
 	font-size: 14px;
@@ -132,17 +133,86 @@ input:focus + .password_label::after {
 .signUp_text > a {
 	color: #1ea1f7;
 }
+/* 로그인 종류 텍스트 스타일 */
+h2 {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 19px
+}
+/* 간편 로그인 링크 스타일 */
+.login_naver_wrap {
+	width: 100%;
+	height: 56px;
+	background-color: #E04A39;
+	border-radius: 5px;
+	text-align: center;
+}
+.login_naver_link {
+	display: block;
+	text-decoration: none;
+	color: white;
+	font-weight: 700;
+	height: 56px;
+}
+.login_naver_img {
+	position: absolute;
+	left: 40px;
+	top: 3px;
+	width: 50px;
+}
+.login_naver_text {
+	position: absolute; 
+	right: 130px; 
+	top: 16px;
+}
+/* 간편 로그인과 기본 로그인의 경계선 스타일 */
+.login_or_text {
+    position: relative;
+    margin-top: 24px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #c5cbd0;
+    text-align: center;
+    vertical-align: top;
+    line-height: 14px;
+}
+.login_or_text:after, .login_or_text:before {
+	position: absolute;
+    top: 6px;
+    content: "";
+    display: block;
+    width: 160px;
+    height: 1px;
+    background-color: #dddfe4;
+}
+.login_or_text:after {
+    right: 0;
+}
 </style>
 </head>
 <body>
 	<div class="container">
 		<div style="text-align:center;">
 			<a href="/main">
-				<img alt="main" src="https://member.op.gg/img_opgglogo.1924961d.svg" class="logo_img">
+				<img alt="main" src="https://member.op.gg/img_opgglogo.1924961d.svg" class="logo_img" />
 			</a>
 		</div>
+		
 		<div style="margin: 0px 40px;">
 			<form class="loginForm" id="form">
+				<h2>간편 로그인</h2>
+				<div class="login_naver_wrap">
+					<div style="position: relative;">
+						<a class="login_naver_link" href="https://accounts.google.com/signin/v2/identifier?hl=ko&continue=https%3A%2F%2Fwww.google.co.kr%2F&ec=GAlAAQ&flowName=GlifWebSignIn&flowEntry=AddSession">
+							<img class="login_naver_img" src="../resources/images/google.jpg" />
+							<span class="login_naver_text">Google로 로그인</span>
+						</a>
+					</div>
+				</div>
+				
+				<div class="login_or_text">OR</div>
+				<h2>아이디 로그인</h2>
 				<div style="position: relative; margin-bottom: 20px;">
 					<input type="text" name="username" id="username" autocomplete="off" required onKeyup="inputHandle()"/>
 					<label for="username" class="username_label">

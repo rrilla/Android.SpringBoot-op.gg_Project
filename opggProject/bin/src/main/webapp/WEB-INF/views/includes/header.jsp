@@ -16,6 +16,7 @@
 }
 
 body, html {
+	background-color: #5383e8;
 	width: 100%;
 	height: 100%;
 }
@@ -30,7 +31,7 @@ body, html {
 	font-size: 80px;
 	color: #D4E0F9;
 	font-weight: 700;
-	padding: 10px 0;
+	margin: 20px;
 	font-family: SF-Pro-Rounded-Regular;
 }
 
@@ -90,13 +91,12 @@ body, html {
 .category {
 	display: flex;
 	max-width: 1300px;
-	padding-top: 5px;
 	margin: 0 auto;
+	padding: 8px 0;
 }
 .category > li {
 	margin-left: 24px;
-	padding: 5px 0px;
-	flex-shrink: 0;
+	padding: 13px 0px 9px;
 }
 .category > li > a{
 	text-decoration: none;
@@ -117,17 +117,21 @@ body, html {
 	border: none;
 	border-radius: 4px;
 	line-height: 26px;
-	margin-left: 900px;
+	position: absolute;
+	right: 12px;
+	top: 14px;
 }
 </style>
 </head>
 <body>
-	<div style="display:relative; background-color: #5383e8;">
+	<div style="display:relative;">
 		<ul class="category">
 			<li><a id="category_main" href="/main" style="">집에있자</a></li>
 			<li><a id="category_multi" href="/multi">멀티서치</a></li>
 			<li><a id="category_community" href="/board">커뮤니티</a></li>
-			<li><button class="loginButton" onClick="loginButton()">로그인</button></li>
 		</ul>
-		
+		<button class="loginButton" onClick="loginButton()">로그인</button>
 	</div>
+		<div class="alert_text">
+		<a href="">인생지지 모바일 위젯으로 소환사와 챔피언 정보를 쉽고 빠르게 확인하세요~</a>
+	</div>	
