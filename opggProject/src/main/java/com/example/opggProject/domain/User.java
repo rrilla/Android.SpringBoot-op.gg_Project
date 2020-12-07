@@ -12,9 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor	// (모든 param)생성자 만들어줌 (이거 하면 default 생성자가 사라져서 아래의 @를 추가해야 된다)
 @NoArgsConstructor	// (no param)생성자 만들어줌
-@Builder			// 빌더 패턴
 @Entity				// object relation mapping
 public class User {
 	@Id				// pk. pk없으면 안 만들어준다
@@ -25,5 +23,18 @@ public class User {
 	private String password;
 	private String email;
 	private String role;	// 구글, 네이버, 카카오 뭐할지 적기
+	private String provider;
+	private String providerId;
 	
+	@Builder
+	public User(String username, String nickname, String password, String email, String role, String provider,
+			String providerId) {
+		this.username = username;
+		this.nickname = nickname;
+		this.password = password;
+		this.email = email;
+		this.role = role;
+		this.provider = provider;
+		this.providerId = providerId;
+	}
 }

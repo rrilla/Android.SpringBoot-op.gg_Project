@@ -204,7 +204,7 @@ h2 {
 				<h2>간편 로그인</h2>
 				<div class="login_naver_wrap">
 					<div style="position: relative;">
-						<a class="login_naver_link" href="https://accounts.google.com/signin/v2/identifier?hl=ko&continue=https%3A%2F%2Fwww.google.co.kr%2F&ec=GAlAAQ&flowName=GlifWebSignIn&flowEntry=AddSession">
+						<a class="login_naver_link" href="/oauth2/authorization/google">
 							<img class="login_naver_img" src="../resources/images/google.jpg" />
 							<span class="login_naver_text">Google로 로그인</span>
 						</a>
