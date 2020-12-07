@@ -24,6 +24,9 @@ public class TestController {
 	private PythonInterpreter intPre;
 	
 
+	
+
+
 	@GetMapping("/test")
 	public String getTest(Model model) {
 		intPre = new PythonInterpreter();
@@ -52,7 +55,7 @@ public class TestController {
 		return "test2";
 	}
 
-	@GetMapping("/main")
+	@GetMapping({"", "/", "/main"})
 	public String test() {
 		return "main";
 
@@ -60,12 +63,12 @@ public class TestController {
 	
 	@GetMapping("/loginForm")
 	public String loginForm() {
-		return "loginForm";
+		return "user/loginForm";
 	}
 	
 	@GetMapping("/signUpForm") 
 	public String signUpForm() {
-		return "signUpForm";
+		return "user/signUpForm";
 	}
 	
 	@GetMapping("/board") 
@@ -75,6 +78,11 @@ public class TestController {
 	
 	@GetMapping("/multi")
 	public String multiSearchForm() {
-		return "multiSearchForm";
+		return "multiSearch/multiSearchForm";
+	}
+	
+	@GetMapping("/summoner")
+	public String summoner() {
+		return "record/summoner";
 	}
 }
