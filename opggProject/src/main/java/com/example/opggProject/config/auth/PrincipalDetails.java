@@ -2,21 +2,32 @@ package com.example.opggProject.config.auth;
 
 import java.util.ArrayList;	
 import java.util.Collection;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.example.opggProject.domain.User;
 
 import lombok.Data;
 
 @Data
-public class PrincipalDetails implements UserDetails{
+public class PrincipalDetails implements UserDetails,OAuth2User{
 
 	private User user;
+	private Map<String, Object> attributes;
 	
+	
+	//일반 로그인
 	public PrincipalDetails(User user) {
 		this.user = user;
+	}
+	
+	//OAuth 로그인
+	public PrincipalDetails(User user,Map<String, Object> attributes) {
+		this.user = user;
+		this.attributes = attributes;
 	}
 	
 	// 권한 체크. 권한은 하나의 권한마다 여러개의 권한을 가질 수 있어서 컬렉션으로 만들어져있음
@@ -76,6 +87,18 @@ public class PrincipalDetails implements UserDetails{
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		// TODO Auto-generated method stub
+		return attributes;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
