@@ -1,14 +1,16 @@
 package com.example.opggProject.domain.rank;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-import com.example.opggProject.domain.champion.Champion;
+import com.example.opggProject.domain.champion.ChampionPickData;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,16 +22,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Data
-public class RankChampMastery {
+public class RankData {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int rcno;
+   private int rno;
    private String name;
-   private String championName;
-   private Long masteryPoint;
+   private String tier;
+   private int point;
+   private int win;
+   private int lose;
    
-   @JoinColumn(name="rankId")
-   @ManyToOne(fetch = FetchType.LAZY)
-   private RankData rank;
+   @JsonIgnoreProperties("rank")
+   @OneToMany(mappedBy = "rank", fetch = FetchType.LAZY )
+   private List<RankChampMastery> rankChampMastery;
+
+   
 }
