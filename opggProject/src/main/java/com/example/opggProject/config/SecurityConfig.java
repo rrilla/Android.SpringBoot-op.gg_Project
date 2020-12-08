@@ -1,5 +1,6 @@
 package com.example.opggProject.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -7,9 +8,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.example.opggProject.config.oauth.PrincipalOauth2UserService;
+
 @EnableWebSecurity	// Security 설정 file 활성화. Security의 기본 설정을 무시하고, 해당 class를 참조한다
 @Configuration		// IoC 등록
 public class SecurityConfig extends WebSecurityConfigurerAdapter{	// Adapter : 원래. interface
+	
+	@Autowired
+	private PrincipalOauth2UserService principalOauth2UserService;
 	
 	@Bean	// 메서드의 리턴값을 ioc에 등록. 솔트때문에 싱글톤으로 관리
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -28,7 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{	// Adapter : �
 			.anyRequest().permitAll()					// 다른 주소는 인증 필요x
 			.and()
 			.formLogin().loginPage("/loginForm")		// LoginPage의 주소를 설정한다
-			.loginProcessingUrl("/loginProc")
-			.defaultSuccessUrl("/");	
+			.loginProcessingUrl("/loginProc") //login 주소가 호출이 되면 낚아채서 대신 로그인을 진행해줌
+			.defaultSuccessUrl("/")
+			.and()
+			.oauth2Login()
+			.loginPage("/loginForm")
+			.userInfoEndpoint()
+			.userService(principalOauth2UserService); // 코드x (액세스토큰+사용자프로필정보O)
 	}
 }

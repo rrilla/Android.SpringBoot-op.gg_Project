@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        app:contentPadding="15dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:visibility="invisible"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/icon_favorites" />
+
+                <FrameLayout
+                    android:layout_weight="1"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:id="@+id/item_iv_user"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        app:srcCompat="@drawable/ahri" />
+
+                    <Button
+                        android:id="@+id/item_btn_level"
+                        android:background="@drawable/button_background"
+                        android:text="161"
+                        android:textColor="#FFFFFF"
+                        android:textSize="25sp"
+                        android:layout_gravity="center|bottom"
+                        android:layout_width="80dp"
+                        android:layout_height="50dp" />
+                </FrameLayout>
+
+                <ImageView
+                    android:id="@+id/item_iv_dFavorites"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/icon_favorites" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_tv_summoner"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="30sp"
+                    android:text="준석이형님" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/item_iv_tier"
+                        android:layout_margin="10dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/emblem_challenger" />
+
+                    <TextView
+                        android:id="@+id/item_tv_tier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:text="Challenger" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
