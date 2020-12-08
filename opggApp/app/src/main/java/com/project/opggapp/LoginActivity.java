@@ -83,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
         if (user != null) {
 //            Intent intent = new Intent(this, MainActivity.class);
 //            startActivity(intent);
+            Log.e("auth", mAuth.toString());
+            Log.d("auth", mAuth.toString());
             finish();
         }
     }
