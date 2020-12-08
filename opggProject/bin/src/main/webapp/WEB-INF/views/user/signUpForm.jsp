@@ -177,7 +177,7 @@ Button {
 				</a>	
 			</div>
 			<div style="margin: 0 80px;">
-				<form class="signUp_form" action="/join" method="post">
+				<form class="signUp_form">
 					<h2 class="signUp_form_text">기본 정보 입력</h2>
 					<div class="signUp_form_sub">
 						회원가입을 위해서 이메일 인증이 진행되며, 인증이 완료되기 전까지 회원가입이 완료가 되지 않습니다.
@@ -210,8 +210,8 @@ Button {
 						</label>
 					</div>
 					<div class="button_style">
-						<button id="signUpButton" class="signUpButton"  >가입하기</button><!-- onClick="signBtn()" -->
-						<button type="button"  onClick="cancleBtn()" style="background-color:white; color: black; border: 1px solid lightgray;">취소</button>	
+						<button type="button" id="signUpButton" class="signUpButton" onClick="signBtn()" disabled>가입하기</button>
+						<button type="button" onClick="cancleBtn()" style="background-color:white; color: black; border: 1px solid lightgray;">취소</button>	
 					</div>
 				</form>
 			</div>
@@ -241,11 +241,11 @@ Button {
 		}
 	}
 	
-// 	function signBtn() {
-// 		if(!email.value || !emailPattern.test(email.value)) {
-// 			alert("유효하지 않는 이메일입니다.");
-// 		}	
-// 	}
+	function signBtn() {
+		if(!email.value || !emailPattern.test(email.value)) {
+			alert("유효하지 않는 이메일입니다.");
+		}	
+	}
 
 	/* 취소 버튼 클릭시 동작하는 이벤트 */
 	function cancleBtn() {

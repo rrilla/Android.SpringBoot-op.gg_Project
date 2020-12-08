@@ -200,7 +200,7 @@ h2 {
 		</div>
 		
 		<div style="margin: 0px 40px;">
-			
+			<form class="loginForm" id="form">
 				<h2>간편 로그인</h2>
 				<div class="login_naver_wrap">
 					<div style="position: relative;">
@@ -213,7 +213,6 @@ h2 {
 				
 				<div class="login_or_text">OR</div>
 				<h2>아이디 로그인</h2>
-				<form class="loginForm" id="form" action="/loginProc" method="post">
 				<div style="position: relative; margin-bottom: 20px;">
 					<input type="text" name="username" id="username" autocomplete="off" required onKeyup="inputHandle()"/>
 					<label for="username" class="username_label">
@@ -226,12 +225,11 @@ h2 {
 						<span class="password_span">비밀번호</span>
 					</label>
 				</div>
-				<button id="loginButton" class="loginButton" >로그인</button>
-				</form>
+				<button type="button" id="loginButton" class="loginButton" onClick="loginBtn()">로그인</button>
 				<div class="signUp_text">
 					인생.GG에 처음이세요? <a href="/signUpForm">회원가입하기</a>
 				</div>
-
+			</form>
 		</div>
 	</div>
 </body>
