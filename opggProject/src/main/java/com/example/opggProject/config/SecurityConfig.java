@@ -1,5 +1,8 @@
 package com.example.opggProject.config;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,6 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{	// Adapter : �
 			.oauth2Login()
 			.loginPage("/loginForm")
 			.userInfoEndpoint()
-			.userService(principalOauth2UserService); // 코드x (액세스토큰+사용자프로필정보O)
+			.userService(principalOauth2UserService) // 코드x (액세스토큰+사용자프로필정보O)
+			.and()
+			.and()
+			.logout()
+			.logoutUrl("/logout")
+			.logoutSuccessUrl("/logout1")
+			.invalidateHttpSession(true);	
 	}
 }

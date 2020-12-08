@@ -1,7 +1,12 @@
 package com.example.opggProject.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.python.core.PyArray;
 import org.python.core.PyFunction;
@@ -20,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.opggProject.domain.User;
 import com.example.opggProject.domain.UserRepository;
+import com.nimbusds.oauth2.sdk.Response;
 
 import lombok.extern.java.Log;
 
@@ -104,5 +110,16 @@ public class TestController {
 	@GetMapping("/summoner")
 	public String summoner() {
 		return "record/summoner";
+	}
+	
+	@GetMapping("/logout1")
+	public @ResponseBody String logout(HttpServletRequest request) {
+		String a = "<script>console.log(history.back);</script>";
+		return a;
+	}
+	
+	@GetMapping("/home")
+	public String home() {
+		return "home";
 	}
 }
