@@ -19,5 +19,8 @@
 	function loginButton() {
 		location.href = "/loginForm";
 	}
+	function logoutButton() {
+		location.href = "/logout";
+	}
 </script>
 </html>

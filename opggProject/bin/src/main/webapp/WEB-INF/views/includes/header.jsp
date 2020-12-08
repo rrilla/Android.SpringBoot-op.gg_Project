@@ -1,5 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="principal" />
+</sec:authorize>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -38,7 +47,7 @@ body, html {
 	width: 625px;
 	margin: 0 auto;
 	height: 300px;
-	background-size : 100% 100%;
+	background-size: 100% 100%;
 	background-image: url("../../resources/images/logo.jpg");
 	background-size: 100% 100%;
 }
@@ -77,7 +86,7 @@ body, html {
 	width: 100%;
 }
 /* 최신글 링크 스타일 */
-.alert_text > a {
+.alert_text>a {
 	display: block;
 	line-height: 40px;
 	color: white;
@@ -93,18 +102,21 @@ body, html {
 	padding-top: 5px;
 	margin: 0 auto;
 }
-.category > li {
+
+.category>li {
 	margin-left: 24px;
 	padding: 5px 0px;
 	flex-shrink: 0;
 }
-.category > li > a{
+
+.category>li>a {
 	text-decoration: none;
 	color: #b3cdff;
 	font-size: 15px;
 	padding-bottom: 15px;
 }
-.category > li > a:hover {
+
+.category>li>a:hover {
 	color: white;
 	border-bottom: 3px solid white;
 }
@@ -122,12 +134,26 @@ body, html {
 </style>
 </head>
 <body>
-	<div style="display:relative; background-color: #5383e8;">
-		<ul class="category">
-			<li><a id="category_main" href="/main" style="">집에있자</a></li>
-			<li><a id="category_multi" href="/multi">멀티서치</a></li>
-			<li><a id="category_community" href="/board">커뮤니티</a></li>
-			<li><button class="loginButton" onClick="loginButton()">로그인</button></li>
-		</ul>
-		
+	<div style="display: relative; background-color: #5383e8;">
+		<c:choose>
+
+			<c:when test="${empty principal}">
+				<ul class="category">
+					<li><a id="category_main" href="/main" style="">집에있자</a></li>
+					<li><a id="category_multi" href="/multi">멀티서치</a></li>
+					<li><a id="category_community" href="/board">커뮤니티</a></li>
+					<li><button class="loginButton" onClick="loginButton()">로그인</button></li>
+				</ul>
+			</c:when>
+
+			<c:otherwise>
+				<ul class="category">
+					<li><a id="category_main" href="/main" style="">집에있자</a></li>
+					<li><a id="category_multi" href="/multi">멀티서치</a></li>
+					<li><a id="category_community" href="/board">커뮤니티</a></li>
+					<li><button class="loginButton" onClick="logoutButton()">로그아웃</button></li>
+<!-- 					<li><a href="/logout"><button class="loginButton" >로그아웃</button></a></li> -->
+				</ul>
+			</c:otherwise>
+		</c:choose>
 	</div>

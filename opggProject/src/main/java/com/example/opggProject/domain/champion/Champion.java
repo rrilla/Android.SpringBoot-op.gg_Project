@@ -28,6 +28,7 @@ public class Champion {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int cno;
+   private int id;
    private String name;
    @Lob //대용량 데이터
    private String story;

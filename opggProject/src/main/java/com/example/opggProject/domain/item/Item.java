@@ -21,8 +21,11 @@ public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ino;
+	private int id;
 	private String name;
 	@Lob
 	private String info;
+	private int price;
+	
 
 }

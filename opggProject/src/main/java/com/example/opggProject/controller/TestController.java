@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.opggProject.domain.User;
 import com.example.opggProject.domain.UserRepository;
+import com.example.opggProject.domain.champion.ChampionToDB;
 
 import lombok.extern.java.Log;
 
@@ -105,4 +106,8 @@ public class TestController {
 	public String summoner() {
 		return "record/summoner";
 	}
+	
+	
+	
+	
 }
