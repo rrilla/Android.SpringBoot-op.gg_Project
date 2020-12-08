@@ -24,6 +24,7 @@ import com.project.opggapp.fragment.MainFragment1;
 import com.project.opggapp.fragment.MainFragment2;
 import com.project.opggapp.fragment.MainFragment3;
 import com.project.opggapp.fragment.MainFragment4;
+import com.project.opggapp.task.RestAPIComm;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        RestAPIComm comm = new RestAPIComm();
+        try{
+            Log.e("zz", "통신시작");
+            comm.execute("app/login");
+            Log.e("zz", "통신성공");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
         //툴바

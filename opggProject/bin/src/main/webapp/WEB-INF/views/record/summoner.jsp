@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
 	pageEncoding="UTF-8"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/alert.jsp"%>
 <link href="//opgg-static.akamaized.net/css3/sprite.css?t=1606991396" rel="stylesheet" type="text/css">
 <link href="//opgg-static.akamaized.net/css3/summoner.css?t=1606991396" rel="stylesheet" type="text/css">
+=======
+    pageEncoding="UTF-8"%>
+<%@ include file="../includes/header.jsp" %>
+<%@ include file="../includes/alert.jsp" %>
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 <style>
 /* 소환사 프로필 스타일 */
 .header {
@@ -12,6 +18,7 @@
 	margin: 0 auto;
 	padding: 20px 0 0 0;
 }
+<<<<<<< HEAD
 
 .border_img {
 	background-image:
@@ -23,10 +30,21 @@
 	left: -10px;
 }
 
+=======
+.border_img {
+	background-image: url(//opgg-static.akamaized.net/images/borders2/challenger.png);
+	width: 120px;
+	height: 120px;
+	position: absolute;	
+	top: -10px;
+	left: -10px;
+}
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 .profile_img {
 	width: 100px;
 	height: 100px;
 }
+<<<<<<< HEAD
 
 .summoner_level {
 	background-image:
@@ -43,23 +61,50 @@
 	font-size: 14px;
 	text-align: center;
 	color: #eabd56;
+=======
+.summoner_level {
+	background-image: url("https://opgg-static.akamaized.net/images/site/summoner/bg-levelbox.png");
+	position: absolute;
+	top: 100%;
+    left: 50%;
+	width: 44px;
+	height: 24px;
+	margin-top: -14px;
+    margin-left: -22px;
+    padding-top: 3px;
+    box-sizing: border-box;
+    font-size: 14px;
+    text-align: center;
+    color: #eabd56;
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 }
 /* 소환사 이름과 랭킹 */
 .summoner_rank {
 	display: inline-block;
 	position: relative;
+<<<<<<< HEAD
 	height: 50px;
 	vertical-align: top;
 	margin: 0 25px;
 }
 
+=======
+	height: 100px;
+	vertical-align: top;
+	margin: 0 25px;
+}
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 .name {
 	font-size: 20px;
 	font-weight: bold;
 	color: #242929;
 }
+<<<<<<< HEAD
 
 .rank>a {
+=======
+.rank > a {
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 	text-decoration: none;
 	font-size: 11px;
 	color: #555e5e;
@@ -69,10 +114,15 @@
 	position: absolute;
 	margin-top: 15px;
 	left: 0;
+<<<<<<< HEAD
 	width: 100px;
 }
 
 .renewal>button {
+=======
+}
+.renewal > button {
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 	border: 1px solid #1a78ae;
 	background-color: #1f8ecd;
 	color: white;
@@ -85,7 +135,10 @@
 	margin-top: 20px;
 	width: 100%;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 .content {
 	width: 1000px;
 	margin: 0 auto;
@@ -99,7 +152,10 @@
 	font-size: 12px;
 	vertical-align: top;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 .info_wrap {
 	border: 1px solid #cdd2d2;
 	box-shadow: 0 1px #dcdfdf;
@@ -110,30 +166,47 @@
 	color: #879292;
 	font-size: 12px;
 }
+<<<<<<< HEAD
 
 .tier_wrap {
 	width: 120px;
+=======
+.tier_wrap {
+	width: 120px; 
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 	height: 124px;
 	display: table-cell;
 	vertical-align: middle;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 .tier_img {
 	width: 104px;
 	height: 104px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 .tier_info_wrap {
 	display: table-cell;
 	vertical-align: middle;
 	line-height: 1.5;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 .rank_type {
 	font-size: 11px;
 	color: #879292;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 .rank_tier {
 	font-size: 15px;
 	font-weight: bold;
@@ -147,7 +220,10 @@
 	font-size: 12px;
 	vertical-align: top;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 .game_header {
 	border: 1px solid #cdd2d2;
 	box-shadow: 0 1px #dcdfdf;
@@ -155,6 +231,7 @@
 	border-radius: 2px;
 	height: 34px;
 }
+<<<<<<< HEAD
 
 .game_header>ul>li {
 	margin: 0 10px;
@@ -172,6 +249,21 @@
 }
 
 .game_header>ul>li>a {
+=======
+.game_header > ul > li {
+	margin: 0 10px;	
+	font-size: 12px;
+	line-height: 36px;
+} 
+.game_header > ul > .active {
+	border-bottom: 2px solid #1f8ecd;
+} 
+.game_header > ul > .active > a {
+	color: #1f8ecd;
+	font-weight: bold;
+} 
+.game_header > ul > li > a {
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 	text-decoration: none;
 	color: #555e5e;
 }
@@ -180,6 +272,7 @@
 	width: 100%;
 	background-color: #ededed;
 }
+<<<<<<< HEAD
 
 .box {
 	border: 1px solid #cdd2d2;
@@ -395,42 +488,76 @@
 	outline: none;
 	border: none;
 }
+=======
+.box {
+	border: 1px solid #cdd2d2;
+}
+
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 </style>
 
 <div>
 	<div class="header">
 		<div style="position: relative; display: inline-block;">
 			<div class="border_img"></div>
+<<<<<<< HEAD
 			<img class="profile_img"
 				src="//opgg-static.akamaized.net/images/profile_icons/profileIcon3478.jpg?image=q_auto:best&v=1518361200" />
+=======
+			<img class="profile_img" src="//opgg-static.akamaized.net/images/profile_icons/profileIcon3478.jpg?image=q_auto:best&v=1518361200" />
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 			<span class="summoner_level">218</span>
 		</div>
 		<div class="summoner_rank">
 			<span class="name">문주완</span>
+<<<<<<< HEAD
+=======
+			<div class="rank">
+				<a href="">
+					래더 랭킹 <span style="font-weight: bold; color: #059ede;">~~~~~~~</span>위 (상위 %)
+				</a>
+			</div>
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 			<div class="renewal">
 				<button type="button">전적 갱신</button>
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 	<div class="container">
 		<div class="content">
 			<div class="subContent">
 				<div class="info_wrap">
 					<div class="tier_wrap">
+<<<<<<< HEAD
 						<img class="tier_img"
 							src="//opgg-static.akamaized.net/images/medals/challenger_1.png?image=q_auto:best&v=1" />
+=======
+						<img class="tier_img" src="//opgg-static.akamaized.net/images/medals/challenger_1.png?image=q_auto:best&v=1" />
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 					</div>
 					<div class="tier_info_wrap">
 						<div class="rank_type">솔로랭크</div>
 						<div class="rank_tier">Challenger</div>
 						<div class="tier_info">
+<<<<<<< HEAD
 							<span style="color: #555e5e; font-weight: bold;">0 LP</span> / <span>101승</span>
 							<span>65패</span> <br> <span>56%</span>
+=======
+							<span style="color: #555e5e; font-weight: bold;">0 LP</span> /
+							<span>101승</span>
+							<span>65패</span> <br>
+							<span>56%</span>
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 						</div>
 						<div>다이애나의 마법사들</div>
 					</div>
 				</div>
+<<<<<<< HEAD
 				<div class="info_wrap" style="margin-top: 20px;">
 					<div class="tier_wrap">
 						<img class="tier_img"
@@ -460,19 +587,27 @@
 						</div>
 					</div>
 				</div>
+=======
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 			</div>
 			<div class="realContent">
 				<div class="game_header">
 					<ul style="display: flex; padding-left: 10px; height: 34px;">
+<<<<<<< HEAD
 						<li class="active" data-type="total"><a href=""
 							onClick="typeChange()">전체</a></li>
 						<li data-type="solo"><a href="" onClick="typeChange()">솔로랭크</a></li>
+=======
+						<li class="active" data-type="total"><a href="" onClick="typeChange()">전체</a></li>
+						<li data-type="solo"><a href=""  onClick="typeChange()">솔로랭크</a></li>
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 						<li data-type="free"><a href="" onClick="typeChange()">자유랭크</a></li>
 					</ul>
 				</div>
 				<div style="position: relative;">
 					<div style="text-align: center; margin-top: -1px;">
 						<div class="box">
+<<<<<<< HEAD
 							<div>
 								<span style="margin: 5px;">20전 14승 6패</span>
 								<div>
@@ -1902,10 +2037,39 @@
 			</div>
 		</div>
 	</div>
+=======
+							<table class="game_average">
+								<tbody>
+									<tr>
+										<td style="width: 50%">
+											<div style="padding: 10px;">20전 12승 8패</div>
+										</td>
+										<td style="width: 50%">
+											<ul>
+												<li>라이즈</li>
+												<li>케일</li>
+												<li>초가스</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="graph">
+												<canvas id="myChart"  height="100"></canvas>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 			</div>
 		</div>
 	</div>
 </div>
+<<<<<<< HEAD
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
 function openButton1() {
@@ -1986,23 +2150,59 @@ function openButton1() {
 		}
 	});
 	/* 주소 변경 */
+=======
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>	
+<script>
+	var ctx = document.getElementById('myChart').getContext('2d');
+	var chart = new Chart(ctx, {
+	    // The type of chart we want to create
+	    type: 'doughnut',
+	    // The data for our dataset
+	    data: {
+	        datasets: [{
+	            backgroundColor: 'rgb(255, 99, 132)',
+	            borderColor: 'rgb(255, 99, 132)',
+	            data: [0, 10, 5, 2, 20, 30, 45]
+	        }]
+	    },
+	
+	    // Configuration options go here
+	    options: {
+           cutoutPercentage: 65
+        }
+	});
+	
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 	function typeChange() {
 		event.preventDefault();
 		const typeTag = event.target.parentNode.parentNode.childNodes;
 		const data = event.target.parentNode.dataset.type;
+<<<<<<< HEAD
 
 		for (let i = 0; i < typeTag.length; i++) {
 			if (i % 2 !== 1)
 				continue;
 			if (typeTag[i].dataset.type === data) {
+=======
+		
+		for(let i=0; i<typeTag.length; i++) {
+			if(i % 2 !== 1) continue;
+			if(typeTag[i].dataset.type === data) {
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 				typeTag[i].classList.add("active");
 			} else {
 				typeTag[i].classList.remove("active");
 			}
 		}
 	}
+<<<<<<< HEAD
 
 	
 </script>
 
 <%@ include file="../includes/footer.jsp"%>
+=======
+</script>
+
+<%@ include file="../includes/footer.jsp" %>
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171

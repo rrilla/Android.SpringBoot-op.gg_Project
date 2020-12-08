@@ -12,6 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class RestAPIComm extends AsyncTask<String, Object, String[]> {
@@ -31,69 +32,34 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
     }
 
     @Override
-    protected String[] doInBackground(String... json) {
-        if(json[0].equals("login")){
-            reqUrl = json[0];
+    protected String[] doInBackground(String... strings) {
+        if(strings[0].equals("app/login")){
+            reqUrl = strings[0];
             serverUrl += reqUrl;
-            method = "POST";
-            reqData = json[1];
-        }else if(json[0].equals("join")){
-            reqUrl = json[0];
+            reqData = strings[1];
+        }else if(strings[0].equals("app/test")){
+            reqUrl = strings[0];
             serverUrl += reqUrl;
-            reqData = json[1];
-        }else if(json[0].equals("user/app/loginUser")){
-            reqUrl = json[0];
+        }else if(strings[0].equals("user/matchApply/")){
+            reqUrl = strings[0];
+            serverUrl += reqUrl + strings[1];
+            reqData = strings[2];
+        }else if(strings[0].equals("app/battleList/")){
+            reqUrl = strings[0];
+            serverUrl += reqUrl + strings[1];
+        }else if(strings[0].equals("app/battleList")){
+            reqUrl = strings[0];
             serverUrl += reqUrl;
-        }else if(json[0].equals("user/create")){
-            reqUrl = json[0];
-            serverUrl += reqUrl;
-            reqData = json[1];
-        }else if(json[0].equals("app/teamList")){
-            reqUrl = json[0];
-            serverUrl += reqUrl;
-        }else if(json[0].equals("app/userList")){
-            reqUrl = json[0];
-            serverUrl += reqUrl;
-        }else if(json[0].equals("user/apply1/")){
-            reqUrl = json[0];
-            serverUrl += reqUrl + json[1];
-        }else if(json[0].equals("user/apply2/")){
-            reqUrl = json[0];
-            serverUrl += reqUrl + json[1];
-        }else if(json[0].equals("user/app/teamPartyList")){
-            reqUrl = json[0];
-            serverUrl += reqUrl;
-        }else if(json[0].equals("user/app/userPartyList")){
-            reqUrl = json[0];
-            serverUrl += reqUrl;
-        }else if(json[0].equals("Acknowledgment/")){
-            reqUrl = json[0];
-            serverUrl += reqUrl + json[1];
-            method = "PUT";
-        }else if(json[0].equals("user/teamInfo")){
-            reqUrl = json[0];
-            serverUrl += reqUrl;
-            reqData = json[1];
-        }else if(json[0].equals("user/matchApply/")){
-            reqUrl = json[0];
-            serverUrl += reqUrl + json[1];
-            reqData = json[2];
-        }else if(json[0].equals("app/battleList/")){
-            reqUrl = json[0];
-            serverUrl += reqUrl + json[1];
-        }else if(json[0].equals("app/battleList")){
-            reqUrl = json[0];
-            serverUrl += reqUrl;
-        }else if(json[0].equals("app/battleList2/")){
-            reqUrl = json[0];
-            serverUrl += reqUrl + json[1];
-        }else if(json[0].equals("rank")){
-            reqUrl = json[0];
+        }else if(strings[0].equals("app/battleList2/")){
+            reqUrl = strings[0];
+            serverUrl += reqUrl + strings[1];
+        }else if(strings[0].equals("rank")){
+            reqUrl = strings[0];
             serverUrl += reqUrl;
             method = "PUT";
-        }else if(json[0].equals("user/matchAccept/")){
-            reqUrl = json[0];
-            serverUrl += reqUrl + json[1];
+        }else if(strings[0].equals("user/matchAccept/")){
+            reqUrl = strings[0];
+            serverUrl += reqUrl + strings[1];
             method = "PUT";
         }
 
@@ -101,8 +67,9 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
             String str = "";
             URL url = new URL(serverUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            Log.d("noitem","토큰대가리심음 : "+authorization);
-            conn.setRequestProperty("Authorization", authorization);   //토큰
+            //Log.d("noitem","토큰대가리심음 : "+authorization);
+            //conn.setRequestProperty("Authorization", authorization);   //토큰
+            //conn.setRequestProperty("Cookie", "JSESSIONID=A89005F1EC61170851387634CB9DF1B1");
             conn.setRequestProperty("Content-Type", contentType);
             conn.setRequestMethod(method);
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
@@ -115,6 +82,17 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
             osw.close();
 
             if(conn.getResponseCode() == conn.HTTP_OK) {
+                Log.e("이거되나","됨?");
+                List<String> cookies = conn.getHeaderFields().get("Set-Cookie");
+                //cookies -> [JSESSIONID=D3F829CE262BC65853F851F6549C7F3E; Path=/smartudy; HttpOnly] -> []가 쿠키1개임.
+                //Path -> 쿠키가 유효한 경로 ,/smartudy의 하위 경로에 위의 쿠키를 사용 가능.
+                if (cookies != null) {
+                    for (String cookie : cookies) {
+                        Log.e("zz", cookie);
+
+                    }
+                }
+
                 InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
                 BufferedReader reader = new BufferedReader(tmp);
                 StringBuffer buffer = new StringBuffer();
@@ -124,6 +102,7 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
                 }
                 resData = buffer.toString();
                 //login요청일 때만 map에 헤더정보 넣기.
+
                 if(reqUrl.equals("login")){
                     Map m = conn.getHeaderFields();
                     if(m.containsKey("Authorization")) {
@@ -137,6 +116,7 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
                     Log.d("test-RestAPITsk", "resData : " + resData);
                     return new String[]{resData, authorization};
                 }
+
             } else {
                 InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
                 BufferedReader reader = new BufferedReader(tmp);

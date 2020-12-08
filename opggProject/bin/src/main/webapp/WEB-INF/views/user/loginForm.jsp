@@ -200,7 +200,11 @@ h2 {
 		</div>
 		
 		<div style="margin: 0px 40px;">
+<<<<<<< HEAD
 			
+=======
+			<form class="loginForm" id="form">
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 				<h2>간편 로그인</h2>
 				<div class="login_naver_wrap">
 					<div style="position: relative;">
@@ -213,7 +217,10 @@ h2 {
 				
 				<div class="login_or_text">OR</div>
 				<h2>아이디 로그인</h2>
+<<<<<<< HEAD
 				<form class="loginForm" id="form" action="/loginProc" method="post">
+=======
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 				<div style="position: relative; margin-bottom: 20px;">
 					<input type="text" name="username" id="username" autocomplete="off" required onKeyup="inputHandle()"/>
 					<label for="username" class="username_label">
@@ -226,12 +233,20 @@ h2 {
 						<span class="password_span">비밀번호</span>
 					</label>
 				</div>
+<<<<<<< HEAD
 				<button id="loginButton" class="loginButton" >로그인</button>
 				</form>
 				<div class="signUp_text">
 					인생.GG에 처음이세요? <a href="/signUpForm">회원가입하기</a>
 				</div>
 
+=======
+				<button type="button" id="loginButton" class="loginButton" onClick="loginBtn()">로그인</button>
+				<div class="signUp_text">
+					인생.GG에 처음이세요? <a href="/signUpForm">회원가입하기</a>
+				</div>
+			</form>
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 		</div>
 	</div>
 </body>

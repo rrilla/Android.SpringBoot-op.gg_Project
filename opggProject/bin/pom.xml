@@ -20,16 +20,23 @@
 	</properties>
 
 	<dependencies>
+<<<<<<< HEAD
 		<dependency>
+=======
+		<dependency> 
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
 
+<<<<<<< HEAD
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>5.2.2.RELEASE</version>
 		</dependency>
+=======
+>>>>>>> 85f8da7e2ba00e887435f2b28e56ec4cc85d8171
 
 		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
 		<dependency>
