@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment mFrag3 = null;
     Fragment mFrag4 = null;
 
+    LinearLayout linearLayout2;
     TextView tText;
 
     @Override
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         //리니어 레이아웃
         linearLayout = findViewById(R.id.linearLayout);
+        linearLayout2 = findViewById(R.id.linearLayout2);
         mFrag1 = new MainFragment1();
         getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout, mFrag1).commit();
 
@@ -99,8 +102,11 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.getMenu().findItem(R.id.appbar_fragment1).setVisible(true);
                         toolbar.getMenu().findItem(R.id.appbar_fragment2).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_fragment3).setVisible(false);
+                        linearLayout2.setVisibility(View.GONE);
 
-                        getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout, mFrag1).commit();
+                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.linearLayout, mFrag1).commit();
+                        //fragmentTransaction.detach() replace(R.id.linearLayout2, null).commit();
                         return true;
 
                     case R.id.tab2:
@@ -108,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.getMenu().findItem(R.id.appbar_fragment1).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_fragment2).setVisible(true);
                         toolbar.getMenu().findItem(R.id.appbar_fragment3).setVisible(false);
+                        linearLayout2.setVisibility(View.GONE);
 
                         if(mFrag2 == null){
                             mFrag2 = new MainFragment2();
@@ -125,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.getMenu().findItem(R.id.appbar_fragment1).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_fragment2).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_fragment3).setVisible(true);
+                        linearLayout2.setVisibility(View.GONE);
 
                         if(mFrag3 == null){
                             mFrag3 = new MainFragment3();
@@ -141,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.getMenu().findItem(R.id.appbar_fragment1).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_fragment2).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_fragment3).setVisible(false);
+                        linearLayout2.setVisibility(View.VISIBLE);
 
                         if(mFrag4 == null){
                             mFrag4 = new MainFragment4();

@@ -24,6 +24,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 	//구글로 부터 받은 userRequest 데이터에 대한 후처리 되는 함수
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+		System.out.println(userRequest);
 		System.out.println("getClientRegistration" + userRequest.getClientRegistration()); //registrationId로 어떤 OAuth로 로그인했는지 확인가능
 		System.out.println("getAccessToken" + userRequest.getAccessToken().getTokenValue());
 
@@ -35,7 +36,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 		
 		
 		//회원가입을 강제로 진행해볼 예정
-		String  provider = userRequest.getClientRegistration().getClientId();//google
+		String provider = userRequest.getClientRegistration().getClientId();//google
 		String providerId = oauth2User.getAttribute("sub");
 		String username = provider + "_" + providerId; //
 		String password = bCryptPasswordEncoder.encode("겟인데어");

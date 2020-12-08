@@ -38,17 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{	// Adapter : �
 			.and()
 			.formLogin().loginPage("/loginForm")		// LoginPage의 주소를 설정한다
 			.loginProcessingUrl("/loginProc") //login 주소가 호출이 되면 낚아채서 대신 로그인을 진행해줌
-			.defaultSuccessUrl("/")
+			.defaultSuccessUrl("/success")
 			.and()
+			.logout().logoutSuccessUrl("/success").and()
 			.oauth2Login()
-			.loginPage("/loginForm")
+			.loginProcessingUrl("/googleProc")
 			.userInfoEndpoint()
-			.userService(principalOauth2UserService) // 코드x (액세스토큰+사용자프로필정보O)
-			.and()
-			.and()
-			.logout()
-			.logoutUrl("/logout")
-			.logoutSuccessUrl("/logout1")
-			.invalidateHttpSession(true);	
+			.userService(principalOauth2UserService).and().defaultSuccessUrl("/success"); // 코드x (액세스토큰+사용자프로필정보O)
 	}
+
 }

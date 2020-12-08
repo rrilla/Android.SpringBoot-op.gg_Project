@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.opggProject.domain.User;
@@ -32,7 +33,7 @@ import lombok.extern.java.Log;
 
 @Log
 @Controller
-public class TestController {
+public class UserController {
 	private PythonInterpreter intPre;
 	
 	
@@ -41,6 +42,7 @@ public class TestController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+	String referer;
 
 	@GetMapping("/test")
 	public String getTest(Model model) {
@@ -55,6 +57,21 @@ public class TestController {
 		log.info(pyobj.toString());
 		return "test";
 	}
+	
+	@GetMapping("/success")
+	@ResponseBody
+	public String goback() {
+		System.out.println(referer);
+		
+		return "<script>location.href='" + referer + "'</script>";
+	}
+	
+	//@GetMapping("/success")
+	public String goback2(HttpServletRequest request) {
+		request.getHeader("sdlfkdsf");
+		return "경로";
+	}
+	
 	
 	@GetMapping("/test2")
 	public String getTest2(Model model) {
@@ -73,7 +90,6 @@ public class TestController {
 	@GetMapping({"", "/", "/main"})
 	public String test() {
 		return "main";
-
 	}
 	
 	@PostMapping("/join")
@@ -88,7 +104,8 @@ public class TestController {
 	}
 	
 	@GetMapping("/loginForm")
-	public String loginForm() {
+	public String loginForm(HttpServletRequest request) {
+		referer = request.getHeader("referer");
 		return "user/loginForm";
 	}
 	
@@ -104,6 +121,7 @@ public class TestController {
 	
 	@GetMapping("/multi")
 	public String multiSearchForm() {
+		
 		return "multiSearch/multiSearchForm";
 	}
 	
@@ -111,15 +129,5 @@ public class TestController {
 	public String summoner() {
 		return "record/summoner";
 	}
-	
-	@GetMapping("/logout1")
-	public @ResponseBody String logout(HttpServletRequest request) {
-		String a = "<script>console.log(history.back);</script>";
-		return a;
-	}
-	
-	@GetMapping("/home")
-	public String home() {
-		return "home";
-	}
+
 }
