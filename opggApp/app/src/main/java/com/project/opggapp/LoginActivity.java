@@ -3,6 +3,7 @@ package com.project.opggapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.accounts.AccountManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.gson.Gson;
+import com.project.opggapp.model.Join;
+import com.project.opggapp.task.RestAPIComm;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -69,6 +73,8 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+        //AccountManager am = AccountManager.get(this);
+        //am.getAuthToken()
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +89,36 @@ public class LoginActivity extends AppCompatActivity {
         if (user != null) {
 //            Intent intent = new Intent(this, MainActivity.class);
 //            startActivity(intent);
+            //Log.e("auth1",mAuth.getCurrentUser().getProviderData().toString());
+            //Log.e("auth1",mAuth.getCurrentUser().getMetadata().toString());
+            Log.e("auth2",mAuth.getCurrentUser().getEmail());
+            Log.e("auth3",mAuth.getCurrentUser().getDisplayName());
+            //Log.e("auth4",mAuth.getCurrentUser().getPhoneNumber());
+            Log.e("auth5",mAuth.getCurrentUser().getProviderId());
+            //Log.e("auth6",mAuth.getCurrentUser().getTenantId());
+            Log.e("auth7",mAuth.getCurrentUser().getUid());
+            //Log.e("auth8",mAuth.getCurrentUser().getPhotoUrl().toString());
+            //Log.e("auth3",mAuth.getCurrentUser().getIdToken(false).getResult().getToken());
+            //Log.e("auth4",mAuth.getAccessToken(false).getResult().getToken());
+
+            RestAPIComm comm = new RestAPIComm();
+            String[] data = new String[1];
+            Gson gson = new Gson();
+            Join join = new Join();
+            join.setProviderId(mAuth.getCurrentUser().getProviderId());
+            join.setUid(mAuth.getCurrentUser().getUid());
+            join.setEmail(mAuth.getCurrentUser().getEmail());
+            join.setName(mAuth.getCurrentUser().getDisplayName());
+
+            Log.e("comm", "통신시작");
+            try {
+                data = comm.execute("app/login", gson.toJson(join)).get();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+
+
             finish();
         }
     }
@@ -108,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // [START auth_with_google]
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+        Log.e("providerId", "firebaseAuthWithGoogle - " + acct.getId());
         // [START_EXCLUDE silent]
         //showProgressDialog();
         // [END_EXCLUDE]
