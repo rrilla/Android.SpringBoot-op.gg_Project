@@ -1,6 +1,7 @@
 package com.example.opggProject.config;
 
-import javax.servlet.Filter;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
