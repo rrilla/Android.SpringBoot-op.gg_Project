@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Data
-public class Match {
+public class MatchNum {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int mno;
