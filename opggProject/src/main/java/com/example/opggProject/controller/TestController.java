@@ -10,10 +10,16 @@ import org.python.core.PyList;
 import org.python.core.PyObject;
 import org.python.core.PyString;
 import org.python.util.PythonInterpreter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.example.opggProject.domain.User;
+import com.example.opggProject.domain.UserRepository;
 
 import lombok.extern.java.Log;
 
@@ -23,9 +29,12 @@ import lombok.extern.java.Log;
 public class TestController {
 	private PythonInterpreter intPre;
 	
-
 	
-
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 
 	@GetMapping("/test")
 	public String getTest(Model model) {
@@ -59,6 +68,17 @@ public class TestController {
 	public String test() {
 		return "main";
 
+	}
+	
+	@PostMapping("/join")
+	public  String join(User user) {
+		user.setRole("ROLE_USER");
+		String rawPassword = user.getPassword();
+		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+		user.setPassword(encPassword);
+		userRepository.save(user);
+		System.out.println(user);
+		return "redirect:/user/loginForm";
 	}
 	
 	@GetMapping("/loginForm")

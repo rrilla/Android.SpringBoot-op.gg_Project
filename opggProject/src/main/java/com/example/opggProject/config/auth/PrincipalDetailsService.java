@@ -22,9 +22,10 @@ import com.example.opggProject.domain.UserRepository;
 public class PrincipalDetailsService implements UserDetailsService {
 
 	@Autowired
-	UserRepository userRepo;
+	private UserRepository userRepository;
 	
 	// 로그인을 하면 loadUserByUsername이 함수를 찾는다
+	// 시큐리티 session  = Authentication = UserDetails
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		System.out.println("로그인 요청됨");
@@ -32,11 +33,11 @@ public class PrincipalDetailsService implements UserDetailsService {
 		// 오브젝트가 리턴 되면 그 값을 알아서 비교해줌?
 		// 즉, 셀렉트해서 오브젝트 가져와서 있는지만 확인하면, 패스워드 체크는 시큐리티가 해준다
 		
-		User user = userRepo.findByUsername(username);
-		if(user == null) {
+		User userEntity = userRepository.findByUsername(username);
+		if(userEntity == null) {
 			return null;
 		}else {
-			return new PrincipalDetails(user);	// 유저를 가지고있는 PrincipalDetails를 return하기 위해서 만들어서 넣는다
+			return new PrincipalDetails(userEntity);	// 유저를 가지고있는 PrincipalDetails를 return하기 위해서 만들어서 넣는다
 		}
 		
 	}// default는 null이라서 아무것도 진행이 안되는 거

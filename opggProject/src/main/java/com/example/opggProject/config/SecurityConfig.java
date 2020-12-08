@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{	// Adapter : �
 			.anyRequest().permitAll()					// 다른 주소는 인증 필요x
 			.and()
 			.formLogin().loginPage("/loginForm")		// LoginPage의 주소를 설정한다
-			.loginProcessingUrl("/loginProc")
+			.loginProcessingUrl("/loginProc") //login 주소가 호출이 되면 낚아채서 대신 로그인을 진행해줌
 			.defaultSuccessUrl("/")
 			.and()
 			.oauth2Login()
