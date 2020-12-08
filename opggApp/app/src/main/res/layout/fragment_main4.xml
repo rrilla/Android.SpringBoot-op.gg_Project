@@ -23,7 +23,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView1"
+                    android:id="@+id/fMain4_raking_tab1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#5586EB"
@@ -40,7 +40,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/fMain4_raking_tab2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/textview_edge"
@@ -56,7 +56,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/fMain4_raking_tab3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/textview_edge"

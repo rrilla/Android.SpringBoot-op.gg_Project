@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment.MainFragment4_Raking">
+    tools:context=".fragment.MainFragment4_Level">
 
     <LinearLayout
         android:padding="15dp"
@@ -41,7 +40,7 @@
         android:gravity="center"
         android:textColor="#353535"
         android:layout_marginBottom="15dp"
-        android:text="소환사의 협곡에 총 4,831,644명의 소환사가 있습니다." />
+        android:text="@string/fMain_level" />
 
     <View
         android:layout_width="match_parent"
@@ -64,7 +63,7 @@
             android:layout_weight="1"
             android:textColor="#000000"
             android:textStyle="bold"
-            android:text="#     　　소환사" />
+            android:text="#        소환사" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,13 +72,13 @@
 
         <TextView
             android:gravity="right"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="#000000"
             android:textStyle="bold"
-            android:text="티어 / LP" />
+            android:text="티어 / 레벨" />
 
     </LinearLayout>
 
@@ -161,7 +160,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:gravity="center|left"
-                    android:text="1,590 LP" />
+                    android:text="1553 LV" />
             </LinearLayout>
 
         </LinearLayout>
@@ -239,7 +238,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:gravity="center|left"
-                    android:text="1,590 LP" />
+                    android:text="1553 LV" />
             </LinearLayout>
 
         </LinearLayout>
@@ -317,7 +316,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:gravity="center|left"
-                    android:text="1,590 LP" />
+                    android:text="1553 LV" />
             </LinearLayout>
 
         </LinearLayout>
@@ -395,7 +394,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:gravity="center|left"
-                    android:text="1,590 LP" />
+                    android:text="1553 LV" />
             </LinearLayout>
 
         </LinearLayout>
@@ -473,7 +472,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:gravity="center|left"
-                    android:text="1,590 LP" />
+                    android:text="1553 LV" />
             </LinearLayout>
 
         </LinearLayout>
