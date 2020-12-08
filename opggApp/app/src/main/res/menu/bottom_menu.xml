@@ -6,7 +6,7 @@
         android:id="@+id/tab1"
         app:showAsAction="always"
         android:enabled="true"
-        android:icon="@android:drawable/ic_dialog_alert"
+        android:icon="@android:drawable/ic_menu_search"
         android:title="@string/tab_under_menu_1" />
 
     <item
@@ -27,7 +27,7 @@
         android:id="@+id/tab4"
         app:showAsAction="always"
         android:enabled="true"
-        android:icon="@android:drawable/ic_delete"
+        android:icon="@android:drawable/btn_star"
         android:title="@string/tab_under_menu_4" />
 
 </menu>
