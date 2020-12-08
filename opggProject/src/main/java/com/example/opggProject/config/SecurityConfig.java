@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{	// Adapter : �
 			.and()
 			.logout().logoutSuccessUrl("/success").and()
 			.oauth2Login()
-			.loginProcessingUrl("/googleProc")
+			.loginPage("/loginForm")
 			.userInfoEndpoint()
 			.userService(principalOauth2UserService).and().defaultSuccessUrl("/success"); // 코드x (액세스토큰+사용자프로필정보O)
 	}
