@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.gson.Gson;
 import com.project.opggapp.model.Join;
+import com.project.opggapp.model.dto.LoginDto;
 import com.project.opggapp.task.RestAPIComm;
 
 public class LoginActivity extends AppCompatActivity {
@@ -37,10 +39,37 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private int RC_SIGN_IN = 123;
 
+    String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Button btnLogin = findViewById(R.id.login_btn_login);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText email = findViewById(R.id.login_et_email);
+                EditText password = findViewById(R.id.login_et_password);
+                LoginDto data = new LoginDto();
+                data.setPassword(password.getText().toString());
+                data.setUsername(email.getText().toString());
+
+                RestAPIComm comm = new RestAPIComm();
+                Gson gson = new Gson();
+                String[] result = new String[2];
+                try {
+                    Log.e("test", "통신시작");
+                    result = comm.execute("app/login", gson.toJson(data)).get();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                Log.e("test", result[0]);
+                Log.e("test-token", result[1]);
+                token = result[1];
+            }
+        });
 
         ImageView btnClose = findViewById(R.id.login_iv_close);
         btnClose.setOnClickListener(new View.OnClickListener() {
@@ -89,17 +118,6 @@ public class LoginActivity extends AppCompatActivity {
         if (user != null) {
 //            Intent intent = new Intent(this, MainActivity.class);
 //            startActivity(intent);
-            //Log.e("auth1",mAuth.getCurrentUser().getProviderData().toString());
-            //Log.e("auth1",mAuth.getCurrentUser().getMetadata().toString());
-            Log.e("auth2",mAuth.getCurrentUser().getEmail());
-            Log.e("auth3",mAuth.getCurrentUser().getDisplayName());
-            //Log.e("auth4",mAuth.getCurrentUser().getPhoneNumber());
-            Log.e("auth5",mAuth.getCurrentUser().getProviderId());
-            //Log.e("auth6",mAuth.getCurrentUser().getTenantId());
-            Log.e("auth7",mAuth.getCurrentUser().getUid());
-            //Log.e("auth8",mAuth.getCurrentUser().getPhotoUrl().toString());
-            //Log.e("auth3",mAuth.getCurrentUser().getIdToken(false).getResult().getToken());
-            //Log.e("auth4",mAuth.getAccessToken(false).getResult().getToken());
 
             RestAPIComm comm = new RestAPIComm();
             String[] data = new String[1];
@@ -110,9 +128,8 @@ public class LoginActivity extends AppCompatActivity {
             join.setEmail(mAuth.getCurrentUser().getEmail());
             join.setName(mAuth.getCurrentUser().getDisplayName());
 
-            Log.e("comm", "통신시작");
             try {
-                data = comm.execute("app/login", gson.toJson(join)).get();
+                data = comm.execute("app/loginGoogle", gson.toJson(join)).get();
             }catch (Exception e){
                 e.printStackTrace();
             }

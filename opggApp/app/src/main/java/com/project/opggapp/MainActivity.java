@@ -46,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RestAPIComm comm = new RestAPIComm();
-        try{
-            Log.e("zz", "통신시작");
-            comm.execute("app/login");
-            Log.e("zz", "통신성공");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//        RestAPIComm comm = new RestAPIComm();
+//        try{
+//            Log.e("zz", "통신시작");
+//            comm.execute("user/test");
+//            Log.e("zz", "통신성공");
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
 
 
         //툴바
