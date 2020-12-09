@@ -116,7 +116,12 @@ public class UserController {
 	
 	@GetMapping("/board") 
 	public String board() {
-		return "board";
+		return "board/boardList";
+	}
+	
+	@GetMapping("/board/write")
+	public String boardWrite() {
+		return "board/boardWrite";
 	}
 	
 	@GetMapping("/multi")
@@ -130,4 +135,8 @@ public class UserController {
 		return "record/summoner";
 	}
 
+	@GetMapping("/ladder")
+	public String ladder() {
+		return "ranking/ladder";
+	}
 }

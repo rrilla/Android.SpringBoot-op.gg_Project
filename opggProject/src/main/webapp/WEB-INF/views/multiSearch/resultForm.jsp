@@ -89,7 +89,7 @@
 			<li>
 				<div style="padding: 8px 15px 15px;">
 					<div><img class="summoner_tier" src="//opgg-static.akamaized.net/images/medals/challenger_1.png?image=q_auto:best&v=1"></div>
-					<div class="summoner_name">문주완</div>
+					<div class="summoner_name">준석이형님</div>
 					<div class="summoner_lp">Challenger (1237 LP)</div>
 					<div style="display:flex; margin: 10px 0;">
 						<div class="base">
@@ -118,28 +118,128 @@
 				</div>
 			</li>
 			<li>
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
+				<div style="padding: 8px 15px 15px;">
+					<div><img class="summoner_tier" src="//opgg-static.akamaized.net/images/medals/challenger_1.png?image=q_auto:best&v=1"></div>
+					<div class="summoner_name">부산IT교육센터</div>
+					<div class="summoner_lp">Challenger (1237 LP)</div>
+					<div style="display:flex; margin: 10px 0;">
+						<div class="base">
+							65패
+							<div class="win">
+								84승
+							</div>
+						</div>
+						<span class="ratio">56%</span>
+					</div>
+				</div>
+					<div class="recent_match">
+					<div class="recent_title">최근 플레이</div>
+					<ul>
+						<li>	
+							<div style="display: inline-block; vertical-align: middle;">
+								<img style="width: 20px; vertical-align: middle;" src="http://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/champions/Jax_Square_0_1.jpg?v=20201112b">
+							</div>
+							<div class="win_or_defeat">
+								<span class="kill">0</span> /
+								<span class="death">3</span> /
+								<span class="assist">2</span>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</li>
 			<li>
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
+				<div style="padding: 8px 15px 15px;">
+					<div><img class="summoner_tier" src="//opgg-static.akamaized.net/images/medals/challenger_1.png?image=q_auto:best&v=1"></div>
+					<div class="summoner_name">구울과공허충</div>
+					<div class="summoner_lp">Challenger (1237 LP)</div>
+					<div style="display:flex; margin: 10px 0;">
+						<div class="base">
+							65패
+							<div class="win">
+								84승
+							</div>
+						</div>
+						<span class="ratio">56%</span>
+					</div>
+				</div>
+					<div class="recent_match">
+					<div class="recent_title">최근 플레이</div>
+					<ul>
+						<li>	
+							<div style="display: inline-block; vertical-align: middle;">
+								<img style="width: 20px; vertical-align: middle;" src="http://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/champions/Jax_Square_0_1.jpg?v=20201112b">
+							</div>
+							<div class="win_or_defeat">
+								<span class="kill">0</span> /
+								<span class="death">3</span> /
+								<span class="assist">2</span>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</li>
 			<li>
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
+				<div style="padding: 8px 15px 15px;">
+					<div><img class="summoner_tier" src="//opgg-static.akamaized.net/images/medals/challenger_1.png?image=q_auto:best&v=1"></div>
+					<div class="summoner_name">냄세제로</div>
+					<div class="summoner_lp">Challenger (1237 LP)</div>
+					<div style="display:flex; margin: 10px 0;">
+						<div class="base">
+							65패
+							<div class="win">
+								84승
+							</div>
+						</div>
+						<span class="ratio">56%</span>
+					</div>
+				</div>
+					<div class="recent_match">
+					<div class="recent_title">최근 플레이</div>
+					<ul>
+						<li>	
+							<div style="display: inline-block; vertical-align: middle;">
+								<img style="width: 20px; vertical-align: middle;" src="http://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/champions/Jax_Square_0_1.jpg?v=20201112b">
+							</div>
+							<div class="win_or_defeat">
+								<span class="kill">0</span> /
+								<span class="death">3</span> /
+								<span class="assist">2</span>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</li>
 			<li>
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
+				<div style="padding: 8px 15px 15px;">
+					<div><img class="summoner_tier" src="//opgg-static.akamaized.net/images/medals/challenger_1.png?image=q_auto:best&v=1"></div>
+					<div class="summoner_name">문주완</div>
+					<div class="summoner_lp">Challenger (1237 LP)</div>
+					<div style="display:flex; margin: 10px 0;">
+						<div class="base">
+							65패
+							<div class="win">
+								84승
+							</div>
+						</div>
+						<span class="ratio">56%</span>
+					</div>
+				</div>
+					<div class="recent_match">
+					<div class="recent_title">최근 플레이</div>
+					<ul>
+						<li>	
+							<div style="display: inline-block; vertical-align: middle;">
+								<img style="width: 20px; vertical-align: middle;" src="http://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/champions/Jax_Square_0_1.jpg?v=20201112b">
+							</div>
+							<div class="win_or_defeat">
+								<span class="kill">0</span> /
+								<span class="death">3</span> /
+								<span class="assist">2</span>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</li>
 		</ul>
 	</div>
