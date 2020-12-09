@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -46,5 +48,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{	// Adapter : �
 			.userInfoEndpoint()
 			.userService(principalOauth2UserService).and().defaultSuccessUrl("/success"); // 코드x (액세스토큰+사용자프로필정보O)
 	}
-
+	
+     @Bean
+     @Override
+     public AuthenticationManager authenticationManagerBean() throws Exception {
+          return super.authenticationManagerBean();
+     }
+     
 }
