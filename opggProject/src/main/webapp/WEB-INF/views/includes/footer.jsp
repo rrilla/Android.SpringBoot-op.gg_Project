@@ -15,6 +15,9 @@
 	} else if(currentPath === "/multi") {
 		const multi = document.querySelector("#category_multi");
 		pathCheck(multi);
+	} else if(currentPath === "/ladder") {
+		const ladder = document.querySelector("#category_ranking")
+		pathCheck(ladder);
 	}
 	function loginButton() {
 		location.href = "/loginForm";
