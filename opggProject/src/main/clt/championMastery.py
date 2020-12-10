@@ -1,15 +1,14 @@
 import sys
-sys.path.append('C:\Users\wnstj\AppData\Local\Programs\Python\Python39\Lib\site-packages')
-sys.setdefaultencoding("utf-8")
+sys.path.append('C:\ProgramData\Anaconda3\Lib\site-packages')
 import requests
 import time
 import java.util.ArrayList as ArrayList
 import java.util.List
 
 arr = ArrayList()
-def champion(name,api):
+def champion(api):
     api_key = api
-    name = name
+
     account = ""
     id=""
     level=""
@@ -20,27 +19,44 @@ def champion(name,api):
         "Origin": "https://developer.riotgames.com",
         "X-Riot-Token": api_key
     }
-    URL = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name
-    res = requests.get(URL, headers=headers)
-    if res.status_code == 200:
-
+    rank = 1
+    page = 1
+    sum = 0
+    i = 1
+    tier = "CHALLENGER"
+    while True:
+        URL = "https://kr.api.riotgames.com/lol/league-exp/v4/entries/RANKED_SOLO_5x5/"+tier+"/I?page="+str(i)
+        res = requests.get(URL, headers=headers)
+        while res.status_code == 429:
+            print("rest")
+            time.sleep(30)
+            URL = "https://kr.api.riotgames.com/lol/league-exp/v4/entries/RANKED_SOLO_5x5/"+tier+"/I?page="+str(i)
+            res = requests.get(URL, headers=headers)
         data = res.json()
-        id = data['id']
-    else:
-        print("no")
-
-
-    URL = "https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/"+id
-    res = requests.get(URL, headers=headers)
-    if res.status_code == 429:
-        print("rest")
-        time.sleep(30)
-    cham = res.json()
-    for k in range(0,5):
-        if len(cham) <= k:
+        if len(data) == 0:
             break
-        print("championId : ",cham[k]['championId'], "championPoints : ",cham[k]['championPoints'])
-        arr.add(str(cham[k]['championId']))
-        arr.add(str(cham[k]['championPoints']))
-
-    return arr
+        for j in range(0,len(data)):
+            print(data[j]['summonerName'])
+            arr.add(data[j]['summonerName'])
+            id = data[j]['summonerId']
+            URL2 = "https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/"+id
+            res2 = requests.get(URL2, headers=headers)
+            while res2.status_code == 429:
+                print("rest")
+                time.sleep(30)
+                URL2 = "https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/"+id
+                res2 = requests.get(URL2, headers=headers)
+            if res2.status_code == 404:
+                continue
+            data2 = res2.json()
+            arr.add("champion")
+            for k in range(0,5):
+                if len(data2) <= k:
+                    break
+                print(k+1,"championMastery")
+                print(data2[k]['championId'])
+                print(data2[k]['championPoints'])
+                arr.add(data2[k]['championId'])
+                arr.add(data2[k]['championPoints'])
+        i=i+1
+    return arr    
