@@ -18,14 +18,14 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
     private String reqUrl = "";
     private String method = "POST";
     private String contentType = "application/json; charset=utf-8";
-    private String token = null;
+    private String severToken = null;
     private String reqData = "noData";
     private String resData = "noData";
 
     public RestAPIComm(){}
 
-    public RestAPIComm(String token){
-        this.token = token;
+    public RestAPIComm(String severToken){
+        this.severToken = severToken;
     }
 
     @Override
@@ -66,8 +66,8 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             //Log.d("test","토큰대가리심음 : " + authorization);
             //conn.setRequestProperty("Authorization", authorization);   //토큰
-            if(token != null){
-                conn.setRequestProperty("Cookie", token);
+            if(severToken != null){
+                conn.setRequestProperty("Cookie", severToken);
             }
             conn.setRequestProperty("Content-Type", contentType);
             conn.setRequestMethod(method);
@@ -92,7 +92,7 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
                 resData = buffer.toString();
 
                 //login요청일 때만 token추출
-                if(reqUrl.equals("app/login/") || reqUrl.equals("app/loginGoogle")){
+                if(reqUrl.equals("app/login") || reqUrl.equals("app/loginGoogle")){
 
                     Log.e("이거되나","됨?");
                     List<String> cookies = conn.getHeaderFields().get("Set-Cookie");
@@ -101,10 +101,10 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
                     if (cookies != null) {
                         for (String cookie : cookies) {
                             Log.e("test-token", cookie);
-                            token = cookie.split(";\\s*")[0];
+                            severToken = cookie.split(";\\s*")[0];
                         }
                     }
-                    return new String[]{resData, token};
+                    return new String[]{resData, severToken};
                 }
 
             } else {
@@ -123,8 +123,10 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
+            return new String[]{"서버 통신 오류"};
         } catch (IOException e) {
             e.printStackTrace();
+            return new String[]{"서버 통신 오류"};
         }
         Log.d("통신데이터", "req body data : " + reqData);
         Log.d("통신데이터", "res body data : " + resData);

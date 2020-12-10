@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,13 +19,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 import com.project.opggapp.fragment.MainFragment1;
 import com.project.opggapp.fragment.MainFragment2;
 import com.project.opggapp.fragment.MainFragment3;
 import com.project.opggapp.fragment.MainFragment4;
+import com.project.opggapp.model.dto.LoginDto;
 import com.project.opggapp.task.RestAPIComm;
+
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,19 +47,42 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout linearLayout2;
     TextView tText;
 
+    private SharedPreferences pref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        RestAPIComm comm = new RestAPIComm();
-//        try{
-//            Log.e("zz", "통신시작");
-//            comm.execute("user/test");
-//            Log.e("zz", "통신성공");
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
+        //로그인 검사
+        pref = getSharedPreferences("autoLogin", MODE_PRIVATE);
+        String id = pref.getString("id", "");
+        String pw = pref.getString("pw", "");
+        Log.d("MainActivity","저장된id : " + id);
+        Log.d("MainActivity", "저장된pw : " + pw);
+        if(!id.equals("") && !pw.equals("")){
+            Log.d("MainActivity","자동 로그인 실행");
+            Gson gson = new Gson();
+            LoginDto loginDto = new LoginDto();
+            String[] result = new String[2];
+            loginDto.setUsername(id);
+            loginDto.setPassword(pw);
+            RestAPIComm comm = new RestAPIComm();
+            try {
+                result = comm.execute("app/login", gson.toJson(loginDto)).get();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "서버 통신 오류", Toast.LENGTH_SHORT).show();
+            }
+            if(result[0].equals("ok")){
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("severToken", result[1]);
+                editor.commit();
+                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show();
+            }
+        }
 
 
         //툴바
@@ -85,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                //intent.putExtra("jwtToken", jwtToken);
+                //intent.putExtra("severToken", severToken);
                 startActivity(intent);
                 overridePendingTransition(R.anim.translate_up, R.anim.translate_up);
             }
@@ -94,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
-                //intent.putExtra("jwtToken", jwtToken);
                 startActivity(intent);
                 overridePendingTransition(R.anim.translate_up, R.anim.translate_up);
             }

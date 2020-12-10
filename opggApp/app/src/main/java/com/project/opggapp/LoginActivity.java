@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.accounts.AccountManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.gson.Gson;
 import com.project.opggapp.model.Join;
 import com.project.opggapp.model.dto.LoginDto;
+import com.project.opggapp.task.IP;
 import com.project.opggapp.task.RestAPIComm;
 
 public class LoginActivity extends AppCompatActivity {
@@ -39,12 +41,21 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private int RC_SIGN_IN = 123;
 
-    String token;
+    private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //토큰있을시 = 로그인했을시 UserActivity 이동
+        pref = getSharedPreferences("autoLogin",MODE_PRIVATE);
+        String severToken = pref.getString("severToken","");
+        if(!severToken.equals("")){
+            Intent intent = new Intent(getApplication(), UserActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         Button btnLogin = findViewById(R.id.login_btn_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -60,14 +71,19 @@ public class LoginActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 String[] result = new String[2];
                 try {
-                    Log.e("test", "통신시작");
+                    Log.e("LoginActivity", "로그인 통신시작");
                     result = comm.execute("app/login", gson.toJson(data)).get();
                 }catch (Exception e){
+                    Toast.makeText(getApplicationContext(), "서버 통신 오류", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
-                Log.e("test", result[0]);
-                Log.e("test-token", result[1]);
-                token = result[1];
+                if(result[0].equals("ok")){
+                    autoLogin(data.getUsername(), data.getPassword(), result[1]);
+                    finish();
+                    Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "로그인 실패 - " + result[1], Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -96,15 +112,15 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
 
-        //로그인 한번한 후 다음에 어플켰을시 바로 다음화면 전환
-        if (mAuth.getCurrentUser() != null) {
-            Intent intent = new Intent(getApplication(), UserActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//        //로그인 한번한 후 다음에 어플켰을시 바로 다음화면 전환
+//        if (mAuth.getCurrentUser() != null) {
+//            Intent intent2 = new Intent(getApplication(), UserActivity.class);
+//            startActivity(intent2);
+//            finish();
+//        }
+
         //AccountManager am = AccountManager.get(this);
         //am.getAuthToken()
-
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,30 +129,12 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    //로그인 후 작업
-    private void updateUI(FirebaseUser user) { //update ui code here
-        if (user != null) {
-//            Intent intent = new Intent(this, MainActivity.class);
-//            startActivity(intent);
-
-            RestAPIComm comm = new RestAPIComm();
-            String[] data = new String[1];
-            Gson gson = new Gson();
-            Join join = new Join();
-            join.setProviderId(mAuth.getCurrentUser().getProviderId());
-            join.setUid(mAuth.getCurrentUser().getUid());
-            join.setEmail(mAuth.getCurrentUser().getEmail());
-            join.setName(mAuth.getCurrentUser().getDisplayName());
-
-            try {
-                data = comm.execute("app/loginGoogle", gson.toJson(join)).get();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-            finish();
-        }
+    // [START signin]
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
+    // [END signin]
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -175,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             FirebaseUser user = mAuth.getCurrentUser(); //유저 정보 얻기
                             updateUI(user);
-                            Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_LONG).show();
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -185,7 +183,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             // updateUI(null);
                         }
-
                         // [START_EXCLUDE]
                         // hideProgressDialog();
                         // [END_EXCLUDE]
@@ -194,12 +191,52 @@ public class LoginActivity extends AppCompatActivity {
     }
     // [END auth_with_google]
 
-    // [START signin]
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+    //로그인 후 작업
+    private void updateUI(FirebaseUser user) { //update ui code here
+        if (user != null) {
+//            Intent intent = new Intent(this, MainActivity.class);
+//            startActivity(intent);
+
+            RestAPIComm comm = new RestAPIComm();
+            String[] result = new String[2];
+            Gson gson = new Gson();
+            Join join = new Join();
+            join.setProviderId(mAuth.getCurrentUser().getProviderId());
+            join.setUid(mAuth.getCurrentUser().getUid());
+            join.setEmail(mAuth.getCurrentUser().getEmail());
+            join.setName(mAuth.getCurrentUser().getDisplayName());
+
+            try {
+                Log.e("LoginActivity", "구글로그인 통신시작");
+                result = comm.execute("app/loginGoogle", gson.toJson(join)).get();
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(), "서버 통신 오류", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+            if(result[0].equals("ok")){
+                autoLogin(mAuth.getCurrentUser().getProviderId()+"_"+mAuth.getCurrentUser().getUid(),
+                        IP.pw, result[1]);
+                finish();
+                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getApplicationContext(), "로그인 실패 - " + result[0], Toast.LENGTH_SHORT).show();
+            }
+        }
     }
-    // [END signin]
+
+    private void autoLogin(String id, String pw, String severToken){
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("id", id);
+        editor.putString("pw", pw);
+        editor.putString("severToken", severToken);
+        editor.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        overridePendingTransition(R.anim.translate_down, R.anim.translate_down);
+    }
 
     private void revokeAccess() {
         // Firebase sign out
@@ -213,11 +250,5 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
                     }
                 });
-    }
-
-    @Override
-    public void onBackPressed() {
-        finish();
-        overridePendingTransition(R.anim.translate_down, R.anim.translate_down);
     }
 }
