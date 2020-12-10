@@ -28,7 +28,7 @@ public class PythonController {
 	@Autowired
 	private RankService rankService;
 	
-	final String api = "RGAPI-be18fde6-086f-458b-b3b1-a1eda49a519c";
+	final String api = "RGAPI-0bb0a19f-8ee0-4f5f-9a89-2822f3db18ba";
 	   private static PythonInterpreter intPre;
 	      
 	   private HttpEntity makeEntity() {
@@ -71,31 +71,23 @@ public class PythonController {
 	   //랭킹에따른 챔피언 마스터리 뽑기
 	   //일단 한글이안됨
 	   @GetMapping("championMaster")
-	   public @ResponseBody List<String> championMaster() {
+	   public @ResponseBody String championMaster() {
 		  
-		  List<RankData> rankList = rankService.rankList();  
-		  List<String> aaa = new ArrayList<String>();
-		  for (int i = 0; i < rankList.size(); i++) {
-			
-			aaa.add(summer(rankList.get(i).getName()).getId());
-			
-		}
 		  
-//	      System.setProperty("python.import.site", "false");
-//	      intPre = new PythonInterpreter();
-//	      intPre.exec("from java.lang import System");
-//	      intPre.execfile("src/main/clt/championMastery.py");
-//	      PyFunction pyFunction = (PyFunction)intPre.get("champion",PyFunction.class);
-//	      
-//	      String name = "냄세제로";
-//	      PyObject pyobj = pyFunction.__call__(new PyString(name),new PyString(api));
-//	      String abc = pyobj.toString();
-//	      String [] token = abc.split(",");
-//	      for (int i = 0; i < token.length; i++) {
-//	         System.out.println(token[i].replace("[", "").replace("]", "").replace(" ", ""));
-//	      }
-//	      System.out.println(abc);
-	      return aaa;
+	      System.setProperty("python.import.site", "false");
+	      intPre = new PythonInterpreter();
+	      intPre.exec("from java.lang import System");
+	      intPre.execfile("src/main/clt/championMastery.py");
+	      PyFunction pyFunction = (PyFunction)intPre.get("champion",PyFunction.class);
+	      
+	      PyObject pyobj = pyFunction.__call__(new PyString(api));
+	      String abc = pyobj.toString();
+	      String [] token = abc.split(",");
+	      for (int i = 0; i < token.length; i++) {
+	         System.out.println(token[i].replace("[", "").replace("]", "").replace(" ", ""));
+	      }
+	      System.out.println(abc);
+	      return pyobj.toString();
 	   }
 	   
 	   //멀티서치테스트
@@ -183,14 +175,28 @@ public class PythonController {
 	   
 	   
 	   public Summername summer (String name) {
-	      RestTemplate restTemplate = new RestTemplate();
+		  
+		 
+		  RestTemplate restTemplate = new RestTemplate();
 	      HttpEntity entity = makeEntity();
 	      URI url = URI.create("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name);
-	      
 	      ResponseEntity response = restTemplate.exchange(url, HttpMethod.GET, entity, Summername.class);
-	      
+	      System.out.println("aa : "+ response.getStatusCodeValue());
+	      while(response.getStatusCodeValue()==429) {
+	    	  try {
+				Thread.sleep(10000);
+				System.out.println("10초쉽니다");
+				url = URI.create("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name);
+			    response = restTemplate.exchange(url, HttpMethod.GET, entity, Summername.class);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+	      }
 	      Summername summ = (Summername) response.getBody();
+	      
 	      System.out.println(summ.getName());
-	      return summ;
-	   }
+	  
+      
+      return summ;
+   }
 }
