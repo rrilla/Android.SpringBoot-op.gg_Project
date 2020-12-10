@@ -43,20 +43,6 @@ public class UserController {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	String referer;
-
-	@GetMapping("/test")
-	public String getTest(Model model) {
-		intPre = new PythonInterpreter();
-		intPre.execfile("src/main/clt/test.py");
-		PyFunction pyFunction = (PyFunction) intPre.get("testFunc",PyFunction.class);
-		
-		
-		PyObject pyobj = pyFunction.__call__();
-		
-		model.addAttribute("pytestResult", pyobj.toString());
-		log.info(pyobj.toString());
-		return "test";
-	}
 	
 	@GetMapping("/success")
 	@ResponseBody
@@ -72,21 +58,6 @@ public class UserController {
 		return "경로";
 	}
 	
-	
-	@GetMapping("/test2")
-	public String getTest2(Model model) {
-		intPre = new PythonInterpreter();
-		intPre.execfile("src/main/clt/multiSearch.py");
-		PyFunction pyFunction = (PyFunction) intPre.get("multiSearch",PyFunction.class);
-		
-		String name = "ZED99";
-		PyObject pyobj = pyFunction.__call__(new PyString(name));
-//		ArrayList<String> test = pyobj;
-		model.addAttribute("pytestResult", pyobj.toString());
-		log.info(pyobj.toString());
-		return "test2";
-	}
-
 	@GetMapping({"", "/", "/main"})
 	public String test() {
 		return "main";

@@ -19,6 +19,6 @@ public class MatchNum {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int mno;
-	private int matchNum;
+	private String matchId;
 
 }

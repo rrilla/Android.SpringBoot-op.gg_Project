@@ -25,7 +25,6 @@ public class RankChampMastery {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int rcno;
-   private String name;
    private String championName;
    private Long masteryPoint;
    

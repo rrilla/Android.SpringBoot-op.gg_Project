@@ -31,7 +31,7 @@ public class Champion {
    private String name;
    @Lob //대용량 데이터
    private String story;
-   
+   private int id;
    @JsonIgnoreProperties("champion")
    @OneToMany(mappedBy = "champion", fetch = FetchType.LAZY)
    private List<ChampionPickData> championPickData;

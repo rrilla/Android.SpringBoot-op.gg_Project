@@ -24,5 +24,6 @@ public class Item {
 	private String name;
 	@Lob
 	private String info;
-
+	private int id;
+	private int price;
 }
