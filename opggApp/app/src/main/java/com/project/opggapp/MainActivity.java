@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         pref = getSharedPreferences("autoLogin", MODE_PRIVATE);
         String id = pref.getString("id", "");
         String pw = pref.getString("pw", "");
-        Log.d("MainActivity","저장된id : " + id);
-        Log.d("MainActivity", "저장된pw : " + pw);
         if(!id.equals("") && !pw.equals("")){
             Log.d("MainActivity","자동 로그인 실행");
             Gson gson = new Gson();
@@ -236,7 +234,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         return true;
     }
-
 
     //뒤로가기 때 호출 - 네비창 닫기
     @Override
