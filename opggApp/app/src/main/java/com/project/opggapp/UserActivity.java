@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -60,6 +61,12 @@ public class UserActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id)
                     {
                         signOut();
+                        SharedPreferences pref = getSharedPreferences("autoLogin", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.remove("id");
+                        editor.remove("pw");
+                        editor.remove("severToken");
+                        editor.commit();
                     }
                 });
                 builder.setNegativeButton("취소",null);
@@ -77,10 +84,9 @@ public class UserActivity extends AppCompatActivity {
                 new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "로그아웃 성공", Toast.LENGTH_LONG).show();
                     }
                 });
-
         finish();
     }
 
