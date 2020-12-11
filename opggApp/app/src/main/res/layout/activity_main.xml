@@ -37,15 +37,16 @@
                 android:text="TextView" />
             </androidx.appcompat.widget.Toolbar>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#D5D5D5"
-                android:elevation="1dp"
-                app:tabGravity="fill"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar2"
                 android:visibility="gone"
-                app:tabMode="fixed" />
+                android:gravity="center_horizontal"
+                android:foregroundGravity="center_horizontal"
+                app:buttonGravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -55,22 +56,11 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="60dp"
                 android:orientation="vertical" >
-
-                <LinearLayout
-                    android:id="@+id/linearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"></LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"></LinearLayout>
 
             </LinearLayout>
 

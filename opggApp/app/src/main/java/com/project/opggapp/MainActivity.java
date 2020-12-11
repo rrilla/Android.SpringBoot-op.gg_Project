@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.project.opggapp.fragment.MainFragment1;
 import com.project.opggapp.fragment.MainFragment2;
+import com.project.opggapp.fragment.MainFragment2_test;
 import com.project.opggapp.fragment.MainFragment3;
 import com.project.opggapp.fragment.MainFragment4;
 import com.project.opggapp.model.dto.LoginDto;
@@ -44,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
     Fragment mFrag3 = null;
     Fragment mFrag4 = null;
 
-    LinearLayout linearLayout2;
     TextView tText;
+    MenuItem miSearch;
 
     private SharedPreferences pref;
 
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         //리니어 레이아웃
         linearLayout = findViewById(R.id.linearLayout);
-        linearLayout2 = findViewById(R.id.linearLayout2);
+        //linearLayout2 = findViewById(R.id.linearLayout2);
         mFrag1 = new MainFragment1();
         getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout, mFrag1).commit();
 
@@ -138,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.getMenu().findItem(R.id.appbar_fragment1).setVisible(true);
                         toolbar.getMenu().findItem(R.id.appbar_fragment2).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_fragment3).setVisible(false);
-                        linearLayout2.setVisibility(View.GONE);
+                        toolbar.getMenu().findItem(R.id.appbar_search).setVisible(false);
 
                         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.linearLayout, mFrag1).commit();
@@ -150,10 +152,10 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.getMenu().findItem(R.id.appbar_fragment1).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_fragment2).setVisible(true);
                         toolbar.getMenu().findItem(R.id.appbar_fragment3).setVisible(false);
-                        linearLayout2.setVisibility(View.GONE);
+                        toolbar.getMenu().findItem(R.id.appbar_search).setVisible(true);
 
                         if(mFrag2 == null){
-                            mFrag2 = new MainFragment2();
+                            mFrag2 = new MainFragment2_test();
                             getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout, mFrag2).commit();
                             Log.e("test", "생성");
                             return true;
@@ -168,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.getMenu().findItem(R.id.appbar_fragment1).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_fragment2).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_fragment3).setVisible(true);
-                        linearLayout2.setVisibility(View.GONE);
+                        toolbar.getMenu().findItem(R.id.appbar_search).setVisible(false);
 
                         if(mFrag3 == null){
                             mFrag3 = new MainFragment3();
@@ -185,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.getMenu().findItem(R.id.appbar_fragment1).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_fragment2).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_fragment3).setVisible(false);
-                        linearLayout2.setVisibility(View.VISIBLE);
+                        toolbar.getMenu().findItem(R.id.appbar_search).setVisible(false);
 
                         if(mFrag4 == null){
                             mFrag4 = new MainFragment4();
@@ -232,6 +234,45 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.appbar_menu, menu);
         tText.setText("리그오브레전드");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        miSearch = menu.findItem(R.id.appbar_search);
+
+        //검색메뉴 아이콘 클릭했을 시 확장, 취소했을 시 축소
+        miSearch.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                Log.e("MainActivity", "검색아이콘 클릭 - 확장");
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                Log.e("MainActivity", "검색아이콘 클릭 - 축소");
+                return true;
+            }
+        });
+
+        //menuItem을 이용해서 SearchView 변수 생성
+        SearchView sv=(SearchView)miSearch.getActionView();
+        //확인버튼 활성화
+        sv.setSubmitButtonEnabled(true);
+
+        //SearchView의 검색 이벤트
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            //검색버튼을 눌렀을 경우
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.e("MainActivity", query + " 를검색함");
+                return true;
+            }
+
+            //텍스트가 바뀔때마다 호출
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.e("MainActivity", newText + " 입력중");
+                return true;
+            }
+        });
         return true;
     }
 

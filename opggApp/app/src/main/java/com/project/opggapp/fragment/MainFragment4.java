@@ -28,7 +28,7 @@ public class MainFragment4 extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main4, container, false);
 
         raking = new MainFragment4_Raking();
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout2, raking).commit();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fMain4_linearLayout, raking).commit();
 
         tab1 = rootView.findViewById(R.id.fMain4_raking_tab1);
         tab2 = rootView.findViewById(R.id.fMain4_raking_tab2);
@@ -47,7 +47,7 @@ public class MainFragment4 extends Fragment {
                 tab3.setText("레벨");
                 tab3.setTextColor(Color.parseColor("#808080"));
 
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout2, raking).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fMain4_linearLayout, raking).commit();
             }
         });
 
@@ -66,10 +66,10 @@ public class MainFragment4 extends Fragment {
 
                 if(champion == null){
                     champion = new MainFragment4_Champion();
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout2, champion).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fMain4_linearLayout, champion).commit();
                     Log.e("test", "champion 프래그먼트 생성");
                 }else{
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout2, champion).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fMain4_linearLayout, champion).commit();
                     Log.e("test", "champion 프래그먼트 재사용");
                 }
             }
@@ -90,10 +90,10 @@ public class MainFragment4 extends Fragment {
 
                 if(level == null){
                     level = new MainFragment4_Level();
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout2, level).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fMain4_linearLayout, level).commit();
                     Log.e("test", "level 프래그먼트 생성");
                 }else{
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout2, level).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fMain4_linearLayout, level).commit();
                     Log.e("test", "level 프래그먼트 재사용");
                 }
             }

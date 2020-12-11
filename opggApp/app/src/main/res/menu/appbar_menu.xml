@@ -3,23 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/appbar_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/appbar_search"
+        android:visible="false"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="collapseActionView|always" />
+
+    <item
         android:id="@+id/appbar_fragment1"
-        android:icon="@android:drawable/ic_popup_reminder"
+        android:icon="@drawable/icon_flag"
         android:title="@string/appbar_menu_1"
         android:visible="true"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/appbar_fragment2"
-        android:icon="@android:drawable/ic_popup_reminder"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
         android:title="@string/appbar_menu_2"
         android:visible="false"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/appbar_fragment3"
-        android:icon="@android:drawable/ic_dialog_info"
+        android:icon="@drawable/icon_fmain3"
         android:title="@string/appbar_menu_3"
+        android:iconTint="#2457BD"
         android:visible="false"
         app:showAsAction="always" />
 

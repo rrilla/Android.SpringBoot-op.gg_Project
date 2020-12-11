@@ -94,7 +94,6 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
                 //login요청일 때만 token추출
                 if(reqUrl.equals("app/login") || reqUrl.equals("app/loginGoogle")){
 
-                    Log.e("이거되나","됨?");
                     List<String> cookies = conn.getHeaderFields().get("Set-Cookie");
                     //cookies -> [JSESSIONID=D3F829CE262BC65853F851F6549C7F3E; Path=/smartudy; HttpOnly] -> []가 쿠키1개임.
                     //Path -> 쿠키가 유효한 경로 ,/smartudy의 하위 경로에 위의 쿠키를 사용 가능.

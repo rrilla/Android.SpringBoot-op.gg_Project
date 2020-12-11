@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/tab1"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/tab_under_menu_1" />
+
+    <item
+        android:id="@+id/tab2"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:title="@string/tab_under_menu_2" />
+
+    <item
+        android:id="@+id/tab3"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_delete"
+        android:title="@string/tab_under_menu_3" />
+
+    <item
+        android:id="@+id/tab4"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@android:drawable/btn_star"
+        android:title="@string/tab_under_menu_4" />
+
+</menu>

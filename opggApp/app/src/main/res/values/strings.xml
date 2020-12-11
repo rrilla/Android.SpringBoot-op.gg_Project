@@ -13,6 +13,7 @@
     <string name="appbar_menu_1">앱바 메뉴1</string>
     <string name="appbar_menu_2">앱바 메뉴2</string>
     <string name="appbar_menu_3">앱바 메뉴3</string>
+    <string name="appbar_search">앱바 검색</string>
 
     <string name="tab_under_menu_1">검색</string>
     <string name="tab_under_menu_2">커뮤니티</string>
