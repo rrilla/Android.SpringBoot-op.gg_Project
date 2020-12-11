@@ -20,7 +20,7 @@
                 android:layout_gravity="center"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/logo" />
+                android:src="@drawable/icon_logo2" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:id="@+id/f"
+                    android:id="@+id/fMain1_ll_search"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -51,13 +51,13 @@
                         android:layout_height="match_parent"
                         android:layout_weight="5"
                         android:background="#EAEAEA"
-                        android:src="@android:drawable/ic_menu_search" />
+                        android:src="@android:drawable/ic_search_category_default" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <ImageView
-                android:id="@+id/fMain1_iv_noUserSummoner"
+                android:id="@+id/fMain1_iv_addSummoner"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:src="@drawable/capture2" />

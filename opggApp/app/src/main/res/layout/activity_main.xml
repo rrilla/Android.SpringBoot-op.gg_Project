@@ -37,17 +37,6 @@
                 android:text="TextView" />
             </androidx.appcompat.widget.Toolbar>
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar2"
-                android:visibility="gone"
-                android:gravity="center_horizontal"
-                android:foregroundGravity="center_horizontal"
-                app:buttonGravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,4 +1,4 @@
-package com.project.opggapp;
+package com.project.opggapp.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +19,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.project.opggapp.R;
 
 public class UserActivity extends AppCompatActivity {
 

@@ -24,15 +24,14 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
+import com.project.opggapp.activity.LoginActivity;
+import com.project.opggapp.activity.SettingActivity;
 import com.project.opggapp.fragment.MainFragment1;
-import com.project.opggapp.fragment.MainFragment2;
 import com.project.opggapp.fragment.MainFragment2_test;
 import com.project.opggapp.fragment.MainFragment3;
 import com.project.opggapp.fragment.MainFragment4;
 import com.project.opggapp.model.dto.LoginDto;
 import com.project.opggapp.task.RestAPIComm;
-
-import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
