@@ -1,9 +1,8 @@
-package com.project.opggapp;
+package com.project.opggapp.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.accounts.AccountManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.gson.Gson;
+import com.project.opggapp.R;
 import com.project.opggapp.model.Join;
 import com.project.opggapp.model.dto.LoginDto;
 import com.project.opggapp.task.IP;

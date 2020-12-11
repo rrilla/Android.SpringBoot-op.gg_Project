@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/icon_logo2" />
 
         <ImageView
             android:layout_marginTop="20dp"

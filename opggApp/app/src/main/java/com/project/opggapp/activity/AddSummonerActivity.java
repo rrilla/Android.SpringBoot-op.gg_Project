@@ -1,24 +1,21 @@
-package com.project.opggapp;
+package com.project.opggapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Switch;
 
-public class SettingActivity extends AppCompatActivity {
+import com.project.opggapp.R;
 
-    Switch stLog, stBattle, stOverWatch, stComm;
-    LinearLayout llBug, llReview, llUse, llInfo, llAgree;
+public class AddSummonerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_add_summoner);
 
-        ImageView btnClose = findViewById(R.id.setting_iv_close);
+        ImageView btnClose = findViewById(R.id.addSummoner_iv_close);
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
