@@ -113,28 +113,31 @@
 		<div style="width: 900px; margin-top: -40px;">
 			<div class="content_header">
 				<div style="padding: 18px 0 17px 0;">
-					<h3 style="padding-left: 20px;">글쓰기</h3>
+					<h3 style="padding-left: 20px;">글 상세보기</h3>
 				</div>
 
 				<div class="board_write_container" style="padding: 20px;">
 					<div class="write_input" style="margin-bottom: 10px;">
-						<input type="text" id="title" placeholder="제목" />
+						<input type="text" id="title" placeholder="제목"  value="${board.title }" readonly/>
 					</div>
-					<textarea id="summernote"></textarea>
+					<textarea id="summernote">${board.content }</textarea>
 				</div>
 			</div>
 		</div>
 		<div style="display: flex;">
 			<div>
-				<button class="cancle_button" onClick="cancleButton()">취소</button>
+				<button class="cancle_button" onClick="cancleButton()">목록</button>
 			</div>
-			<div>
-				<button class="success_button" onClick="writeButton()">작성완료</button>
-			</div>
+			<c:if test="${principal.username == board.user.username}">
+				<div>
+					<button class="success_button" onClick="modifyButton(${board.bno})">수정</button>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </div>
 <script>
+	$('#summernote').summernote('disable');
 	$('#summernote').summernote(
 			{
 				tabsize : 2,
@@ -146,51 +149,14 @@
 					}
 				}
 			});
-	function summernoteImageUpload(files, editor,) {
-		const form = new FormData();
-		for(let i=0; i<files.length; i++) {
-			form.append("files", files[i]);
-		}
-		fetch("/board/summernote", {
-			method: "POST",
-			body: form
-		})
-		.then(res => res.json())
-		.then(res => {
-			for(let i=0; i<res.length; i++) {
-				$(editor).summernote("insertImage", res[i]);
-			}
-		});
-	}
-	
-	function writeButton() {
-		const title = document.querySelector("#title").value;
-		const content = document.querySelector("#summernote").value;
-
-		const board = {
-			title: title,
-			content: content,
-		}
-		
-		fetch("/board/insert", {
-			method: "POST",
-			body: JSON.stringify(board),
-			headers: {
-				"Content-Type": "application/json",
-			}
-		})
-		.then(res => res.text())
-		.then(res => {
-			if(res === "ok") {
-				location.href="/boardList";
-			} else {
-				alert("등록 실패!!");
-			}
-		});
+</script>
+<script>
+	function modifyButton(bno) {
+		location.href = "/board/modify/" + bno;
 	}
 </script>
 <script>
-	/* 취소 버튼 눌렀을 때 이동 */
+	/* 목록 버튼 눌렀을 때 이동 */
 	function cancleButton() {
 		location.href = "/boardList";
 	}

@@ -82,7 +82,17 @@
 	height: 48px;
 	line-height: 19px;
 	font-size: 16px;
-	margin-left: 594px;
+}
+.delete_button {
+	color: #fff;
+	border-radius: 4px;
+	background-color: red;
+	border: 1px solid #dddfe4;
+	width: 154px;
+	height: 48px;
+	line-height: 19px;
+	font-size: 16px;
+	margin-left: 440px;
 }
 </style>
 <div class="board_container">
@@ -113,23 +123,26 @@
 		<div style="width: 900px; margin-top: -40px;">
 			<div class="content_header">
 				<div style="padding: 18px 0 17px 0;">
-					<h3 style="padding-left: 20px;">글쓰기</h3>
+					<h3 style="padding-left: 20px;">글 수정하기</h3>
 				</div>
 
 				<div class="board_write_container" style="padding: 20px;">
 					<div class="write_input" style="margin-bottom: 10px;">
-						<input type="text" id="title" placeholder="제목" />
+						<input type="text" id="title" placeholder="제목"  value="${board.title }" />
 					</div>
-					<textarea id="summernote"></textarea>
+					<textarea id="summernote">${board.content }</textarea>
 				</div>
 			</div>
 		</div>
 		<div style="display: flex;">
 			<div>
-				<button class="cancle_button" onClick="cancleButton()">취소</button>
+				<button class="cancle_button" onClick="cancleButton()">목록</button>
+			</div>
+			<div style="display: inline-block;">
+				<button class="delete_button" onClick="deleteButton(${board.bno})">삭제</button>
 			</div>
 			<div>
-				<button class="success_button" onClick="writeButton()">작성완료</button>
+				<button class="success_button" onClick="updateButton(${board.bno})">수정</button>
 			</div>
 		</div>
 	</div>
@@ -162,18 +175,31 @@
 			}
 		});
 	}
-	
-	function writeButton() {
+
+	function deleteButton(bno) {
+		fetch("/board/delete/" + bno, {
+			method: "DELETE",
+		})
+		.then(res => res.text())
+		.then(res => {
+			if(res === "ok") {
+				alert("삭세 성공!!");
+				location.href = "/boardList";
+			} else {
+				alert("삭제 실패!!");
+			}
+		});
+	}
+	function updateButton(bno) {
 		const title = document.querySelector("#title").value;
 		const content = document.querySelector("#summernote").value;
-
+		
 		const board = {
 			title: title,
 			content: content,
 		}
-		
-		fetch("/board/insert", {
-			method: "POST",
+		fetch("/board/update/" + bno, {
+			method: "PUT",
 			body: JSON.stringify(board),
 			headers: {
 				"Content-Type": "application/json",
@@ -184,7 +210,7 @@
 			if(res === "ok") {
 				location.href="/boardList";
 			} else {
-				alert("등록 실패!!");
+				alert("수정 실패!!");
 			}
 		});
 	}
