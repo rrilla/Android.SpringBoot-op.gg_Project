@@ -29,7 +29,14 @@ public class BoardService {
 	// 게시판 글쓰끼
 	@Transactional
 	public void boardInsert(Board board, User user) {
+		//썸네일 뽑기 - 젤 첫 이미지url
+		int n = board.getContent().indexOf("<img");	
+		int n2 = board.getContent().indexOf('"', n) + 1;
+		int n3 = board.getContent().indexOf('"', n2);
+		String thumbnail = board.getContent().substring(n2, n3);
+		
 		board.setUser(user);
+		board.setThumbnail(thumbnail);
 		boardRepository.save(board);
 	}
 	

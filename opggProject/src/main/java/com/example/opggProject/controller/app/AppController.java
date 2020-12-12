@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,27 +26,31 @@ public class AppController {
 	
 	private final AppService appService;
 	
-	@PostMapping("/app/login")
+	@PostMapping("app/login")
 	public ResponseEntity<?> login(
 			@RequestBody LoginDto loginDto,
             HttpSession session,
             HttpServletResponse res) {
 		
 		return appService.login(loginDto, session, res);
-		
 	}
 	
-	@PostMapping("/app/loginGoogle")
+	@PostMapping("app/loginGoogle")
 	public ResponseEntity<?> loginGoogle(
 			@RequestBody JoinDto joinDto,
 			HttpSession session,
 	        HttpServletResponse res) {
 		
 		return appService.loginGoogle(joinDto, session, res);
-			
 	}
 	
-	@PostMapping("/app/test")
+	@PostMapping("app/boardList")
+	public ResponseEntity<?> boardList() {
+		System.out.println("실행됨");
+		return appService.boardList();
+	}
+	
+	@GetMapping("app/test")
 	public String test(@AuthenticationPrincipal PrincipalDetails princiql) {
 		if(princiql == null) {
 			System.out.println("값ㄴㄴㄴ");
