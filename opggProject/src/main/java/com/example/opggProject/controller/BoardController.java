@@ -51,8 +51,9 @@ public class BoardController {
 	// summernote에 이미지 보여주기
 	@PostMapping("/board/summernote")
 	public @ResponseBody ArrayList<String> summernote(MultipartFile[] files, HttpServletRequest request) {
-		ArrayList<String> imageUrl = new ArrayList<String>(); 
-		String path = "C:/Users/admin/Desktop/이미지테스트/";
+		ArrayList<String> imageUrl = new ArrayList<String>();
+		String proRoot = System.getProperty("user.dir");
+		String path = proRoot.substring(0,proRoot.lastIndexOf("\\")-6) + "/images/";
 		File folder = new File(path);
 		if(!folder.exists()) {
 			folder.mkdir();
@@ -64,7 +65,7 @@ public class BoardController {
 			String filename = file.getOriginalFilename();
 			String ext = filename.substring(filename.lastIndexOf("."));
 			String saveFileName = UUID.randomUUID() + ext;
-			String fileUploadPath = "C:/Users/admin/Desktop/이미지테스트/" + saveFileName;
+			String fileUploadPath = path + saveFileName;
 			imageUrl.add("/summernoteShowImage/" + saveFileName);
 			try {
 				file.transferTo(new File(fileUploadPath));
