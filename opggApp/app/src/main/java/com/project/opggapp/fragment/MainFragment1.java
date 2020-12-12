@@ -52,10 +52,10 @@ public class MainFragment1 extends Fragment {
 
         //Glide.with(this).load(R.drawable.test).apply(RequestOptions.bitmapTransform(new RoundedCorners(50))).into(ivTest2);
         //ivTest.setImageResource(R.drawable.emblem_bronze);
-        Glide.with(this).load(R.drawable.ahri).circleCrop().into(ivUser);
-        Glide.with(this).load(R.drawable.ahri).circleCrop().into(ivTest);
-        Glide.with(this).load(R.drawable.ahri).circleCrop().into(ivTest2);
-        Glide.with(this).load(R.drawable.ahri).circleCrop().into(ivTest3);
+//        Glide.with(this).load(R.drawable.ahri).circleCrop().into(ivUser);
+//        Glide.with(this).load(R.drawable.ahri).circleCrop().into(ivTest);
+//        Glide.with(this).load(R.drawable.ahri).circleCrop().into(ivTest2);
+//        Glide.with(this).load(R.drawable.ahri).circleCrop().into(ivTest3);
 
         return rootView;
 
