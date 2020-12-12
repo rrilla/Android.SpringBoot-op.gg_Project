@@ -140,9 +140,9 @@ body, html {
 			<c:when test="${empty principal}">
 				<ul class="category">
 					<li><a id="category_main" href="/main">집에있자</a></li>
-					<li><a id="category_ranking" href="/ladder">랭킹</a></li>
+					<li><a id="category_ranking" href="/ranking">랭킹</a></li>
 					<li><a id="category_multi" href="/multi">멀티서치</a></li>
-					<li><a id="category_community" href="/board">커뮤니티</a></li>
+					<li><a id="category_community" href="/boardList">커뮤니티</a></li>
 					<li><button class="loginButton" onClick="loginButton()">로그인</button></li>
 				</ul>
 			</c:when>
@@ -150,9 +150,9 @@ body, html {
 			<c:otherwise>
 				<ul class="category">
 					<li><a id="category_main" href="/main" style="">집에있자</a></li>
-					<li><a id="category_ranking" href="/ladder">랭킹</a></li>
+					<li><a id="category_ranking" href="/ranking">랭킹</a></li>
 					<li><a id="category_multi" href="/multi">멀티서치</a></li>
-					<li><a id="category_community" href="/board">커뮤니티</a></li>
+					<li><a id="category_community" href="/boardList">커뮤니티</a></li>
 					<li><button class="loginButton" onClick="logoutButton()">로그아웃</button></li>
 <!-- 					<li><a href="/logout"><button class="loginButton" >로그아웃</button></a></li> -->
 				</ul>

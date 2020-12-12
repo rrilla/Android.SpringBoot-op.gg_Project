@@ -97,9 +97,4 @@ public class UserController {
 	public String summoner() {
 		return "record/summoner";
 	}
-	
-	@GetMapping("/ladder")
-	public String ladder() {
-		return "ranking/ladder";
-	}
 }

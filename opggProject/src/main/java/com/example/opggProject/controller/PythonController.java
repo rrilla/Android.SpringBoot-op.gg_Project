@@ -28,7 +28,7 @@ public class PythonController {
 	@Autowired
 	private RankService rankService;
 	
-	final String api = "RGAPI-0bb0a19f-8ee0-4f5f-9a89-2822f3db18ba";
+	final String api = "RGAPI-3ac20c01-1492-4fe5-9fc4-8c61ca5c6f5a";
 	   private static PythonInterpreter intPre;
 	      
 	   private HttpEntity makeEntity() {
@@ -56,13 +56,14 @@ public class PythonController {
 	      String abc = pyobj.toString();
 	      System.out.println(abc);
 	      String [] token = abc.split(",");
-	      for (int i = 0; i < token.length; i=i+5) {
+	      for (int i = 0; i < token.length; i=i+6) {
 	         RankData rank = new RankData();
 	         rank.setName(token[i].replace(" ", "").replace("[", ""));
 	         rank.setTier(token[i+1].replace(" ", ""));
 	         rank.setPoint(Integer.parseInt(token[i+2].replace(" ", "")));
 	         rank.setWin(Integer.parseInt(token[i+3].replace(" ", "")));
-	         rank.setLose(Integer.parseInt(token[i+4].replace(" ", "").replace("]", "")));
+	         rank.setLose(Integer.parseInt(token[i+4].replace(" ", "")));
+	         rank.setLevel(Integer.parseInt(token[i+5].replace(" ", "").replace("]", "")));
 	         rankService.rankSave(rank);
 	      }
 	      return pyobj.toString();
