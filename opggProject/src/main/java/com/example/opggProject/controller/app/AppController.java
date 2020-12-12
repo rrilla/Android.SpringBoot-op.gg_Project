@@ -32,7 +32,6 @@ public class AppController {
             HttpServletResponse res) {
 		
 		return appService.login(loginDto, session, res);
-		
 	}
 	
 	@PostMapping("/app/loginGoogle")
@@ -42,8 +41,9 @@ public class AppController {
 	        HttpServletResponse res) {
 		
 		return appService.loginGoogle(joinDto, session, res);
-			
 	}
+	
+	
 	
 	@PostMapping("/app/test")
 	public String test(@AuthenticationPrincipal PrincipalDetails princiql) {
