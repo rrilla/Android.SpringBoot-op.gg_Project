@@ -1,5 +1,6 @@
 package com.project.opggapp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.project.opggapp.R;
+import com.project.opggapp.activity.LoginActivity;
+import com.project.opggapp.activity.WritingActivity;
 
 public class MainFragment2_test extends Fragment {
 
@@ -24,6 +27,9 @@ public class MainFragment2_test extends Fragment {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 Log.e("MainFragment2_text", "글쓰기 클릭됨");
+                Intent intent = new Intent(getContext(), WritingActivity.class);
+                startActivity(intent);
+
                 return true;
             }
         });
