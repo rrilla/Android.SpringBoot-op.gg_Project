@@ -1,5 +1,7 @@
 package com.project.opggapp.model;
 
+import com.project.opggapp.task.IP;
+
 import java.sql.Timestamp;
 
 public class Board {
@@ -9,6 +11,10 @@ public class Board {
     private String content;
     private Timestamp writeDate;
     private User user;
+
+    public String getUrlThumbnail() {
+        return IP.serverUrl + thumbnail;
+    }
 
     public int getBno() {
         return bno;

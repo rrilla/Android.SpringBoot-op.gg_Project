@@ -38,7 +38,7 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
             reqUrl = strings[0];
             serverUrl += reqUrl;
             reqData = strings[1];
-        }else if(strings[0].equals("app/test")){
+        }else if(strings[0].equals("app/boardList")){
             reqUrl = strings[0];
             serverUrl += reqUrl;
         }else if(strings[0].equals("user/test")){
@@ -105,7 +105,9 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
                     }
                     return new String[]{resData, severToken};
                 }
-
+                Log.d("통신데이터", "req body data : " + reqData);
+                Log.d("통신데이터", "res body data : " + resData);
+                return new String[]{"ok", resData};
             } else {
                 InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
                 BufferedReader reader = new BufferedReader(tmp);
@@ -117,19 +119,19 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
 
                 resData = buffer.toString();
 
+                Log.d("통신데이터", "req body data : " + reqData);
+                Log.d("통신데이터", "res body data : " + resData);
                 Log.e("통신에러", "에러코드 - " + conn.getResponseCode());    //응답코드받기
                 Log.e("통신에러", "에러메시지 - " + conn.getResponseMessage());    //응답메시지
+                return new String[]{"no", resData};
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            return new String[]{"서버 통신 오류"};
+            return new String[]{"no", "서버 통신 오류"};
         } catch (IOException e) {
             e.printStackTrace();
-            return new String[]{"서버 통신 오류"};
+            return new String[]{"no", "서버 통신 오류"};
         }
-        Log.d("통신데이터", "req body data : " + reqData);
-        Log.d("통신데이터", "res body data : " + resData);
-        return new String[]{resData};
     }
 
 }

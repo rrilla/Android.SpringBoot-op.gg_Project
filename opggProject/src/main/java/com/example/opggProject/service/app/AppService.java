@@ -1,5 +1,7 @@
 package com.example.opggProject.service.app;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.opggProject.domain.User;
 import com.example.opggProject.domain.UserRepository;
+import com.example.opggProject.domain.board.Board;
+import com.example.opggProject.domain.board.BoardRepository;
 import com.example.opggProject.dto.app.JoinDto;
 import com.example.opggProject.dto.app.LoginDto;
 
@@ -25,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class AppService {
 	
 	private final UserRepository userRepository;
+	private final BoardRepository boardRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	private final AuthenticationManager authenticationManager;
 	
@@ -98,6 +103,15 @@ public class AppService {
 			return new ResponseEntity<String>("서버 시큐리티 로그인 실패", HttpStatus.OK);
 		}
 		//return new AuthenticationToken(user.getUsername(), user.getAuthorities(), session.getId());
+	}
+
+	public  ResponseEntity<?> boardList() {
+		try {
+			return new ResponseEntity<List<Board>>(boardRepository.findAll(), HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("서버 시큐리티 로그인 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 }
