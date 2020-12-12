@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //토큰있을시 = 로그인했을시 UserActivity 이동
-        pref = getSharedPreferences("autoLogin",MODE_PRIVATE);
+        pref = getSharedPreferences("autoLogin", MODE_PRIVATE);
         String severToken = pref.getString("severToken","");
         if(!severToken.equals("")){
             Intent intent = new Intent(getApplication(), UserActivity.class);

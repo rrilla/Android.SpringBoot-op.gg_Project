@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.project.opggapp.R;
+import com.project.opggapp.activity.DetailBoardActivity;
 import com.project.opggapp.activity.LoginActivity;
 import com.project.opggapp.activity.WritingActivity;
 import com.project.opggapp.adapter.BoardListAdapter;
@@ -55,7 +56,6 @@ public class MainFragment2_test extends Fragment {
             Toast.makeText(getContext(), "서버 에러 - " + result[1], Toast.LENGTH_SHORT).show();
         }
 
-
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main2_test, container, false);
         Toolbar toolbar = rootView.findViewById(R.id.fMain2_toolbar);
         toolbar.getMenu().findItem(R.id.appbar_write).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -83,22 +83,13 @@ public class MainFragment2_test extends Fragment {
             @Override
             public void onItemClick(BoardListAdapter.ViewHolder holder, View view, int position) {
                 Board item = adapter.getItem(position);
-                Toast.makeText(getContext(), item.toString() + " 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-//        adapter.setOnItemClickListener(new OnTeamItemClickListener() {
-//            @Override
-//            public void onItemClick(TeamListAdapter.ViewHolder holder, View view, int position) {
-//                Team item = adapter.getItem(position);
-//
-//                Intent intent = new Intent(getContext(), TeamDetailActivity.class);
-//                intent.putExtra("jwtToken", jwtToken);
+                Toast.makeText(getContext(), item.getBno() + " 번 글 클릭됨", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getContext(), DetailBoardActivity.class);
 //                intent.putExtra("loginUser", loginUser);
 //                intent.putExtra("selectTeam", item);
 //                startActivity(intent);
-//            }
-//        });
-
+            }
+        });
 
         return rootView;
         //return inflater.inflate(R.layout.fragment_main2, container, false);
