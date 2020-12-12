@@ -41,9 +41,15 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
         }else if(strings[0].equals("app/boardList")){
             reqUrl = strings[0];
             serverUrl += reqUrl;
-        }else if(strings[0].equals("user/test")){
+        }else if(strings[0].equals("app/summarySummoner")){
             reqUrl = strings[0];
-            serverUrl += reqUrl;
+            serverUrl += reqUrl + "?summoner=" + strings[1];
+        }else if(strings[0].equals("app/checkSummoner")){
+            reqUrl = strings[0];
+            serverUrl += reqUrl + "?summoner=" + strings[1];
+        }else if(strings[0].equals("app/detailSummoner")){
+            reqUrl = strings[0];
+            serverUrl += reqUrl + "?summoner=" + strings[1];
         }else if(strings[0].equals("app/battleList")){
             reqUrl = strings[0];
             serverUrl += reqUrl;

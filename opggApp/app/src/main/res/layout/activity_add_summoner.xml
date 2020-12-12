@@ -28,7 +28,6 @@
             app:srcCompat="@drawable/icon_logo2" />
 
         <TextView
-            android:id="@+id/textView14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="본인의 소환사 아이디를 등록해 주세요."
@@ -48,7 +47,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/addSummoner_btn_success"
+        android:id="@+id/addSummoner_ll_success"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="14"

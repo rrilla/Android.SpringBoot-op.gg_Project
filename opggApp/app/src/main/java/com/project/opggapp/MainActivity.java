@@ -86,13 +86,12 @@ public class MainActivity extends AppCompatActivity {
 
         //툴바
         toolbar = findViewById(R.id.toolbar);
-        tText = (TextView) toolbar.findViewById(R.id.toolbar_text);
+        tText = toolbar.findViewById(R.id.toolbar_text);
         setSupportActionBar(toolbar);
 
 
         //리니어 레이아웃
         linearLayout = findViewById(R.id.linearLayout);
-        //linearLayout2 = findViewById(R.id.linearLayout2);
         mFrag1 = new MainFragment1();
         getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout, mFrag1).commit();
 
