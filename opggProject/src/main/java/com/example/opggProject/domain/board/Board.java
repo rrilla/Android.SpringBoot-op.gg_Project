@@ -29,6 +29,7 @@ public class Board {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int bno;
 	private String title;
+	private String thumbnail;
 	
 	@Column(length = 100000)
 	private String content;
