@@ -26,8 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.opggProject.domain.User;
-import com.example.opggProject.domain.UserRepository;
+import com.example.opggProject.domain.user.User;
+import com.example.opggProject.domain.user.UserRepository;
 import com.nimbusds.oauth2.sdk.Response;
 
 import lombok.extern.java.Log;

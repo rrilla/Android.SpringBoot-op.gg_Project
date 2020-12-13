@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.opggProject.config.auth.PrincipalDetails;
-import com.example.opggProject.domain.User;
 import com.example.opggProject.domain.board.Board;
+import com.example.opggProject.domain.user.User;
 import com.example.opggProject.service.BoardService;
 
 import lombok.RequiredArgsConstructor;

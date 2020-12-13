@@ -44,7 +44,6 @@ public class MainFragment1 extends Fragment {
 
         pref = getActivity().getSharedPreferences("history", MODE_PRIVATE);
         summoner = pref.getString("summoner", "");
-        //summoner = "메돌이";
 
         if(!summoner.equals("")){
             loadSummoner(rootView);

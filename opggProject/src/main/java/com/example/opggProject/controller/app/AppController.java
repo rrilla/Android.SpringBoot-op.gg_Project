@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.opggProject.config.auth.PrincipalDetails;
+import com.example.opggProject.domain.user.User;
 import com.example.opggProject.dto.app.JoinDto;
 import com.example.opggProject.dto.app.LoginDto;
 import com.example.opggProject.service.app.AppService;
@@ -27,6 +28,13 @@ import lombok.RequiredArgsConstructor;
 public class AppController {
 	
 	private final AppService appService;
+	
+	@PostMapping("app/signUp")
+	public ResponseEntity<?> signUp(
+			@RequestBody User user) {
+		
+		return appService.signUp(user);
+	}
 	
 	@PostMapping("app/login")
 	public ResponseEntity<?> login(
@@ -48,6 +56,7 @@ public class AppController {
 	
 	@PostMapping("app/boardList")
 	public ResponseEntity<?> boardList() {
+		
 		return appService.boardList();
 	}
 	
@@ -56,6 +65,7 @@ public class AppController {
 	@PostMapping("app/summarySummoner")
 	public ResponseEntity<?> summarySummoner(
 			@RequestParam("summoner") String summoner) {
+		
 		System.out.println(summoner);
 		return new ResponseEntity<String>("ok", HttpStatus.OK);
 		//return new ResponseEntity<String>("no", HttpStatus.OK);
@@ -65,6 +75,7 @@ public class AppController {
 	@PostMapping("app/checkSummoner")
 	public ResponseEntity<?> checkSummoner(
 			@RequestParam("summoner") String summoner) {
+		
 		System.out.println(summoner);
 		return new ResponseEntity<String>("ok", HttpStatus.OK);
 		//return new ResponseEntity<String>("no", HttpStatus.OK);
@@ -74,6 +85,7 @@ public class AppController {
 	@PostMapping("app/bookmarkSummoner")
 	public ResponseEntity<?> bookmarkSummoner(
 			@RequestParam("summoner") String summoner) {
+		
 		System.out.println(summoner);
 		return new ResponseEntity<String>("ok", HttpStatus.OK);
 		//return new ResponseEntity<String>("no", HttpStatus.OK);
@@ -84,6 +96,7 @@ public class AppController {
 	@PostMapping("app/detailSummoner")
 	public ResponseEntity<?> detailSummoner(
 			@RequestParam("summoner") String summoner) {
+		
 		System.out.println(summoner);
 		return new ResponseEntity<String>("ok", HttpStatus.OK);
 		//return new ResponseEntity<String>("no", HttpStatus.OK);

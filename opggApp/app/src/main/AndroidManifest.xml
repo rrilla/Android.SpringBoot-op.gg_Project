@@ -15,8 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".activity.DetailBoardActivity" />
+        <activity android:name=".activity.SignupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.DetailBoardActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.WritingActivity"
             android:theme="@style/AppTheme.NoActionBar" />

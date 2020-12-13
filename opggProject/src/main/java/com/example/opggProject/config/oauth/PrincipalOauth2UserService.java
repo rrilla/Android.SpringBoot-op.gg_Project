@@ -10,8 +10,8 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import com.example.opggProject.config.auth.PrincipalDetails;
-import com.example.opggProject.domain.User;
-import com.example.opggProject.domain.UserRepository;
+import com.example.opggProject.domain.user.User;
+import com.example.opggProject.domain.user.UserRepository;
 
 @Service
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService{

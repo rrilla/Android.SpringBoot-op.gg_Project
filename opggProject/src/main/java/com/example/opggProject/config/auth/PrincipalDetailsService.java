@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.opggProject.domain.User;
-import com.example.opggProject.domain.UserRepository;
+import com.example.opggProject.domain.user.User;
+import com.example.opggProject.domain.user.UserRepository;
 
 
 
