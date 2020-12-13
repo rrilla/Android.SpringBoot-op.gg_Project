@@ -30,7 +30,11 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
 
     @Override
     protected String[] doInBackground(String... strings) {
-        if(strings[0].equals("app/login")){
+        if(strings[0].equals("app/signUp")){
+            reqUrl = strings[0];
+            serverUrl += reqUrl;
+            reqData = strings[1];
+        }else if(strings[0].equals("app/login")){
             reqUrl = strings[0];
             serverUrl += reqUrl;
             reqData = strings[1];
@@ -87,7 +91,6 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
             osw.close();
 
             if(conn.getResponseCode() == conn.HTTP_OK) {
-
                 InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
                 BufferedReader reader = new BufferedReader(tmp);
                 StringBuffer buffer = new StringBuffer();
@@ -114,7 +117,8 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
                 Log.d("통신데이터", "req body data : " + reqData);
                 Log.d("통신데이터", "res body data : " + resData);
                 return new String[]{"ok", resData};
-            } else {
+
+            } else if(conn.getResponseCode() == conn.HTTP_CREATED) {
                 InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
                 BufferedReader reader = new BufferedReader(tmp);
                 StringBuffer buffer = new StringBuffer();
@@ -127,16 +131,31 @@ public class RestAPIComm extends AsyncTask<String, Object, String[]> {
 
                 Log.d("통신데이터", "req body data : " + reqData);
                 Log.d("통신데이터", "res body data : " + resData);
-                Log.e("통신에러", "에러코드 - " + conn.getResponseCode());    //응답코드받기
-                Log.e("통신에러", "에러메시지 - " + conn.getResponseMessage());    //응답메시지
                 return new String[]{"no", resData};
+
+            } else {
+                InputStreamReader tmp = new InputStreamReader(conn.getErrorStream(), "UTF-8");
+                BufferedReader reader = new BufferedReader(tmp);
+                StringBuffer buffer = new StringBuffer();
+
+                while ((str = reader.readLine()) != null) {
+                    buffer.append(str);
+                }
+
+                resData = buffer.toString();
+
+                Log.e("통신데이터", "req body data : " + reqData);
+                Log.e("통신데이터", "res body data : " + resData);
+                Log.e("통신에러", "에러코드 - " + conn.getResponseCode());    //응답코드받기
+                Log.e("통신에러", "에러메시지 - " + resData);    //응답메시지
+                return new String[]{"error", resData};
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            return new String[]{"no", "서버 통신 오류"};
+            return new String[]{"error", "서버 통신 오류"};
         } catch (IOException e) {
             e.printStackTrace();
-            return new String[]{"no", "서버 통신 오류"};
+            return new String[]{"error", "서버 통신 오류"};
         }
     }
 

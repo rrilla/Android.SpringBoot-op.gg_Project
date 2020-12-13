@@ -1,4 +1,4 @@
-package com.example.opggProject.domain;
+package com.example.opggProject.domain.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -8,5 +8,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	User findByUsername(String username);
 	
+	User findByUsernameOrEmail(String username, String email);
 	
+	User findByNickname(String nickname);
 }

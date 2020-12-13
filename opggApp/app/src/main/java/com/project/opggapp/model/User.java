@@ -1,6 +1,8 @@
 package com.project.opggapp.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private int id;
     private String username;
     private String nickname;
@@ -10,7 +12,6 @@ public class User {
     private String role;
     private String provider;
     private String providerId;
-
 
     public String getImage() {
         return image;

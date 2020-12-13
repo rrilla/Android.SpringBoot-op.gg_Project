@@ -84,10 +84,9 @@ public class MainFragment2_test extends Fragment {
             public void onItemClick(BoardListAdapter.ViewHolder holder, View view, int position) {
                 Board item = adapter.getItem(position);
                 Toast.makeText(getContext(), item.getBno() + " 번 글 클릭됨", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getContext(), DetailBoardActivity.class);
-//                intent.putExtra("loginUser", loginUser);
-//                intent.putExtra("selectTeam", item);
-//                startActivity(intent);
+                Intent intent = new Intent(getContext(), DetailBoardActivity.class);
+                intent.putExtra("selectBoard", item);
+                startActivity(intent);
             }
         });
 

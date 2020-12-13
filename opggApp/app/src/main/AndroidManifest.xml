@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.DetailBoardActivity"></activity>
+        <activity android:name=".activity.SignupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.DetailBoardActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.WritingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -42,6 +45,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

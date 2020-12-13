@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,7 +44,6 @@ public class MainFragment1 extends Fragment {
 
         pref = getActivity().getSharedPreferences("history", MODE_PRIVATE);
         summoner = pref.getString("summoner", "");
-        //summoner = "메돌이";
 
         if(!summoner.equals("")){
             loadSummoner(rootView);

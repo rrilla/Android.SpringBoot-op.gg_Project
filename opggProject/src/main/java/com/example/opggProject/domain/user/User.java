@@ -1,4 +1,4 @@
-package com.example.opggProject.domain;
+package com.example.opggProject.domain.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
