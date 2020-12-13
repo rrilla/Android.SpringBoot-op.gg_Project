@@ -42,10 +42,10 @@ public class MainFragment2_test extends Fragment {
                              Bundle savedInstanceState) {
 
         String[] result = new String[2];
-        RestAPIComm comm = new RestAPIComm();
+        RestAPIComm comm = new RestAPIComm("app/boardList");
         Gson gson = new Gson();
         try {
-            result = comm.execute("app/boardList").get();
+            result = comm.execute().get();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getContext(), "서버 통신 실패", Toast.LENGTH_SHORT).show();

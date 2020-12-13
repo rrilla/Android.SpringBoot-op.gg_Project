@@ -70,11 +70,11 @@ public class AddSummonerActivity extends AppCompatActivity {
     }
 
     private String checkSummoner(String inputSummoner) {
-        RestAPIComm comm = new RestAPIComm();
+        RestAPIComm comm = new RestAPIComm("app/checkSummoner?summoner="+inputSummoner);
         String[] result = new String[2];
 
         try {
-            result = comm.execute("app/checkSummoner", inputSummoner).get();
+            result = comm.execute().get();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "서버 통신 실패", Toast.LENGTH_SHORT).show();
