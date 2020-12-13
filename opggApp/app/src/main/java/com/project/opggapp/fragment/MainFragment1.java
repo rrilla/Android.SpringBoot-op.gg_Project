@@ -74,11 +74,11 @@ public class MainFragment1 extends Fragment {
     }
 
     private void loadSummoner(final ViewGroup rootView) {
-        RestAPIComm comm = new RestAPIComm();
+        RestAPIComm comm = new RestAPIComm("app/summarySummoner?summoner=" + summoner);
         String[] result = new String[2];
         Gson gson = new Gson();
         try {
-            result = comm.execute("app/summarySummoner", summoner).get();
+            result = comm.execute().get();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getContext(), "서버 통신 실패", Toast.LENGTH_SHORT).show();

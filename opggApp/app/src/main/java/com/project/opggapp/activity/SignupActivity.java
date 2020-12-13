@@ -69,7 +69,7 @@ public class SignupActivity extends AppCompatActivity {
                     return;
                 }
 
-                RestAPIComm comm = new RestAPIComm();
+                RestAPIComm comm = new RestAPIComm("app/signUp");
                 String[] result = new String[2];
                 User user = new User();
                 Gson gson = new Gson();
@@ -80,7 +80,7 @@ public class SignupActivity extends AppCompatActivity {
                 user.setPassword(password1);
 
                 try {
-                    result = comm.execute("app/signUp", gson.toJson(user)).get();
+                    result = comm.execute(gson.toJson(user)).get();
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "서버 통신 실패", Toast.LENGTH_SHORT).show();
