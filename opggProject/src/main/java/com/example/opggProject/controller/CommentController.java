@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.opggProject.config.auth.PrincipalDetails;
-import com.example.opggProject.domain.User;
 import com.example.opggProject.domain.comment.Comment;
+import com.example.opggProject.domain.user.User;
 import com.example.opggProject.service.CommentService;
 
 import lombok.RequiredArgsConstructor;

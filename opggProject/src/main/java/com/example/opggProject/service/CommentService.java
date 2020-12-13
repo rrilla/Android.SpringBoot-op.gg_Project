@@ -6,11 +6,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.opggProject.domain.User;
 import com.example.opggProject.domain.board.Board;
 import com.example.opggProject.domain.board.BoardRepository;
 import com.example.opggProject.domain.comment.Comment;
 import com.example.opggProject.domain.comment.CommentRepository;
+import com.example.opggProject.domain.user.User;
 
 import lombok.RequiredArgsConstructor;
 

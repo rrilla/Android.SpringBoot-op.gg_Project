@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.example.opggProject.domain.User;
 import com.example.opggProject.domain.board.Board;
+import com.example.opggProject.domain.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
