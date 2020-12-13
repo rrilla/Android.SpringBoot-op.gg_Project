@@ -53,22 +53,24 @@ public class BoardController {
 	public @ResponseBody ArrayList<String> summernote(MultipartFile[] files, HttpServletRequest request) {
 		ArrayList<String> imageUrl = new ArrayList<String>();
 		String proRoot = System.getProperty("user.dir");
-		String path = proRoot.substring(0,proRoot.lastIndexOf("\\")-6) + "/images/";
+		String path = proRoot.substring(0,proRoot.lastIndexOf("\\")-6) + "/board_original_images/";
 		File folder = new File(path);
 		if(!folder.exists()) {
 			folder.mkdir();
-			System.out.println("폴덩 생성 완료!!");
+			System.out.println("board원본저장 폴더 생성 완료!!");
 		} else {
 			System.out.println("이미 폴더가 있습니다!!");
 		}
 		for(MultipartFile file : files) {
 			String filename = file.getOriginalFilename();
 			String ext = filename.substring(filename.lastIndexOf("."));
-			String saveFileName = UUID.randomUUID() + ext;
+			String uuid = UUID.randomUUID().toString();
+			String saveFileName =  uuid + ext;
 			String fileUploadPath = path + saveFileName;
 			imageUrl.add("/summernoteShowImage/" + saveFileName);
 			try {
-				file.transferTo(new File(fileUploadPath));
+				file.transferTo(new File(fileUploadPath));	//원본저장
+				boardService.makeThumbnail(fileUploadPath, uuid, ext);	//resize저장
 			} catch (Exception e) {
 				e.getMessage();
 			}

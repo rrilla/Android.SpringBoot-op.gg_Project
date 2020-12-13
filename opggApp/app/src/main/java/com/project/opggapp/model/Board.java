@@ -2,9 +2,10 @@ package com.project.opggapp.model;
 
 import com.project.opggapp.task.IP;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Board {
+public class Board implements Serializable {
     private int bno;
     private String title;
     private String thumbnail;
