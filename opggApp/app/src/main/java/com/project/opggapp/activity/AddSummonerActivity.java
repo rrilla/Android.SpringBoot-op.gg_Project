@@ -80,7 +80,6 @@ public class AddSummonerActivity extends AppCompatActivity {
             Toast.makeText(this, "서버 통신 실패", Toast.LENGTH_SHORT).show();
         }
         if(result[0].equals("ok")){
-            Toast.makeText(this, "소환사 조회 성공", Toast.LENGTH_SHORT).show();
             if(result[1].equals("no")){
                 return "no";
             }else{

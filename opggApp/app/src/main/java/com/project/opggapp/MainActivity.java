@@ -55,35 +55,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //로그인 검사
-        pref = getSharedPreferences("autoLogin", MODE_PRIVATE);
-        String id = pref.getString("id", "");
-        String pw = pref.getString("pw", "");
-        if(!id.equals("") && !pw.equals("")){
-            Log.d("MainActivity","자동 로그인 실행");
-            Gson gson = new Gson();
-            LoginDto loginDto = new LoginDto();
-            String[] result = new String[2];
-            loginDto.setUsername(id);
-            loginDto.setPassword(pw);
-            RestAPIComm comm = new RestAPIComm();
-            try {
-                result = comm.execute("app/login", gson.toJson(loginDto)).get();
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(this, "서버 통신 오류", Toast.LENGTH_SHORT).show();
-            }
-            if(result[0].equals("ok")){
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("severToken", result[1]);
-                editor.commit();
-                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-
         //툴바
         toolbar = findViewById(R.id.toolbar);
         tText = toolbar.findViewById(R.id.toolbar_text);
