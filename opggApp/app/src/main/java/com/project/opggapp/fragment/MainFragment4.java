@@ -9,11 +9,18 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.project.opggapp.R;
+import com.project.opggapp.model.RankData;
+import com.project.opggapp.task.RestAPIComm;
+
+import java.util.ArrayList;
 
 public class MainFragment4 extends Fragment {
 
@@ -22,12 +29,33 @@ public class MainFragment4 extends Fragment {
     Fragment champion = null;
     Fragment level = null;
 
+    private ArrayList<RankData> rankDataList;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main4, container, false);
 
-        raking = new MainFragment4_Raking();
+        RestAPIComm comm = new RestAPIComm("app/raking");
+        String[] result = new String[2];
+        Gson gson = new Gson();
+
+        try {
+            result = comm.execute().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "서버 통신 실패", Toast.LENGTH_SHORT).show();
+        }
+        if(result[0].equals("ok")){
+            Toast.makeText(getContext(), "기능 성공", Toast.LENGTH_SHORT).show();
+            rankDataList = gson.fromJson(result[1], new TypeToken<ArrayList<RankData>>() {
+            }.getType());
+            Log.e("MainFragment4", "데이터 - " + rankDataList);
+        }else{
+            Toast.makeText(getContext(), "기능 실패 - " + result[1], Toast.LENGTH_SHORT).show();
+        }
+
+        raking = new MainFragment4_Raking(rankDataList);
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fMain4_linearLayout, raking).commit();
 
         tab1 = rootView.findViewById(R.id.fMain4_raking_tab1);

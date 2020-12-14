@@ -102,6 +102,13 @@ public class AppController {
 		//return new ResponseEntity<String>("no", HttpStatus.OK);
 	}
 	
+	//ranking 데이터 조회
+	@PostMapping("app/raking")
+	public ResponseEntity<?> raking() {
+		return appService.rankList();
+		//return new ResponseEntity<String>("no", HttpStatus.OK);
+	}
+	
 	
 	
 	

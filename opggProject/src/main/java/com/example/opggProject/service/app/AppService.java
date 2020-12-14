@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.opggProject.domain.board.Board;
 import com.example.opggProject.domain.board.BoardRepository;
+import com.example.opggProject.domain.rank.RankData;
+import com.example.opggProject.domain.rank.RankRepository;
 import com.example.opggProject.domain.user.User;
 import com.example.opggProject.domain.user.UserRepository;
 import com.example.opggProject.dto.app.JoinDto;
@@ -30,6 +32,7 @@ public class AppService {
 	
 	private final UserRepository userRepository;
 	private final BoardRepository boardRepository;
+	private final RankRepository rankRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	private final AuthenticationManager authenticationManager;
 	
@@ -135,8 +138,19 @@ public class AppService {
 			return new ResponseEntity<List<Board>>(boardRepository.findAll(), HttpStatus.OK);
 		}catch(Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String>("서버 시큐리티 로그인 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<String>("서버 - 시큐리티 로그인 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	public ResponseEntity<?> rankList() {
+		try {
+			return new ResponseEntity<List<RankData>>(rankRepository.findAll(), HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("서버 - 랭크 데이터 조회 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+		}		
+	}
+	
+	
 
 }
