@@ -437,7 +437,7 @@
 			<span class="summoner_level">218</span>
 		</div>
 		<div class="summoner_rank">
-			<span class="name">문주완</span>
+			<span class="name">${gameMyInfo.username}</span>
 			<div class="renewal">
 				<button type="button">전적 갱신</button>
 			</div>
@@ -454,12 +454,11 @@
 					</div>
 					<div class="tier_info_wrap">
 						<div class="rank_type">솔로랭크</div>
-						<div class="rank_tier">Challenger</div>
+						<div class="rank_tier">${gameMyInfo.soloRank.tier} ${gameMyInfo.soloRank.rank}</div>
 						<div class="tier_info">
-							<span style="color: #555e5e; font-weight: bold;">0 LP</span> / <span>101승</span>
-							<span>65패</span> <br> <span>56%</span>
+							<span style="color: #555e5e; font-weight: bold;">${gameMyInfo.point} LP</span> / <span>${gameMyInfo.soloRank.win}승</span>
+							<span>${gameMyInfo.soloRank.loss}패</span> <br> <span>56%</span>
 						</div>
-						<div>다이애나의 마법사들</div>
 					</div>
 				</div>
 				<div class="info_wrap" style="margin-top: 20px;">

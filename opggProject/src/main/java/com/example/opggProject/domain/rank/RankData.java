@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.example.opggProject.domain.champion.ChampionPickData;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -34,7 +33,7 @@ public class RankData {
    private int lose;
    private int level;
    
-   @JsonIgnoreProperties("rank")
+   @JsonIgnoreProperties({"rank","champion"})
    @OneToMany(mappedBy = "rank", fetch = FetchType.LAZY )
    private List<RankChampMastery> rankChampMastery;
 

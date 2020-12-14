@@ -25,5 +25,12 @@ public class RankService {
 		return rankRepository.findAll(pageable);
 	}
 	
+	public List<String> rankName(){
+		return rankRepository.mFindByName();
+	}
+	public RankData findName(String data) {
+		return rankRepository.mFind(data);
+	}
+	
 	
 }

@@ -1,4 +1,5 @@
 import sys
+import matplotlib.pyplot as plt
 sys.path.append('C:\Users\wnstj\AppData\Local\Programs\Python\Python39\Lib\site-packages')
 sys.setdefaultencoding("utf-8")
 import requests

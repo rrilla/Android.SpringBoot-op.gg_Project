@@ -14,8 +14,8 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/opggpro?serverTimezone=Asia/Seoul
-    username: opgg
+    url: jdbc:mysql://localhost:3306/opggpro3?serverTimezone=Asia/Seoul
+    username: opgg3
     password: 1029
 # database connect / jsp에서 context.xml에 적던 것
     

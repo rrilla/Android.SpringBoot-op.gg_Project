@@ -1,14 +1,18 @@
-
+import sys
+sys.path.append('C:\ProgramData\Anaconda3\Lib\site-packages')
 import requests
 import time
+import java.util.ArrayList as ArrayList
+import java.util.List
 
-def multiSearch(inputname,api):
+arr = ArrayList()
+def multiSearch(api,accountId,encId):
     api_key = api
-    
-    account = ""
-    id=""
+    account = accountId
+    id= encId
     level=""
-    name = inputname
+    name = ""
+    gameId = ""
     headers={
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
         "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
@@ -17,24 +21,7 @@ def multiSearch(inputname,api):
         "X-Riot-Token": api_key
 
     }
-    URL = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name
-    res = requests.get(URL, headers=headers)
-    if res.status_code == 200:
-    
-        data = res.json()
-        name = data['name']
-        account = data['accountId']
-        id = data['id']
-        level = data['summonerLevel']
-        print(account)
-        print(id)
-        print(name)
-    else:
-        
-        print("none")
 
-
-    gameId = ""
     URL = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/"+id
     res = requests.get(URL, headers=headers)
     if res.status_code == 200:
@@ -46,12 +33,22 @@ def multiSearch(inputname,api):
             print("point : ",data[0]['leaguePoints'])
             print("win :",data[0]['wins'],"win")
             print("loss :",data[0]['losses'],"loss")
+            arr.add(data[0]['tier'])
+            arr.add(data[0]['rank'])
+            arr.add(data[0]['leaguePoints'])
+            arr.add(data[0]['wins'])
+            arr.add(data[0]['losses'])
         else :            
             print(data[1]['tier'])
             print(data[1]['rank'])
             print("point : ",data[1]['leaguePoints'])
             print("win :",data[1]['wins'],"win")
             print("loss :",data[1]['losses'],"loss")
+            arr.add(data[1]['tier'])
+            arr.add(data[1]['rank'])
+            arr.add(data[1]['leaguePoints'])
+            arr.add(data[1]['wins'])
+            arr.add(data[1]['losses'])
         URL = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/"+account
         res = requests.get(URL, headers=headers)
         data = res.json()
@@ -65,7 +62,7 @@ def multiSearch(inputname,api):
             data2 = res.json()
             participantId = 0
             for i in range(0,len(data2['participantIdentities'])):
-                if data2['participantIdentities'][i]['player']['summonerName'] == 'ZED99':
+                if data2['participantIdentities'][i]['player']['accountId'] == account:
                     participantId = i
                     
             print("ID:",data2['participants'][participantId]['championId'])
@@ -74,5 +71,9 @@ def multiSearch(inputname,api):
             print("ass",data2['participants'][participantId]['stats']['assists']) 
             issue = "win" if data2['participants'][participantId]['stats']['win'] else "loss"
             print(issue)
-
-multiSearch("냄세제로","RGAPI-be18fde6-086f-458b-b3b1-a1eda49a519c")
+            arr.add(data2['participants'][participantId]['championId'])
+            arr.add(data2['participants'][participantId]['stats']['kills'])
+            arr.add(data2['participants'][participantId]['stats']['deaths'])
+            arr.add(data2['participants'][participantId]['stats']['assists'])
+            arr.add(issue)
+    return arr
