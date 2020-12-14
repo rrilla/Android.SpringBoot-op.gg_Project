@@ -89,21 +89,17 @@
 			<artifactId>jython</artifactId>
 			<version>2.7.2</version>
 		</dependency>
-<<<<<<< HEAD
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.13</version>
 		</dependency>
-
-=======
-<dependency>
-	<groupId>org.imgscalr</groupId>
-	<artifactId>imgscalr-lib</artifactId>
-	<version>4.2</version>
-</dependency>
->>>>>>> 2a949157bed774fd93cd162719487839bd92263b
+		<dependency>
+			<groupId>org.imgscalr</groupId>
+			<artifactId>imgscalr-lib</artifactId>
+			<version>4.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
