@@ -28,6 +28,7 @@ public class RankData {
    private int rno;
    private String name;
    private String tier;
+   private String profileIconId;
    private int point;
    private int win;
    private int lose;

@@ -2,12 +2,15 @@ package com.project.opggapp.activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -30,37 +33,46 @@ public class DetailBoardActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         selectBoard = (Board)intent.getSerializableExtra("selectBoard");
-        Log.e("DetailBoardActivity", "선택한 글 데이터 : " + selectBoard);
+        //Log.e("DetailBoardActivity", "선택한 글 데이터 : " + selectBoard);
+        String boardContent = selectBoard.getContent().replace("/summer", "http://10.0.2.2:8000/summer");
 
-        String realData = selectBoard.getContent().replace("/summer", "http://10.0.2.2:8000/summer");
-        WebView web = findViewById(R.id.web);
+        //툴바
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        TextView tvTitle = findViewById(R.id.detailBoard_tv_title);
+        TextView tvDateWrite = findViewById(R.id.detailBoard_tv_dateWrite);
+        TextView tvWriterNickname = findViewById(R.id.detailBoard_tv_writerNickname);
+        TextView tvCountView = findViewById(R.id.detailBoard_tv_countView);
+        TextView tvCountComment = findViewById(R.id.detailBoard_tv_countComment);
+        TextView tvCountComment2 = findViewById(R.id.detailBoard_tv_countComment2);
+        TextView tvCountLike = findViewById(R.id.detailBoard_tv_countLike);
+        tvTitle.setText(selectBoard.getTitle());
+        tvDateWrite.setText(selectBoard.getWriteDate().toString() + "　|　");
+        tvWriterNickname.setText(selectBoard.getUser().getNickname());
+        //tvCountView.setText();
+        //tvCountComment.setText();
+        //tvCountComment2.setText();
+        //tvCountLike.setText();
+
+
+
+        //WebView셋팅 시작
+        WebView web = findViewById(R.id.detailBoard_wv_container);
         //http이미지 못가올때 세팅
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             web.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
         //자바스크립트 허용
         web.getSettings().setJavaScriptEnabled(true);
         //web.setWebViewClient(new WebViewClient());
-
         //스크롤바 없애기
 //        web.setHorizontalScrollBarEnabled(true);
 //        web.setVerticalScrollBarEnabled(false);
 //        web.setBackgroundColor(0);  //흰색
+        web.loadData(boardContent, "text/html", "UTF-8");
+        //WebView셋팅 끝
 
-        String data = "<p>asdf<img src='http://10.0.2.2:8000/summernoteShowImage/7bb25f48-6fd0-401d-91d9-89d7af7d8e78.jpg' style='width: 100px;'>";
-
-        web.loadData(realData, "text/html", "UTF-8");
-
-//        WebView web2 = findViewById(R.id.web2);
-//        web2.getSettings().setJavaScriptEnabled(true);
-//        web2.setWebViewClient(new WebViewClient());
-//        //스크롤바 없애기
-//        web2.setHorizontalScrollBarEnabled(true);
-//        web2.setVerticalScrollBarEnabled(false);
-//        web2.setBackgroundColor(0);  //흰색
-//        web2.loadUrl("https://www.op.gg/");
-
-//        TextView tvTest = findViewById(R.id.test);
-//        tvTest.setText(Html.fromHtml(data));
     }
 
 //    @Override
@@ -68,4 +80,24 @@ public class DetailBoardActivity extends AppCompatActivity {
 //        Log.d("TAG_MEMORY", "Memory is Low");
 //        super.onLowMemory();
 //    }
+
+    //앱바 메뉴 인플레이션
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼, 디폴트로 true만 해도 백버튼이 생김
+        return true;
+    }
+
+    //앱바 뒤로가기 설정
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

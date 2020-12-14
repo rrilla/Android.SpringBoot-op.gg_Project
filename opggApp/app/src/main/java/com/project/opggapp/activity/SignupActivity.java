@@ -2,11 +2,8 @@ package com.project.opggapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -20,7 +17,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.project.opggapp.R;
 import com.project.opggapp.model.User;
-import com.project.opggapp.model.dto.LoginDto;
 import com.project.opggapp.task.RestAPIComm;
 
 public class SignupActivity extends AppCompatActivity {
