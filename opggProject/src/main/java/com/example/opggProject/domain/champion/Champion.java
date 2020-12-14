@@ -2,7 +2,6 @@ package com.example.opggProject.domain.champion;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
+import com.example.opggProject.domain.rank.RankChampMastery;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -32,9 +32,6 @@ public class Champion {
    @Lob //대용량 데이터
    private String story;
    private int id;
-   @JsonIgnoreProperties("champion")
-   @OneToMany(mappedBy = "champion", fetch = FetchType.LAZY)
-   private List<ChampionPickData> championPickData;
-   
+
 
 }

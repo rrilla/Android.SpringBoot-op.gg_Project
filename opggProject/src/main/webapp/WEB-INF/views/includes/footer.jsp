@@ -1,6 +1,5 @@
 </body>
 <script>
-	/* 현재 페이지 확인 후 링크 스타일 변경 */
 	const currentPath = location.pathname;
 	function pathCheck(path) {
 		path.style.color = "white";

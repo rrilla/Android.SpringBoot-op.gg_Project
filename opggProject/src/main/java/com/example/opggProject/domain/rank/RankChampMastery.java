@@ -25,10 +25,13 @@ public class RankChampMastery {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int rcno;
-   private String championName;
    private Long masteryPoint;
    
+   @JoinColumn(name="championId")
+   @ManyToOne
+   private Champion champion;
+   
    @JoinColumn(name="rankId")
-   @ManyToOne(fetch = FetchType.LAZY)
+   @ManyToOne
    private RankData rank;
 }

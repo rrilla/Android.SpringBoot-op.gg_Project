@@ -88,8 +88,8 @@
 <div class="multi_page_container">
 	<div class="multi_search_container">
 		<div class="multi_search_layout">
-			<form class="multi_search_form">
-				<textarea class="multi_search_content" id="content"></textarea>
+			<form class="multi_search_form" action="multiSearch" method="post">
+				<textarea class="multi_search_content" id="content" name="content"></textarea>
 				<div class="multi_search">
 					<button class="multi_search_button">여러명의 소환사 이름으로 요약 검색</button>
 				</div>
@@ -97,15 +97,14 @@
 		</div>
 	</div>
 	
-	<!-- <div class="result_container">
+	<div class="result_container">
 		<div class="result_title">멀티서치</div>
 		<div class="result_content">
 			<div class="contet_title">채팅창의 내용을 붙여 넣으면, 게임에 참여중인 모든 유저를 요약하여 볼 수 있습니다!</div>
 			<div class="content_subTitle">여러명의 소환사 이름으로 요약 검색</div>
 			<div class="content_guide_img"></div>
 		</div>
-	</div> -->
-	<%@ include file="../multiSearch/resultForm.jsp" %>
+	</div>
 </div>
 
 <script>

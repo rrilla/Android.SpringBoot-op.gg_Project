@@ -1,13 +1,10 @@
-import sys
-sys.path.append('C:\ProgramData\Anaconda3\Lib\site-packages')
+
 import requests
 import time
-import java.util.ArrayList as ArrayList
 
-arr = ArrayList()
-def multiSearch(inputname):
-    api_key = "RGAPI-e20900cf-8210-48df-8623-06f987904501"
-
+def multiSearch(inputname,api):
+    api_key = api
+    
     account = ""
     id=""
     level=""
@@ -23,6 +20,7 @@ def multiSearch(inputname):
     URL = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name
     res = requests.get(URL, headers=headers)
     if res.status_code == 200:
+    
         data = res.json()
         name = data['name']
         account = data['accountId']
@@ -30,10 +28,10 @@ def multiSearch(inputname):
         level = data['summonerLevel']
         print(account)
         print(id)
-        arr.add(name)
-        arr.add(level)
+        print(name)
     else:
-        print("No")
+        
+        print("none")
 
 
     gameId = ""
@@ -41,17 +39,24 @@ def multiSearch(inputname):
     res = requests.get(URL, headers=headers)
     if res.status_code == 200:
         data = res.json()
-        arr.add(data[0]['tier'])
-        arr.add(data[0]['rank'])
-        arr.add(data[0]['leaguePoints'])
-        arr.add(data[0]['wins'])
-        arr.add(data[0]['losses'])
+        
+        if len(data) <= 1 :
+            print(data[0]['tier'])
+            print(data[0]['rank'])
+            print("point : ",data[0]['leaguePoints'])
+            print("win :",data[0]['wins'],"win")
+            print("loss :",data[0]['losses'],"loss")
+        else :            
+            print(data[1]['tier'])
+            print(data[1]['rank'])
+            print("point : ",data[1]['leaguePoints'])
+            print("win :",data[1]['wins'],"win")
+            print("loss :",data[1]['losses'],"loss")
         URL = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/"+account
         res = requests.get(URL, headers=headers)
         data = res.json()
         for i in range(0, len(data['matches'])):
-            print(i)
-            if(i>=10):
+            if(i>=11):
                 break
             if(data['matches'][i]['queue'] != 420):
                 continue
@@ -62,10 +67,12 @@ def multiSearch(inputname):
             for i in range(0,len(data2['participantIdentities'])):
                 if data2['participantIdentities'][i]['player']['summonerName'] == 'ZED99':
                     participantId = i
-            
-            arr.add(data2['participants'][participantId]['championId'])
-            arr.add(data2['participants'][participantId]['stats']['kills'])
-            arr.add(data2['participants'][participantId]['stats']['deaths'])
-            arr.add(data2['participants'][participantId]['stats']['assists'])
-        return arr
-    
+                    
+            print("ID:",data2['participants'][participantId]['championId'])
+            print("kill:",data2['participants'][participantId]['stats']['kills'])
+            print("death",data2['participants'][participantId]['stats']['deaths'])
+            print("ass",data2['participants'][participantId]['stats']['assists']) 
+            issue = "win" if data2['participants'][participantId]['stats']['win'] else "loss"
+            print(issue)
+
+multiSearch("냄세제로","RGAPI-be18fde6-086f-458b-b3b1-a1eda49a519c")
