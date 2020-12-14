@@ -34,20 +34,39 @@ def matchInfo(accountId,encId,api):
     res = requests.get(URL, headers=headers)
     data = res.json()
     if data[0]['queueType'] == 'RANKED_SOLO_5x5':
-        arr.add('entire')
-        for i in range(0,len(data)):
-            arr.add(data[i]['tier'])
-            arr.add(data[i]['rank'])
-            arr.add(data[i]['leaguePoints'])
-            arr.add(data[i]['wins'])
-            arr.add(data[i]['losses'])
-    else:
-        arr.add('solo')
-        arr.add(data[0]['tier'])
-        arr.add(data[0]['rank'])
-        arr.add(data[0]['leaguePoints'])
-        arr.add(data[0]['wins'])
-        arr.add(data[0]['losses'])
+        if 2<=len(data):
+            arr.add('soloentire')
+            for i in range(0,len(data)):
+                arr.add(data[i]['tier'])
+                arr.add(data[i]['rank'])
+                arr.add(data[i]['leaguePoints'])
+                arr.add(data[i]['wins'])
+                arr.add(data[i]['losses'])
+        else :
+            arr.add('solo')
+            for i in range(0,len(data)):
+                arr.add(data[i]['tier'])
+                arr.add(data[i]['rank'])
+                arr.add(data[i]['leaguePoints'])
+                arr.add(data[i]['wins'])
+                arr.add(data[i]['losses'])
+    elif data[0]['queueType'] == 'RANKED_FLEX_SR':
+        if 2<=len(data):
+            arr.add('freeentire')
+            for i in range(0,len(data)):
+                arr.add(data[i]['tier'])
+                arr.add(data[i]['rank'])
+                arr.add(data[i]['leaguePoints'])
+                arr.add(data[i]['wins'])
+                arr.add(data[i]['losses'])
+        else :
+            arr.add('free')
+            for i in range(0,len(data)):
+                arr.add(data[i]['tier'])
+                arr.add(data[i]['rank'])
+                arr.add(data[i]['leaguePoints'])
+                arr.add(data[i]['wins'])
+                arr.add(data[i]['losses'])
     
     URL = "https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/"+encId
     res = requests.get(URL, headers=headers)
