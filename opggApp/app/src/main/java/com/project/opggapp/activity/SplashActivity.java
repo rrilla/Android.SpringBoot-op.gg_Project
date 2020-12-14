@@ -43,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },3 * 1000);    //3초
+        },2 * 1000);    //3초
 
         //자동 로그인 검사
         SharedPreferences pref = getSharedPreferences("autoLogin", MODE_PRIVATE);

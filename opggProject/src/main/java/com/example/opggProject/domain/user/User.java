@@ -26,6 +26,7 @@ public class User {
 	private String role;	// 구글, 네이버, 카카오 뭐할지 적기
 	private String provider;
 	private String providerId;
+	String test;
 	
 	@Builder
 	public User(String username, String nickname, String password, String email, String role, String provider,
