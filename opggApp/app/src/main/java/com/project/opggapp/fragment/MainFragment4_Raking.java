@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,6 +63,8 @@ public class MainFragment4_Raking extends Fragment {
 
         //Glide.with(rootView).load(rankDataList.get(0).getProfileIconId()).into(ivImage1);
 
+        Log.e("MainFragment4_raking", rankDataList.toString());
+
         tvName1.setText(rankDataList.get(0).getName());
         tvName2.setText(rankDataList.get(1).getName());
         tvName3.setText(rankDataList.get(2).getName());
@@ -83,6 +87,7 @@ public class MainFragment4_Raking extends Fragment {
 
 
         recyclerView = rootView.findViewById(R.id.recyclerView);
+
         //리사이클러뷰에 설정할 레이아웃 매니저 - 방향세로로 설정함.
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -92,6 +97,20 @@ public class MainFragment4_Raking extends Fragment {
         Log.e("MainFragment4_Raking", "랭킹 리스트 어댑터 관리수:" + adapter.getItemCount());
 
         recyclerView.setAdapter(adapter);
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (!recyclerView.canScrollVertically(-1)) {
+                    Log.e("MainFragment4_Raking", "젤위다");
+                } else if (!recyclerView.canScrollVertically(1)) {
+                    Log.e("MainFragment4_Raking", "젤밑이다");
+                } else {
+                    Log.e("MainFragment4_Raking", "??");
+                }
+            }
+        });
+
+
 
         return rootView;
         //return inflater.inflate(R.layout.fragment_main4_raking, container, false);

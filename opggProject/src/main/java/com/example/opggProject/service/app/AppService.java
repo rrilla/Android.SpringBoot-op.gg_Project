@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -142,9 +144,9 @@ public class AppService {
 		}
 	}
 
-	public ResponseEntity<?> rankList() {
+	public ResponseEntity<?> rankList(Pageable pageable) {
 		try {
-			return new ResponseEntity<List<RankData>>(rankRepository.findAll(), HttpStatus.OK);
+			return new ResponseEntity<Page<RankData>>(rankRepository.findAll(pageable), HttpStatus.OK);
 		}catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>("서버 - 랭크 데이터 조회 실패", HttpStatus.INTERNAL_SERVER_ERROR);

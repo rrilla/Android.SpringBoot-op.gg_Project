@@ -4,6 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -104,8 +107,9 @@ public class AppController {
 	
 	//ranking 데이터 조회
 	@PostMapping("app/raking")
-	public ResponseEntity<?> raking() {
-		return appService.rankList();
+	public ResponseEntity<?> raking(
+			@PageableDefault(size = 50, sort = "rno", direction = Direction.ASC ) Pageable pageable) {
+		return appService.rankList(pageable);
 		//return new ResponseEntity<String>("no", HttpStatus.OK);
 	}
 	

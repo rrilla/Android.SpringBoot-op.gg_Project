@@ -20,6 +20,10 @@ import com.project.opggapp.R;
 import com.project.opggapp.model.RankData;
 import com.project.opggapp.task.RestAPIComm;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class MainFragment4 extends Fragment {
@@ -36,7 +40,7 @@ public class MainFragment4 extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main4, container, false);
 
-        RestAPIComm comm = new RestAPIComm("app/raking");
+        RestAPIComm comm = new RestAPIComm("app/raking?page=0");
         String[] result = new String[2];
         Gson gson = new Gson();
 
@@ -48,7 +52,20 @@ public class MainFragment4 extends Fragment {
         }
         if(result[0].equals("ok")){
             Toast.makeText(getContext(), "기능 성공", Toast.LENGTH_SHORT).show();
-            rankDataList = gson.fromJson(result[1], new TypeToken<ArrayList<RankData>>() {
+
+
+
+            // 가장 큰 JSONObject를 가져옵니다.
+            JSONObject jObject = null;
+            JSONArray jArray = null;
+            try {
+                jObject = new JSONObject(result[1]);
+                jArray = jObject.getJSONArray("content");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            rankDataList = gson.fromJson(String.valueOf(jArray), new TypeToken<ArrayList<RankData>>() {
             }.getType());
             Log.e("MainFragment4", "데이터 - " + rankDataList);
         }else{
