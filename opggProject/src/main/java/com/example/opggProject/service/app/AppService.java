@@ -1,5 +1,7 @@
 package com.example.opggProject.service.app;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,8 +15,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Service;
 
-import com.example.opggProject.domain.User;
-import com.example.opggProject.domain.UserRepository;
+import com.example.opggProject.domain.board.Board;
+import com.example.opggProject.domain.board.BoardRepository;
+import com.example.opggProject.domain.user.User;
+import com.example.opggProject.domain.user.UserRepository;
 import com.example.opggProject.dto.app.JoinDto;
 import com.example.opggProject.dto.app.LoginDto;
 
@@ -25,10 +29,36 @@ import lombok.RequiredArgsConstructor;
 public class AppService {
 	
 	private final UserRepository userRepository;
+	private final BoardRepository boardRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	private final AuthenticationManager authenticationManager;
 	
 	private String key = "1029";
+	
+	public ResponseEntity<?> signUp(User user) {
+		
+		try {
+			String username = user.getUsername();
+			String nickname = user.getNickname();
+			if(userRepository.findByUsernameOrEmail(username, username) != null) {
+				return new ResponseEntity<String>("이미 가입 했거나, 인증된 이메일 입니다.",HttpStatus.CREATED);
+			}else if(userRepository.findByNickname(nickname) != null) {
+				return new ResponseEntity<String>("중복된 닉네임 입니다.",HttpStatus.CREATED);
+			}
+			
+			String password = bCryptPasswordEncoder.encode(user.getPassword());
+			String role = "ROLE_USER";
+			String provider = "general";
+			user.setPassword(password);
+			user.setRole(role);
+			user.setProvider(provider);
+			userRepository.save(user);
+			return new ResponseEntity<String>("ok",HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("서버 에러",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	public ResponseEntity<?> loginGoogle(
 			JoinDto joinDto,
@@ -99,5 +129,14 @@ public class AppService {
 		}
 		//return new AuthenticationToken(user.getUsername(), user.getAuthorities(), session.getId());
 	}
-	
+
+	public  ResponseEntity<?> boardList() {
+		try {
+			return new ResponseEntity<List<Board>>(boardRepository.findAll(), HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("서버 시큐리티 로그인 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 }

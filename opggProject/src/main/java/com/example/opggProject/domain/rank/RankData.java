@@ -31,6 +31,7 @@ public class RankData {
    private int point;
    private int win;
    private int lose;
+   private int level;
    
    @JsonIgnoreProperties({"rank","champion"})
    @OneToMany(mappedBy = "rank", fetch = FetchType.LAZY )

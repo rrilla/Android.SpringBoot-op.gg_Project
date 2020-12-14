@@ -31,6 +31,7 @@ def rank(api):
         if res.status_code == 429:
             print("rest")
             time.sleep(80)
+            continue
         if len(data)==0:
             if tier == "CHALLENGER":
                 tier = "GRANDMASTER"
@@ -46,12 +47,25 @@ def rank(api):
         while True:
             if len(data) <= j:
                 break
+            
+            URL2 = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+data[j]['summonerName']
+            res2 = requests.get(URL2, headers=headers)
+
+            while res2.status_code == 429:
+                URL2 = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+data[j]['summonerName']
+                res2 = requests.get(URL2, headers=headers)
+            data2 = res2.json()
+            if res2.status_code == 404:
+                j=j+1
+                continue
             print("tnsdnl : " , rank , "summonerName :" + data[j]['summonerName'] + " tier : " + data[j]['tier'] , data[j]['leaguePoints'] , "wins : " ,data[j]['wins'] , " losses : " ,data[j]['losses'])
+            print(data2['summonerLevel'])
             arr.add(data[j]['summonerName'])
             arr.add(data[j]['tier'])
             arr.add(data[j]['leaguePoints'])
             arr.add(data[j]['wins'])
             arr.add(data[j]['losses'])
+            arr.add(data2['summonerLevel'])
             j = j+1
             rank = rank+1
         i=i+1

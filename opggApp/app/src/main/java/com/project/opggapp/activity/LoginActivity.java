@@ -1,9 +1,8 @@
-package com.project.opggapp;
+package com.project.opggapp.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.accounts.AccountManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.gson.Gson;
+import com.project.opggapp.R;
 import com.project.opggapp.model.Join;
 import com.project.opggapp.model.dto.LoginDto;
 import com.project.opggapp.task.IP;
@@ -48,8 +49,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        EditText etSignUp = findViewById(R.id.login_et_signUp);
+        etSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("LoginActivity", "클릭됨");
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //토큰있을시 = 로그인했을시 UserActivity 이동
-        pref = getSharedPreferences("autoLogin",MODE_PRIVATE);
+        pref = getSharedPreferences("autoLogin", MODE_PRIVATE);
         String severToken = pref.getString("severToken","");
         if(!severToken.equals("")){
             Intent intent = new Intent(getApplication(), UserActivity.class);
@@ -67,18 +78,18 @@ public class LoginActivity extends AppCompatActivity {
                 data.setPassword(password.getText().toString());
                 data.setUsername(email.getText().toString());
 
-                RestAPIComm comm = new RestAPIComm();
+                RestAPIComm comm = new RestAPIComm("app/login");
                 Gson gson = new Gson();
-                String[] result = new String[2];
+                String[] result = new String[3];
                 try {
                     Log.e("LoginActivity", "로그인 통신시작");
-                    result = comm.execute("app/login", gson.toJson(data)).get();
+                    result = comm.execute(gson.toJson(data)).get();
                 }catch (Exception e){
                     Toast.makeText(getApplicationContext(), "서버 통신 오류", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
                 if(result[0].equals("ok")){
-                    autoLogin(data.getUsername(), data.getPassword(), result[1]);
+                    autoLogin(data.getUsername(), data.getPassword(), result[2]);
                     finish();
                     Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                 }else{
@@ -197,8 +208,8 @@ public class LoginActivity extends AppCompatActivity {
 //            Intent intent = new Intent(this, MainActivity.class);
 //            startActivity(intent);
 
-            RestAPIComm comm = new RestAPIComm();
-            String[] result = new String[2];
+            RestAPIComm comm = new RestAPIComm("app/loginGoogle");
+            String[] result = new String[3];
             Gson gson = new Gson();
             Join join = new Join();
             join.setProviderId(mAuth.getCurrentUser().getProviderId());
@@ -208,18 +219,18 @@ public class LoginActivity extends AppCompatActivity {
 
             try {
                 Log.e("LoginActivity", "구글로그인 통신시작");
-                result = comm.execute("app/loginGoogle", gson.toJson(join)).get();
+                result = comm.execute(gson.toJson(join)).get();
             }catch (Exception e){
                 Toast.makeText(getApplicationContext(), "서버 통신 오류", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
             if(result[0].equals("ok")){
                 autoLogin(mAuth.getCurrentUser().getProviderId()+"_"+mAuth.getCurrentUser().getUid(),
-                        IP.pw, result[1]);
+                        IP.pw, result[2]);
                 finish();
                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
             }else{
-                Toast.makeText(getApplicationContext(), "로그인 실패 - " + result[0], Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "로그인 실패 - " + result[1], Toast.LENGTH_SHORT).show();
             }
         }
     }

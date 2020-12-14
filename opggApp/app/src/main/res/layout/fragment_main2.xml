@@ -17,6 +17,13 @@
             android:layout_weight="1"
             android:gravity="center|left"
             android:text="전체" />
+
+        <Button
+            android:id="@+id/fMain2_btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="검색아이콘" />
     </LinearLayout>
 
     <ScrollView

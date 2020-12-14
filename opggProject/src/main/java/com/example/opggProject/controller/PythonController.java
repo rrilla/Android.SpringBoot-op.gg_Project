@@ -52,6 +52,7 @@ public class PythonController {
 	@Autowired
 	private MultiSearchService multiSearchService;
 	
+<<<<<<< HEAD
 	
 	//api 바꿔주셈요~~~~~~~~~ multiSearchService도 바꿔주세요~~~~~~~~~
 	final String api = "RGAPI-a298ca1f-2ac6-4ea0-8301-93c1b85a566c";
@@ -284,6 +285,84 @@ public class PythonController {
 		String name = "냄세제로";
 		PyObject pyobj = pyFunction.__call__(new PyString(name), new PyString(api));
 		String abc = pyobj.toString();
+=======
+	final String api = "RGAPI-3ac20c01-1492-4fe5-9fc4-8c61ca5c6f5a";
+	   private static PythonInterpreter intPre;
+	      
+	   private HttpEntity makeEntity() {
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.set("Origin", "https://developer.riotgames.com");
+	        headers.set("Accept-Charset", "application/x-www-form-urlencoded; charset=UTF-8");
+	        headers.set("X-Riot-Token", api);
+	        headers.set("Accept-Language", "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7");
+	        headers.set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36");
+
+	        HttpEntity entity = new HttpEntity("parameters", headers);
+
+	        return entity;
+	    }
+	   
+	   //랭킹 정보 넣기
+	   @GetMapping("rankUpdate")
+	   public @ResponseBody String rankUpdate() {
+	      intPre = new PythonInterpreter();
+	      intPre.execfile("src/main/clt/rankInfo.py");
+	      PyFunction pyFunction = (PyFunction)intPre.get("rank",PyFunction.class);
+	      
+	      
+	      PyObject pyobj = pyFunction.__call__(new PyString(api));
+	      String abc = pyobj.toString();
+	      System.out.println(abc);
+	      String [] token = abc.split(",");
+	      for (int i = 0; i < token.length; i=i+6) {
+	         RankData rank = new RankData();
+	         rank.setName(token[i].replace(" ", "").replace("[", ""));
+	         rank.setTier(token[i+1].replace(" ", ""));
+	         rank.setPoint(Integer.parseInt(token[i+2].replace(" ", "")));
+	         rank.setWin(Integer.parseInt(token[i+3].replace(" ", "")));
+	         rank.setLose(Integer.parseInt(token[i+4].replace(" ", "")));
+	         rank.setLevel(Integer.parseInt(token[i+5].replace(" ", "").replace("]", "")));
+	         rankService.rankSave(rank);
+	      }
+	      return pyobj.toString();
+	   }
+	   
+	   //랭킹에따른 챔피언 마스터리 뽑기
+	   //일단 한글이안됨
+	   @GetMapping("championMaster")
+	   public @ResponseBody String championMaster() {
+		  
+		  
+	      System.setProperty("python.import.site", "false");
+	      intPre = new PythonInterpreter();
+	      intPre.exec("from java.lang import System");
+	      intPre.execfile("src/main/clt/championMastery.py");
+	      PyFunction pyFunction = (PyFunction)intPre.get("champion",PyFunction.class);
+	      
+	      PyObject pyobj = pyFunction.__call__(new PyString(api));
+	      String abc = pyobj.toString();
+	      String [] token = abc.split(",");
+	      for (int i = 0; i < token.length; i++) {
+	         System.out.println(token[i].replace("[", "").replace("]", "").replace(" ", ""));
+	      }
+	      System.out.println(abc);
+	      return pyobj.toString();
+	   }
+	   
+	   //멀티서치테스트
+	   //일단 한글이안됨
+	   @GetMapping("test3")
+	   public @ResponseBody String test3() {
+	      System.setProperty("python.import.site", "false");
+	      intPre = new PythonInterpreter();
+	      intPre.exec("from java.lang import System");
+	      intPre.execfile("src/main/clt/multisearch.py");
+	      PyFunction pyFunction = (PyFunction)intPre.get("multiSearch",PyFunction.class);
+	      
+	      String name = "냄세제로";
+	      PyObject pyobj = pyFunction.__call__(new PyString(name),new PyString(api));
+	      String abc = pyobj.toString();
+>>>>>>> 2a949157bed774fd93cd162719487839bd92263b
 //	      String [] token = abc.split(",");
 //	      for (int i = 0; i < token.length; i++) {
 //	         System.out.println(token[i].replace("[", "").replace("]", "").replace(" ", ""));

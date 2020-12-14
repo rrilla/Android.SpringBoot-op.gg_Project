@@ -1,4 +1,4 @@
-package com.example.opggProject.domain;
+package com.example.opggProject.domain.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +21,7 @@ public class User {
 	private String username;
 	private String nickname;
 	private String password;
+	private String image;
 	private String email;
 	private String role;	// 구글, 네이버, 카카오 뭐할지 적기
 	private String provider;

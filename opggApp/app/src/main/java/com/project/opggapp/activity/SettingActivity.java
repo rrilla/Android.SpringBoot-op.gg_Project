@@ -1,4 +1,4 @@
-package com.project.opggapp;
+package com.project.opggapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+
+import com.project.opggapp.R;
 
 public class SettingActivity extends AppCompatActivity {
 

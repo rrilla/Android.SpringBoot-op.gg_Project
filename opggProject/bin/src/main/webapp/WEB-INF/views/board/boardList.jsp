@@ -11,9 +11,9 @@
 }
 .board_sign_img {
 	background: url("https://a-static.besthdwallpaper.com/league-of-legends-lol-world-championship-poro-tapeta-na-zed-3840x1080-54070_75.jpg");
-	width: 1700px;
+	width: 100%;
 	height: 100%;
-	background-size: 100%;
+	background-size: 100% 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -98,33 +98,43 @@
 				<div style="padding: 18px 0 17px 0;">
 					<h3 style="padding-left: 20px;">게시판</h3>
 					<div></div>
-					<a href="/board/write" style="position: absolute; right: 17px; top: 13px;">
-						<img src="https://talk.op.gg/images/icon-write@2x.png" style="width: 30px;"/>
-					</a>
+					<c:if test="${not empty principal.username}">
+						<a href="/board/write" style="position: absolute; right: 17px; top: 13px;">
+							<img src="https://talk.op.gg/images/icon-write@2x.png" style="width: 30px;"/>
+						</a>
+					</c:if>
 				</div>
 			</div>
-			
-			<div class="board_list">
-				<div style="line-height: 45px; color: #7b858e;">232</div>
-				<div style="padding-left: 20px;">
-					<div style="font-size: 14px; color: #1e2022; padding-bottom: 5px;">게시물 제목</div>
-					<div style="font-size: 14px; color: #98a0a7;">
-						<span>게시물 등록 시간</span>
-						<span class="board_writer">작성자</span>
+		
+			<c:forEach var="board" items="${boardList.content}">
+				<div class="board_list">
+					<div style="line-height: 45px; color: #7b858e;">${board.bno}</div>
+					<div style="padding-left: 20px;">
+						<div style="font-size: 14px; color: #1e2022; padding-bottom: 5px;">
+							<a style="text-decoration: none; color: #7b858e; " href="/board/detail/${board.bno }">${board.title }</a>
+						</div>
+						<div style="font-size: 14px; color: #98a0a7;">
+							<span>${board.writeDate }</span>
+							<span class="board_writer">${board.user.username }</span>
+						</div>
 					</div>
 				</div>
-			</div>
+			</c:forEach>
 			
 			<div style="text-align: center; margin-top: 20px;">
 				<div>
-					<a href="" class="prev_button" onClick="prevButton()">
-						<img style="vertical-align: middle;" src="https://talk.op.gg/images/icon-arrow-left@2x.png" />
-						<span style="vertical-align: middle;">이전</span>
-					</a>
-					<a href="" class="next_button" onClick="nextButton">
+					<c:if test="${boardList.first == false}">
+						<a href="/boardList?page=${boardList.number-1 }"  class="prev_button" onClick="prevButton()">
+							<img style="vertical-align: middle;" src="https://talk.op.gg/images/icon-arrow-left@2x.png" />
+							<span style="vertical-align: middle;">이전</span>
+						</a>
+					</c:if>
+					<c:if test="${boardList.last == false }">
+					<a href="/boardList?page=${boardList.number+1 }"  class="next_button" onClick="nextButton">
 						<span style="vertical-align: middle;">다음</span>
 						<img style="vertical-align: middle;" src="https://talk.op.gg/images/icon-arrow-right@2x.png" />
 					</a>
+					</c:if>
 				</div>
 			</div>
 		</div>

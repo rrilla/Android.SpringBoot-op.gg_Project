@@ -22,10 +22,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.example.opggProject.domain.User;
-import com.example.opggProject.domain.UserRepository;
+import com.example.opggProject.domain.user.User;
+import com.example.opggProject.domain.user.UserRepository;
 import com.nimbusds.oauth2.sdk.Response;
 
 import lombok.extern.java.Log;
@@ -85,16 +87,6 @@ public class UserController {
 		return "user/signUpForm";
 	}
 	
-	@GetMapping("/board") 
-	public String board() {
-		return "board";
-	}
-
-	@GetMapping("/board/write")
-	public String boardWrite() {
-		return "board/boardWrite";
-	}
-	
 	@GetMapping("/multi")
 	public String multiSearchForm() {
 		
@@ -104,10 +96,5 @@ public class UserController {
 	@GetMapping("/summoner")
 	public String summoner() {
 		return "record/summoner";
-	}
-	
-	@GetMapping("/ladder")
-	public String ladder() {
-		return "ranking/ladder";
 	}
 }
