@@ -5,5 +5,6 @@ import lombok.Data;
 @Data
 public class GameMyChampion {
 	private String chamName;
+	private String chamEngName;
 	private String chamPoint;
 }

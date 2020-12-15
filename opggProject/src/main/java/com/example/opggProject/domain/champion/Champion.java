@@ -33,6 +33,7 @@ public class Champion {
    private String lane;
    private float winRate;
    private float pickRate;
+   private float banRate;
    private int tier;
    private String englishName;
 }

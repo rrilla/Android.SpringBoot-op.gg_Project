@@ -1,7 +1,5 @@
 package com.example.opggProject.controller;
 
-import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,24 +8,18 @@ import org.python.core.PyObject;
 import org.python.core.PyString;
 import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 
 import com.example.opggProject.domain.Summon;
 import com.example.opggProject.domain.multiSearch.Kda;
 import com.example.opggProject.domain.multiSearch.MatchInfo;
 import com.example.opggProject.domain.multiSearch.SummInfo;
-import com.example.opggProject.domain.rank.RankData;
 import com.example.opggProject.service.ChampionService;
+import com.example.opggProject.service.MultiSearchService;
 
 @Controller
 
@@ -36,36 +28,26 @@ public class MultiSearchController {
 	@Autowired
 	private ChampionService championService;
 	
-	final String api_key = "RGAPI-74897f1d-e702-489a-8fb9-c5a6550e92e0";
+	@Autowired
+	private MultiSearchService multiSearchService;
+	
+	final String api_key = "RGAPI-9a7063c6-aa5f-458d-861c-eecabdcd54ae";
 	private static PythonInterpreter intPre;
-	private HttpEntity makeEntity() {
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("Origin", "https://developer.riotgames.com");
-        headers.set("Accept-Charset", "application/x-www-form-urlencoded; charset=UTF-8");
-        headers.set("X-Riot-Token", api_key);
-        headers.set("Accept-Language", "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7");
-        headers.set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36");
-        
-        HttpEntity entity = new HttpEntity("parameters",headers);
-        
-        return entity;
-	}
+
 	
 	@PostMapping("/multiSearch")
-	public @ResponseBody List<MatchInfo> multiSearch(@RequestParam("content") String list, Model model) {
+	public String multiSearch(@RequestParam("content") String list, Model model) {
 //		System.out.println(list);
 		SummInfo summInfo = null;
-		MatchInfo matchInfo = null;
-		List<SummInfo> summInfoList = new ArrayList<SummInfo>();
-		List<MatchInfo> matchInfoList = new ArrayList<MatchInfo>();
-		List<Kda> kdaList = new ArrayList<Kda>();
+		List<SummInfo> summonerInfoList = new ArrayList<SummInfo>();
+		
 		Kda kda = null;
 		List<Summon> summ = new ArrayList<Summon>();
 		int num = 0;
 		String[] summername = list.split("\\r\\n");
 		for (int i = 0; i < summername.length; i++) {
-			summername[i] = summername[i].replaceAll(" 님이 로비에 참가하셨습니다.", "");
-			summ.add(multiSearchName(summername[i]));
+			summername[i] = summername[i].replace(" ","").replaceAll("님이로비에참가하셨습니다.", "");
+			summ.add(multiSearchService.multiSearchName(summername[i]));
 			
 		}
 		
@@ -79,7 +61,7 @@ public class MultiSearchController {
 			PyObject pyobj = pyFunction.__call__(new PyString(api_key), new PyString(summ.get(i).getAccountId()), new PyString(summ.get(i).getId()));
 			System.out.println(pyobj.toString()+"ㅈ됐따");
 			String[] token = pyobj.toString().split(",");
-			
+			List<Kda> kdaList = new ArrayList<Kda>();
 			summInfo = new SummInfo();
 			
 			summInfo.setTier(token[num].replace(" ", "").replace("[", ""));
@@ -89,7 +71,6 @@ public class MultiSearchController {
 			summInfo.setLoss(Integer.parseInt(token[num+4].replace(" ", "").replace("]", "")));
 			summInfo.setName(summername[i]);
 			
-			summInfoList.add(summInfo);
 			
 			num = num + 5;
 			
@@ -97,7 +78,7 @@ public class MultiSearchController {
 			
 			for (int l = num; l < token.length; l+=5) {
 				kda =  new Kda();
-				kda.setChampionName(championService.onlyname(Integer.parseInt(token[l].replace(" ", ""))));
+				kda.setChampionName(championService.onlyengname(Integer.parseInt(token[l].replace(" ", ""))));
 				kda.setKill(token[l+1].replace(" ", ""));
 				kda.setDeath(token[l+2].replace(" ", ""));
 				kda.setAssis(token[l+3].replace(" ", ""));
@@ -105,28 +86,16 @@ public class MultiSearchController {
 				kdaList.add(kda);
 				num = num + 5;
 			}
-			matchInfo = new MatchInfo();
-			matchInfo.setKda(kdaList);
-			matchInfoList.add(matchInfo);
+			summInfo.setKda(kdaList);
+			summonerInfoList.add(summInfo);
 			
 		}
-		model.addAttribute("summInfoList",summInfoList);
-		model.addAttribute("matchInfoList",matchInfoList);
+		model.addAttribute("summonerInfoList",summonerInfoList);
 		
-		return matchInfoList;
+		return "multiSearch/multiSearchForm";
 	}
 	
 
-	public Summon multiSearchName(String name) {
-		System.out.println("summer"+name);
-		RestTemplate restTemplate = new RestTemplate();
-		HttpEntity entity = makeEntity();
-		URI url = URI.create("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name);
-		ResponseEntity response = restTemplate.exchange(url, HttpMethod.GET, entity, Summon.class);
-		
-		Summon summoner = (Summon) response.getBody();
-		return summoner;
-	}
 	
 	
 }

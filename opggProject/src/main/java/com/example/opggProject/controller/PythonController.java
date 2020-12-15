@@ -7,6 +7,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.search.IntegerComparisonTerm;
+
 import org.python.core.PyFunction;
 import org.python.core.PyObject;
 import org.python.core.PyString;
@@ -31,6 +33,7 @@ import com.example.opggProject.domain.game.GameItem;
 import com.example.opggProject.domain.game.GameMyChampion;
 import com.example.opggProject.domain.game.GameMyInfo;
 import com.example.opggProject.domain.game.GameSummoner;
+import com.example.opggProject.domain.game.InGameMyInfo;
 import com.example.opggProject.domain.game.SoloRank;
 import com.example.opggProject.domain.myInfo.MyChampionMastery;
 import com.example.opggProject.domain.myInfo.MyInfo;
@@ -65,6 +68,7 @@ public class PythonController {
 
 	// 랭킹에따른 챔피언 마스터리 뽑기
 	// 파이썬에서 챌린저 그마 마스터 바꾸기
+	// 보류
 	@GetMapping("championMaster")
 	public @ResponseBody String championMaster() {
 
@@ -77,26 +81,24 @@ public class PythonController {
 		PyObject pyobj = pyFunction.__call__(new PyString(api));
 		String[] token = pyobj.toString().split(",");
 		for (int i = 0; i < token.length;) {
-			System.out.println(token[i].replace("[", "").replace("]", "").replace(" ", "") + "슈발");
-			if (token[i].replace("[", "").replace("]", "").replace(" ", "").equals("name")) {
+			System.out.println(token[i].replace("[", "").replace(" ", "") + "슈발");
+			if (token[i].replace(" ", "").equals("name")) {
 				i++;
-				System.out.println(token[i].replace("[", "").replace("]", "").replace(" ", ""));
-				name = rankService.findName(token[i].replace("[", "").replace("]", "").replace(" ", ""));
+				System.out.println(token[i].replace(" ", ""));
+				name = rankService.findName(token[i].replace(" ", ""));
 				System.out.println(name);
 				i++;
 			}
 			if (name != null) {
 				while (true) {
 					System.out.println("name : " + name);
-					Champion champion = championService.championName(
-							Integer.parseInt(token[i].replace("[", "").replace("]", "").replace(" ", "")));
-					System.out.println(Integer.parseInt(token[i].replace("[", "").replace("]", "").replace(" ", "")));
+					Champion champion = championService.championName(Integer.parseInt(token[i].replace("[", "").replace("]", "").replace(" ", "")));
+					System.out.println(Integer.parseInt(token[i].replace(" ", "")));
 					i++;
 					RankChampMastery mastery = new RankChampMastery();
 					mastery.setRank(name);
 					mastery.setChampion(champion);
-					mastery.setMasteryPoint(
-							Long.parseLong(token[i].replace("[", "").replace("]", "").replace(" ", "")));
+					mastery.setMasteryPoint(Long.parseLong(token[i].replace("]", "").replace(" ", "")));
 					i++;
 					rankChampMasteryService.MasterySave(mastery);
 					if (token.length <= i)
@@ -108,7 +110,7 @@ public class PythonController {
 
 			} else {
 				while (true) {
-					if (token.length <= (i + 1)) {
+					if (token.length <= i) {
 						break;
 					}
 					if (token[i + 2].replace("[", "").replace("]", "").replace(" ", "").equals("name")) {
@@ -119,7 +121,7 @@ public class PythonController {
 					}
 				}
 			}
-			if (token.length <= (i + 1)) {
+			if (token.length <= i) {
 				break;
 			}
 		}
@@ -130,8 +132,8 @@ public class PythonController {
 	public String gameMatch(String username, Model model) {
 
 		Summon summon = multiSearchService.multiSearchName(username);
-
-		List<GameSummoner> gameSummonerList = new ArrayList<GameSummoner>();
+		int totalWin = 0;
+		
 		GameSummoner gameSummoner = null;
 		GameInfo gameInfo = null;
 		List<GameInfo> gameInfoList = new ArrayList<GameInfo>();
@@ -155,9 +157,9 @@ public class PythonController {
 		gameMyInfo.setProflie(summon.getProfileIconId());
 		gameMyInfo.setUserLevel(summon.getSummonerLevel());
 		int num = 0;
-
-		if (token[num++].replace("[", "").replace(" ", "").equals("soloentire")) {
-
+		System.out.println(token[num].replace("[", "").replace(" ", ""));
+		if (token[num].replace("[", "").replace(" ", "").equals("soloentire")) {
+			num++;
 			soloRank.setTier(token[num++].replace("[", "").replace(" ", ""));
 			soloRank.setRank(token[num++].replace(" ", ""));
 			soloRank.setPoint(token[num++].replace(" ", ""));
@@ -168,26 +170,28 @@ public class PythonController {
 			freeRank.setPoint(token[num++].replace(" ", ""));
 			freeRank.setWin(Integer.parseInt(token[num++].replace(" ", "")));
 			freeRank.setLoss(Integer.parseInt(token[num++].replace(" ", "")));
-
-			gameMyInfo.setSoloRank(soloRank);
-			gameMyInfo.setFreeRank(freeRank);
-		} 
-		else if(token[num++].replace("[", "").replace(" ", "").equals("freeentire")){
-			freeRank.setTier(token[num++].replace(" ", ""));
-			freeRank.setRank(token[num++].replace(" ", ""));
-			freeRank.setPoint(token[num++].replace(" ", ""));
-			freeRank.setWin(Integer.parseInt(token[num++].replace(" ", "")));
-			freeRank.setLoss(Integer.parseInt(token[num++].replace(" ", "")));
-			soloRank.setTier(token[num++].replace("[", "").replace(" ", ""));
-			soloRank.setRank(token[num++].replace(" ", ""));
-			soloRank.setPoint(token[num++].replace(" ", ""));
-			soloRank.setWin(Integer.parseInt(token[num++].replace(" ", "")));
-			soloRank.setLoss(Integer.parseInt(token[num++].replace(" ", "")));
 
 			gameMyInfo.setSoloRank(soloRank);
 			gameMyInfo.setFreeRank(freeRank);
 		}
-		else if(token[num++].replace("[", "").replace(" ", "").equals("solo")){
+		
+		else if(token[num].replace("[", "").replace(" ", "").equals("freeentire")){
+			num++;
+			freeRank.setTier(token[num++].replace(" ", ""));
+			freeRank.setRank(token[num++].replace(" ", ""));
+			freeRank.setPoint(token[num++].replace(" ", ""));
+			freeRank.setWin(Integer.parseInt(token[num++].replace(" ", "")));
+			freeRank.setLoss(Integer.parseInt(token[num++].replace(" ", "")));
+			soloRank.setTier(token[num++].replace("[", "").replace(" ", ""));
+			soloRank.setRank(token[num++].replace(" ", ""));
+			soloRank.setPoint(token[num++].replace(" ", ""));
+			soloRank.setWin(Integer.parseInt(token[num++].replace(" ", "")));
+			soloRank.setLoss(Integer.parseInt(token[num++].replace(" ", "")));
+			gameMyInfo.setSoloRank(soloRank);
+			gameMyInfo.setFreeRank(freeRank);
+		}
+		else if(token[num].replace("[", "").replace(" ", "").equals("solo")){
+			num++;
 			soloRank.setTier(token[num++].replace("[", "").replace(" ", ""));
 			soloRank.setRank(token[num++].replace(" ", ""));
 			soloRank.setPoint(token[num++].replace(" ", ""));
@@ -197,7 +201,8 @@ public class PythonController {
 			gameMyInfo.setSoloRank(soloRank);
 			gameMyInfo.setFreeRank(null);
 		}
-		else if(token[num++].replace("[", "").replace(" ", "").equals("free")){
+		else if(token[num].replace("[", "").replace(" ", "").equals("free")){
+			num++;
 			freeRank.setTier(token[num++].replace(" ", ""));
 			freeRank.setRank(token[num++].replace(" ", ""));
 			freeRank.setPoint(token[num++].replace(" ", ""));
@@ -213,7 +218,8 @@ public class PythonController {
 
 		while (true) {
 			myChamp = new GameMyChampion();
-			myChamp.setChamName(championService.onlyname(Integer.parseInt(token[num++].replace(" ", ""))));
+			myChamp.setChamName(championService.onlyname(Integer.parseInt(token[num].replace(" ", ""))));
+			myChamp.setChamEngName(championService.onlyengname(Integer.parseInt(token[num++].replace(" ", ""))));
 			myChamp.setChamPoint(token[num++].replace(" ", ""));
 			myChampList.add(myChamp);
 			if (token[num].replace(" ", "").equals("finish")) {
@@ -225,17 +231,19 @@ public class PythonController {
 		gameMyInfo.setMyChampion(myChampList);
 
 		while (num < token.length) {
+			List<GameSummoner> gameSummonerList = new ArrayList<GameSummoner>();
 			gameInfo = new GameInfo();
-
 			gameInfo.setMyNum(token[num++].replace(" ", ""));
-
-			System.out.println(token[num].replace("[", "").replace(" ", ""));
+			InGameMyInfo ingame = new InGameMyInfo();
 			gameInfo.setGameType(token[num++].replace("[", "").replace(" ", ""));
 			for (int i = 0; i <= 9; i++) {
+				
 				gameSummoner = new GameSummoner();
 				GameItem item = new GameItem();
+
 				gameSummoner.setLevel(token[num++].replace(" ", ""));
-				gameSummoner.setCham(token[num++].replace(" ", ""));
+				gameSummoner.setChampName(championService.onlyname(Integer.parseInt(token[num].replace(" ", ""))));
+				gameSummoner.setChampEngName(championService.onlyengname(Integer.parseInt(token[num++].replace(" ", ""))));
 				gameSummoner.setSpell1(token[num++].replace(" ", ""));
 				gameSummoner.setSpell2(token[num++].replace(" ", ""));
 				gameSummoner.setName(token[num++].replace(" ", ""));
@@ -255,9 +263,29 @@ public class PythonController {
 				item.setItem5(token[num++].replace(" ", ""));
 				item.setItem6(token[num++].replace(" ", ""));
 				item.setItem7(token[num++].replace(" ", ""));
+				
 				gameSummoner.setGameItem(item);
 				gameSummoner.setRune(token[num++].replace(" ", ""));
 				gameSummonerList.add(gameSummoner);
+				
+				if(Integer.parseInt(gameInfo.getMyNum()) == i+1) {
+					ingame.setKill(gameSummoner.getKill());
+					ingame.setDeath(gameSummoner.getDeath());
+					ingame.setAssis(gameSummoner.getAssis());
+					ingame.setCs(gameSummoner.getCs());
+					ingame.setChampName(gameSummoner.getChampName());
+					ingame.setChampEngName(gameSummoner.getChampEngName());
+					ingame.setLevel(gameSummoner.getLevel());
+					ingame.setWard(gameSummoner.getVision());
+					ingame.setGameItem(gameSummoner.getGameItem());
+					ingame.setRune(gameSummoner.getRune());
+					ingame.setSpell1(gameSummoner.getSpell1());
+					ingame.setSpell2(gameSummoner.getSpell2());
+				}
+				
+				
+				
+				
 			}
 			gameInfo.setGameSummonerList(gameSummonerList);
 
@@ -275,10 +303,28 @@ public class PythonController {
 			gameInfo.setRedKill(Integer.parseInt(token[num++].replace(" ", "")));
 			gameInfo.setRedGold(Integer.parseInt(token[num++].replace(" ", "").replace("]", "")));
 
+			if(Integer.parseInt(gameInfo.getMyNum()) <=5) {
+				ingame.setResult(gameInfo.getBlueResult());
+				ingame.setKillparti((ingame.getKill()+ingame.getAssis())/gameInfo.getBlueKill()*100);
+				
+				
+				System.out.println((ingame.getKill()+ingame.getAssis())/gameInfo.getBlueKill()*100);
+			}else {
+				ingame.setResult(gameInfo.getRedResult());
+				ingame.setKillparti((ingame.getKill()+ingame.getAssis())/gameInfo.getRedKill()*100);
+			}
+			
+			if(ingame.getResult().equals("Win")) {
+				totalWin++;
+			}
+			
+			gameInfo.setInGameMyInfo(ingame);
 			gameInfoList.add(gameInfo);
 		}
+		System.out.println(gameInfoList);
 		model.addAttribute("gameMyInfo", gameMyInfo);
 		model.addAttribute("gameInfoList", gameInfoList);
+		model.addAttribute("totalWin", totalWin);
 
 		return "record/summoner";
 	}
