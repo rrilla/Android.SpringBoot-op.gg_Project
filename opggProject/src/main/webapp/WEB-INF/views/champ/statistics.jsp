@@ -133,7 +133,7 @@
 
 										<!-- 티어 탑 순서 -->
 										<c:forEach items="${champTierList }" var="champ">
-											<c:if test="${champ.lane eq '탑' }">
+											<c:if test="${champ.lane eq 'top' }">
 												<c:set var="index" value="${index+1 }" />
 												<tr>
 													<td
@@ -174,7 +174,7 @@
 									<tbody class="tabItem champion-trend-tier-JUNGLE"
 										style="display: none;">
 										<c:forEach items="${champTierList }" var="champ">
-											<c:if test="${champ.lane eq '정글' }">
+											<c:if test="${champ.lane eq 'jungle' }">
 
 												<c:set var="index" value="${index+1 }" />
 												<tr>
@@ -216,7 +216,7 @@
 									<tbody class="tabItem champion-trend-tier-MID"
 										style="display: none;">
 										<c:forEach items="${champTierList }" var="champ">
-											<c:if test="${champ.lane eq '미드' }">
+											<c:if test="${champ.lane eq 'mid' }">
 
 												<c:set var="index" value="${index+1 }" />
 												<tr>
@@ -257,7 +257,7 @@
 									<tbody class="tabItem champion-trend-tier-ADC"
 										style="display: none;">
 										<c:forEach items="${champTierList }" var="champ">
-											<c:if test="${champ.lane eq '바텀' }">
+											<c:if test="${champ.lane eq 'bottom' }">
 
 												<c:set var="index" value="${index+1 }" />
 												<tr>
@@ -298,7 +298,7 @@
 									<tbody class="tabItem champion-trend-tier-SUPPORT"
 										style="display: none;">
 										<c:forEach items="${champTierList }" var="champ">
-											<c:if test="${champ.lane eq '서포터' }">
+											<c:if test="${champ.lane eq 'sup' }">
 
 												<c:set var="index" value="${index+1 }" />
 												<tr>

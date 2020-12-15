@@ -11,7 +11,7 @@
 		<div style="margin-bottom: 20px;">
 			<div class="logo_image"></div>
 		</div>
-		<form class="summoner-search-form" action="/summoner" method="post">
+		<form class="summoner-search-form" action="/summoner" method="get">
 			<input type="text" name="username" class="summoner_search_text"
 				placeholder="소환사명..." autocomplete="off" />
 			<button type="submit" class="summoner-search-form__button">

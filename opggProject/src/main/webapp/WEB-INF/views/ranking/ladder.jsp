@@ -86,7 +86,7 @@
 														평점 </span>
 												</div>
 											</div> <a href="//www.op.gg/summoner/userName=xunxunxuno"
-											class="ranking-highest__name">${rank.name }</a>
+											class="ranking-highest__name">${rank.summonerName }</a>
 											<div class="ranking-highest__tierrank first">
 												<img
 													src="//opgg-static.akamaized.net/images/medals/challenger_1.png?image=q_auto:best&amp;v=1"
@@ -119,7 +119,7 @@
 													class="ranking-highest__image"
 													onerror="this.src='//opgg-static.akamaized.net/images/profile_icons/profileIcondefault.jpg';"></a>
 											</div> <a href="//www.op.gg/summoner/userName=viper3"
-											class="ranking-highest__name">${rank.name }</a>
+											class="ranking-highest__name">${rank.summonerName }</a>
 											<div class="ranking-highest__level">Lv.${rank.level }</div>
 											<div class="ranking-highest__tierrank ">
 												<img
@@ -176,7 +176,7 @@
 											class="select_summoner ranking-table__cell ranking-table__cell--summoner"><a
 											href="//www.op.gg/summoner/userName=Gen+G+Khael"><img
 												src="//opgg-static.akamaized.net/images/profile_icons/profileIcon4561.jpg?image=c_scale,q_auto,c_scale,w_38&amp;v=1518361200"
-												onerror="this.src='//opgg-static.akamaized.net/images/profile_icons/profileIcondefault.jpg';"><span>${rank.name }</span></a></td>
+												onerror="this.src='//opgg-static.akamaized.net/images/profile_icons/profileIcondefault.jpg';"><span>${rank.summonerName }</span></a></td>
 										<td class="ranking-table__cell ranking-table__cell--tier">
 											${rank.tier }</td>
 										<td class="ranking-table__cell ranking-table__cell--lp">

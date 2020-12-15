@@ -54,18 +54,7 @@ public class MainFragment3 extends Fragment {
         rbBan = rootView.findViewById(R.id.fMain3_rb_ban);
 
         changeDate("tier");
-//        RestAPIComm comm = new RestAPIComm("app/championList?orderBy=" + orderBy);
-//        try {
-//            result = comm.execute().get();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            Toast.makeText(getContext(), "서버 통신 실패", Toast.LENGTH_SHORT).show();
-//        }
-//        if(result[0].equals("ok")){
-//            championDto = gson.fromJson(result[1], ChampionDto.class);
-//        }else{
-//            Toast.makeText(getContext(), "기능 실패 - " + result[1], Toast.LENGTH_SHORT).show();
-//        }
+
         if(championDto == null){
             return rootView;
         }

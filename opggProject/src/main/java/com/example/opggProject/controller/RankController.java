@@ -23,7 +23,7 @@ public class RankController {
 	private final RankService rankService;
 	
 	@GetMapping("/ranking")
-	public String ranking(@PageableDefault(direction = Direction.ASC, sort = "rno", size =  10) Pageable pageable, Model model) {
+	public String ranking(@PageableDefault(direction = Direction.ASC, sort = "rno", size =  20) Pageable pageable, Model model) {
 		Page<RankData> rankList = rankService.rankList(pageable);
 		model.addAttribute("rankList", rankList);
 		return "/ranking/ladder";

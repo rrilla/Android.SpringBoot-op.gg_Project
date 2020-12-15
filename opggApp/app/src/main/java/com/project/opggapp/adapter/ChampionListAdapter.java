@@ -19,8 +19,8 @@ import java.util.ArrayList;
 
 public class ChampionListAdapter extends RecyclerView.Adapter<ChampionListAdapter.ViewHolder>
         implements OnChampionListClickListener {
-    ArrayList<Champion> items = new ArrayList<Champion>();
 
+    ArrayList<Champion> items = new ArrayList<Champion>();
     OnChampionListClickListener listener;
 
     @NonNull
@@ -106,7 +106,7 @@ public class ChampionListAdapter extends RecyclerView.Adapter<ChampionListAdapte
             tvTier.setText(item.getTier()+" 티어");
             tvWin.setText(item.getWinRate()+"%");
             tvPick.setText(item.getPickRate()+"%");
-            //tvBan.setText(item.getBan);
+            tvBan.setText(item.getBanRate()+"%");
             Glide.with(view).load(IP.urlChampion + item.getEnglishName()+".png").circleCrop().into(ivImage);
         }
 

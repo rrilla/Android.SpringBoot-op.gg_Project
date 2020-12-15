@@ -28,7 +28,6 @@
                     android:id="@+id/iChampion_tv_raking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5"
                     android:textSize="15sp" />
             </LinearLayout>
 

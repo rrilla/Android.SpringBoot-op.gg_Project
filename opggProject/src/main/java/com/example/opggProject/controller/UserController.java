@@ -93,8 +93,4 @@ public class UserController {
 		return "multiSearch/multiSearchForm";
 	}
 	
-	@GetMapping("/summoner")
-	public String summoner() {
-		return "record/summoner";
-	}
 }
