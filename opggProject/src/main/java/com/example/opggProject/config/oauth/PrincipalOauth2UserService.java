@@ -38,7 +38,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 		String provider = userRequest.getClientRegistration().getClientId();//google
 		String providerId = oauth2User.getAttribute("sub");
 		String username = provider + "_" + providerId; //
-		String password = bCryptPasswordEncoder.encode("겟인데어");
+		String password = bCryptPasswordEncoder.encode("1029");
 		String email = oauth2User.getAttribute("email");
 		String role = "ROLE_USER";
 		String nickname = oauth2User.getAttribute("name");

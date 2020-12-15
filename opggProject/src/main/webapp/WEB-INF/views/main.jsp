@@ -7,7 +7,7 @@
 
 <div style="background-color: #5383e8; height: 100%;">
 	<div class="container">
-		<div class="logo">인생.GG</div>
+		<div class="logo">오피.GG</div>
 		<div style="margin-bottom: 20px;">
 			<div class="logo_image"></div>
 		</div>

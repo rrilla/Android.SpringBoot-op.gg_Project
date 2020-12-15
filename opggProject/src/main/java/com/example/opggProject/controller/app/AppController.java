@@ -44,6 +44,7 @@ public class AppController {
 			@RequestBody LoginDto loginDto,
             HttpSession session,
             HttpServletResponse res) {
+		System.out.println(loginDto.toString());
 		
 		return appService.login(loginDto, session, res);
 	}
