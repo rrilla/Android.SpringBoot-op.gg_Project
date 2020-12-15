@@ -80,7 +80,7 @@ public class MultiSearchController {
 			
 			for (int l = num; l < token.length; l+=5) {
 				kda =  new Kda();
-				kda.setChampionName(championService.onlyengname(token[l].replace(" ", "")));
+				kda.setChampionName(championService.onlyengname(Integer.parseInt(token[l].replace(" ", ""))));
 				kda.setKill(token[l+1].replace(" ", ""));
 				kda.setDeath(token[l+2].replace(" ", ""));
 				kda.setAssis(token[l+3].replace(" ", ""));

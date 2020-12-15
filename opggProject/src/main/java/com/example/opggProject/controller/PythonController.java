@@ -219,7 +219,7 @@ public class PythonController {
 		while (true) {
 			myChamp = new GameMyChampion();
 			myChamp.setChamName(championService.onlyname(Integer.parseInt(token[num].replace(" ", ""))));
-			myChamp.setChamEngName(championService.onlyengname(token[num++].replace(" ", "")));
+			myChamp.setChamEngName(championService.onlyengname(Integer.parseInt(token[num++].replace(" ", ""))));
 			myChamp.setChamPoint(token[num++].replace(" ", ""));
 			myChampList.add(myChamp);
 			if (token[num].replace(" ", "").equals("finish")) {
@@ -243,7 +243,7 @@ public class PythonController {
 
 				gameSummoner.setLevel(token[num++].replace(" ", ""));
 				gameSummoner.setChampName(championService.onlyname(Integer.parseInt(token[num].replace(" ", ""))));
-				gameSummoner.setChampEngName(championService.onlyengname(token[num++].replace(" ", "")));
+				gameSummoner.setChampEngName(championService.onlyengname(Integer.parseInt(token[num++].replace(" ", ""))));
 				gameSummoner.setSpell1(token[num++].replace(" ", ""));
 				gameSummoner.setSpell2(token[num++].replace(" ", ""));
 				gameSummoner.setName(token[num++].replace(" ", ""));

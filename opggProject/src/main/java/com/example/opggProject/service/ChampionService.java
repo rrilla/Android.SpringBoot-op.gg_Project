@@ -21,7 +21,7 @@ public class ChampionService {
 		return championRepository.mFindOnlyName(id);
 	}
 	
-	public String onlyengname(String id) {
-		return championRepository.mFindOnlyEnglishName(id);
+	public String onlyengname(int id) {
+		return championRepository.mFindOnlyEngName(id);
 	}
 }
