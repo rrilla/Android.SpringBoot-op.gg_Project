@@ -8,8 +8,17 @@ public class Champion {
     private String story;
     private float winRate;
     private float pickRate;
+    private float banRate;
     private int tier;
     private String englishName;
+
+    public float getBanRate() {
+        return banRate;
+    }
+
+    public void setBanRate(float banRate) {
+        this.banRate = banRate;
+    }
 
     public int getCno() {
         return cno;

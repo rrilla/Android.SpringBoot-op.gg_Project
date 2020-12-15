@@ -31,7 +31,7 @@ public class MultiSearchController {
 	@Autowired
 	private MultiSearchService multiSearchService;
 	
-	final String api_key = "RGAPI-9a7063c6-aa5f-458d-861c-eecabdcd54ae";
+	final String api_key = "RGAPI-9bde8fea-8858-4df7-9404-054a902b80ca";
 	private static PythonInterpreter intPre;
 
 	
@@ -58,6 +58,8 @@ public class MultiSearchController {
 		PyFunction pyFunction = (PyFunction) intPre.get("multiSearch", PyFunction.class);
 		
 		for (int i = 0; i < summ.size(); i++) {
+			System.out.println(summ.get(i).getAccountId());
+			System.out.println(summ.get(i).getId());
 			PyObject pyobj = pyFunction.__call__(new PyString(api_key), new PyString(summ.get(i).getAccountId()), new PyString(summ.get(i).getId()));
 			System.out.println(pyobj.toString()+"ㅈ됐따");
 			String[] token = pyobj.toString().split(",");

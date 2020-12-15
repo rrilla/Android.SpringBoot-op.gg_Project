@@ -32,6 +32,7 @@ public interface ChampionRepository extends JpaRepository<Champion,Integer>{
 //	@Query(value = "SELECT * FROM CHAMPION WHERE LANE = :lane ORDER BY banRate DESC", nativeQuery = true)
 //	public List<Champion> mFindOnlyLaneBanRate(String lane);
 	
+	@Query(value = "SELECT englishName FROM champion WHERE id = :id", nativeQuery = true)
 	String mFindOnlyEngName(int id);
 	
 

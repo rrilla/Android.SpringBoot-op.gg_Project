@@ -56,9 +56,9 @@ public class SplashActivity extends AppCompatActivity {
             String[] result = new String[2];
             loginDto.setUsername(id);
             loginDto.setPassword(pw);
-            RestAPIComm comm = new RestAPIComm();
+            RestAPIComm comm = new RestAPIComm("app/login");
             try {
-                result = comm.execute("app/login", gson.toJson(loginDto)).get();
+                result = comm.execute(gson.toJson(loginDto)).get();
             } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(this, "서버 통신 오류", Toast.LENGTH_SHORT).show();
