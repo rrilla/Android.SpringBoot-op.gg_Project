@@ -416,7 +416,7 @@
 								<tbody class="tabItem champion-trend-winratio-TOP"
 									style="display: none;">
 									<c:forEach items="${champWinRateList }" var="champ">
-										<c:if test="${champ.lane eq '탑' }">
+										<c:if test="${champ.lane eq 'top' }">
 											<c:set var="index" value="${index+1 }" />
 											<tr>
 												<td
@@ -447,7 +447,7 @@
 								<tbody class="tabItem champion-trend-winratio-JUNGLE"
 									style="display: none;">
 									<c:forEach items="${champWinRateList }" var="champ">
-										<c:if test="${champ.lane eq '정글' }">
+										<c:if test="${champ.lane eq 'jungle' }">
 											<c:set var="index" value="${index+1 }" />
 											<tr>
 												<td
@@ -477,7 +477,7 @@
 								<tbody class="tabItem champion-trend-winratio-MID"
 									style="display: none;">
 									<c:forEach items="${champWinRateList }" var="champ">
-										<c:if test="${champ.lane eq '미드' }">
+										<c:if test="${champ.lane eq 'mid' }">
 											<c:set var="index" value="${index+1 }" />
 											<tr>
 												<td
@@ -507,7 +507,7 @@
 								<tbody class="tabItem champion-trend-winratio-ADC"
 									style="display: none;">
 									<c:forEach items="${champWinRateList }" var="champ">
-										<c:if test="${champ.lane eq '바텀' }">
+										<c:if test="${champ.lane eq 'bottom' }">
 											<c:set var="index" value="${index+1 }" />
 											<tr>
 												<td
@@ -537,7 +537,7 @@
 								<tbody class="tabItem champion-trend-winratio-SUPPORT"
 									style="display: none;">
 									<c:forEach items="${champWinRateList }" var="champ">
-										<c:if test="${champ.lane eq '서포터' }">
+										<c:if test="${champ.lane eq 'sup' }">
 											<c:set var="index" value="${index+1 }" />
 											<tr>
 												<td
@@ -670,7 +670,7 @@
 									<tbody class="tabItem champion-trend-pickratio-JUNGLE"
 										style="display: none;">
 										<c:forEach items="${champPickRateList }" var="champ">
-											<c:if test="${champ.lane eq '정글' }">
+											<c:if test="${champ.lane eq 'jungle' }">
 												<c:set var="index" value="${index+1 }" />
 												<tr>
 													<td
@@ -700,7 +700,7 @@
 									<tbody class="tabItem champion-trend-pickratio-MID"
 										style="display: none;">
 										<c:forEach items="${champPickRateList }" var="champ">
-											<c:if test="${champ.lane eq '미드' }">
+											<c:if test="${champ.lane eq 'mid' }">
 												<c:set var="index" value="${index+1 }" />
 												<tr>
 													<td
@@ -730,7 +730,7 @@
 									<tbody class="tabItem champion-trend-pickratio-ADC"
 										style="display: none;">
 										<c:forEach items="${champPickRateList }" var="champ">
-											<c:if test="${champ.lane eq '바텀' }">
+											<c:if test="${champ.lane eq 'bottom' }">
 												<c:set var="index" value="${index+1 }" />
 												<tr>
 													<td
@@ -760,7 +760,7 @@
 									<tbody class="tabItem champion-trend-pickratio-SUPPORT"
 										style="display: none;">
 										<c:forEach items="${champPickRateList }" var="champ">
-											<c:if test="${champ.lane eq '바텀' }">
+											<c:if test="${champ.lane eq 'bottom' }">
 												<c:set var="index" value="${index+1 }" />
 												<tr>
 													<td
@@ -860,7 +860,7 @@
 									<tbody class="tabItem champion-trend-banratio-TOP"
 										style="display: none;">
 										<c:forEach items="${champBanRateList }" var="champ">
-											<c:if test="${champ.lane eq '탑' }">
+											<c:if test="${champ.lane eq 'top' }">
 												<c:set var="index" value="${index+1 }" />
 												<tr>
 													<td
@@ -888,7 +888,7 @@
 									<tbody class="tabItem champion-trend-banratio-JUNGLE"
 										style="display: none;">
 										<c:forEach items="${champBanRateList }" var="champ">
-											<c:if test="${champ.lane eq '정글' }">
+											<c:if test="${champ.lane eq 'jungle' }">
 												<c:set var="index" value="${index+1 }" />
 												<tr>
 													<td
@@ -916,7 +916,7 @@
 									<tbody class="tabItem champion-trend-banratio-MID"
 										style="display: none;">
 										<c:forEach items="${champBanRateList }" var="champ">
-											<c:if test="${champ.lane eq '미드' }">
+											<c:if test="${champ.lane eq 'mid' }">
 												<c:set var="index" value="${index+1 }" />
 												<tr>
 													<td
@@ -944,7 +944,7 @@
 									<tbody class="tabItem champion-trend-banratio-ADC"
 										style="display: none;">
 										<c:forEach items="${champBanRateList }" var="champ">
-											<c:if test="${champ.lane eq '바텀' }">
+											<c:if test="${champ.lane eq 'bottom' }">
 												<c:set var="index" value="${index+1 }" />
 												<tr>
 													<td
@@ -972,7 +972,7 @@
 									<tbody class="tabItem champion-trend-banratio-SUPPORT"
 										style="display: table-row-group;">
 										<c:forEach items="${champBanRateList }" var="champ">
-											<c:if test="${champ.lane eq '서포터' }">
+											<c:if test="${champ.lane eq 'sup' }">
 												<c:set var="index" value="${index+1 }" />
 												<tr>
 													<td

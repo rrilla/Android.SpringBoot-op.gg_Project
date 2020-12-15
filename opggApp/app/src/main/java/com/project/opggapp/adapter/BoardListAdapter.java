@@ -96,7 +96,9 @@ public class BoardListAdapter extends RecyclerView.Adapter<BoardListAdapter.View
 
         public void setItem(Board item) {
             tvTitle.setText(item.getTitle());
-            tvWriter.setText(item.getUser().getNickname());
+            if(item.getUser() != null) {
+                tvWriter.setText(item.getUser().getNickname());
+            }
             if(item.getThumbnail() != null){
                 Glide.with(view).load(item.getUrlThumbnail()).override(300,300).into(ivThumbnail);
             }

@@ -117,7 +117,6 @@ public class AppService {
             HttpServletResponse res){
 		
 		try {
-			
 			UsernamePasswordAuthenticationToken token =
 					new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
 			
