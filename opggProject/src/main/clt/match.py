@@ -96,11 +96,11 @@ def matchInfo(accountId,encId,api):
             res = requests.get(URL, headers=headers)
 
             data2 = res.json()
-            # freernak 440 nomal 430 wind 450 solo 420
+            # freerank 440 nomal 430 wind 450 solo 420
             if data2['queueId'] == 440:
-                queue = 'freernak'
+                queue = 'freerank'
             elif data2['queueId'] == 430:
-                queue = 'nomal'
+                queue = 'normal'
             elif data2['queueId'] == 450:
                 queue = 'random'
             else:

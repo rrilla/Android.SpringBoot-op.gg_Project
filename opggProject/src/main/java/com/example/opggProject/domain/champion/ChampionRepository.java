@@ -13,4 +13,9 @@ public interface ChampionRepository extends JpaRepository<Champion,Integer>{
 	
 	@Query(value = "SELECT name FROM champion WHERE id = :id", nativeQuery = true)
 	String mFindOnlyName(int id);
+	
+	@Query(value = "SELECT englishName FROM champion WHERE id = :id", nativeQuery = true)
+	String mFindOnlyEngName(int id);
+	
+	
 }

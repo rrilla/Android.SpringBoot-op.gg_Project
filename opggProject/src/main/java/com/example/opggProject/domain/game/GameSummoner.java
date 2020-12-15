@@ -8,13 +8,15 @@ import lombok.Data;
 public class GameSummoner {
 
    private String level;
-   private String cham;
+   private String champName;
+   private String champEngName;
    private String spell1;
    private String spell2;
    private String name;
-   private int kill;
-   private int death;
-   private int assis;
+   private double kill;
+   private double death;
+   private double assis;
+   
    private Long total;
    private Long champDamage;
    private Long hit;

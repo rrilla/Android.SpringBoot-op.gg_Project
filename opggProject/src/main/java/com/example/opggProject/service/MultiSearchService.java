@@ -16,7 +16,7 @@ import com.example.opggProject.domain.Summon;
 public class MultiSearchService {
 
 	//api 바꿔주셈요~~~~~~~~~ PythonContoller에서도 바꿔주세요~~~~~~~~~
-	final String api_key = "RGAPI-a6f07ea9-5b91-4cfe-b858-889457468f16";
+	final String api_key = "RGAPI-9a7063c6-aa5f-458d-861c-eecabdcd54ae";
 	private HttpEntity makeEntity() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Origin", "https://developer.riotgames.com");

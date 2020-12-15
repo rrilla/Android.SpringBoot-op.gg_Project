@@ -20,4 +20,8 @@ public class ChampionService {
 	public String onlyname(int id) {
 		return championRepository.mFindOnlyName(id);
 	}
+	
+	public String onlyengname(int id) {
+		return championRepository.mFindOnlyEngName(id);
+	}
 }
