@@ -62,15 +62,12 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/iRakingTier_tv_tier"
+                <ImageView
+                    android:id="@+id/iRakingTier_iv_tier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:background="#FF4848"
-                    android:gravity="center"
-                    android:text="C1"
-                    android:textColor="#FFFFFF" />
+                    android:src="@drawable/image_noimage"
+                    android:layout_weight="3" />
 
                 <TextView
                     android:id="@+id/iRakingTier_tv_point"

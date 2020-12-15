@@ -158,16 +158,20 @@ public class MainActivity extends AppCompatActivity {
                         toolbar.getMenu().findItem(R.id.appbar_fragment3).setVisible(false);
                         toolbar.getMenu().findItem(R.id.appbar_search).setVisible(false);
 
-                        if(mFrag4 == null){
-                            mFrag4 = new MainFragment4();
-                            getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout, mFrag4).commit();
-                            Log.e("test", "생성");
-                            return true;
-                        }else{
-                            getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout, mFrag4).commit();
-                            Log.e("test", "재사용");
-                            return true;
-                        }
+//                        if(mFrag4 == null){
+//                            mFrag4 = new MainFragment4();
+//                            getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout, mFrag4).commit();
+//                            Log.e("test", "생성");
+//                            return true;
+//                        }else{
+//                            getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout, mFrag4).commit();
+//                            Log.e("test", "재사용");
+//                            return true;
+//                        }
+                        mFrag4 = new MainFragment4();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.linearLayout, mFrag4).commit();
+                        Log.e("test", "생성");
+                        return true;
                 }
                 return false;
             }

@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.project.opggapp.R;
 import com.project.opggapp.model.Board;
 import com.project.opggapp.model.RankData;
+import com.project.opggapp.task.IP;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ public class RakingTierListAdapter extends RecyclerView.Adapter<RakingTierListAd
 
     ArrayList<RankData> items = new ArrayList<RankData>();
     View.OnClickListener listener;
+    int rank = 5;
 
     @NonNull
     @Override
@@ -27,7 +29,8 @@ public class RakingTierListAdapter extends RecyclerView.Adapter<RakingTierListAd
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View itemView = inflater.inflate(R.layout.item_mainfragment4_raking, viewGroup, false);
 
-        return new RakingTierListAdapter.ViewHolder(itemView, listener);
+        rank+=1;
+        return new RakingTierListAdapter.ViewHolder(itemView, listener, rank);
     }
 
     @Override
@@ -62,30 +65,36 @@ public class RakingTierListAdapter extends RecyclerView.Adapter<RakingTierListAd
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvTier, tvPoint, tvRaking;
-        ImageView ivImage;
+        TextView tvName, tvPoint, tvRaking;
+        ImageView ivImage, ivTier;
         View view;
+        int rank;
 
-        public ViewHolder(View itemView, final View.OnClickListener listener) {
+        public ViewHolder(View itemView, final View.OnClickListener listener, int rank) {
             super(itemView);
             this.view = itemView;
+            this.rank = rank;
 
             tvName = itemView.findViewById(R.id.iRakingTier_tv_name);
-            tvTier = itemView.findViewById(R.id.iRakingTier_tv_tier);
             tvPoint = itemView.findViewById(R.id.iRakingTier_tv_point);
             tvRaking = itemView.findViewById(R.id.iRakingTier_tv_raking);
-
-            //ivImage = itemView.findViewById(R.id.iBoard_iv_writerImage);
+            ivTier = itemView.findViewById(R.id.iRakingTier_iv_tier);
+            ivImage = itemView.findViewById(R.id.iRakingTier_iv_image);
             itemView.setOnClickListener(listener);
         }
 
         public void setItem(RankData item) {
-            tvName.setText(item.getName());
-            tvTier.setText(item.getTier());
+            tvName.setText(item.getSummonerName());
             tvPoint.setText(item.getPoint() + " LP");
-            tvRaking.setText(item.getRno() + "");
-
-            //Glide.with(view).load(item.getUser().getImage()).into(ivWriterImage);
+            tvRaking.setText(rank + "");
+            Glide.with(view).load(IP.urlProfile + item.getProfileIconId()+".png").circleCrop().into(ivImage);
+            if(item.getTier().equals("CHALLENGER")){
+                ivTier.setImageResource(R.drawable.emblem_challenger);
+            }else if(item.getTier().equals("GRANDMASTER")){
+                ivTier.setImageResource(R.drawable.emblem_grandmaster);
+            }else if(item.getTier().equals("MASTER")){
+                ivTier.setImageResource(R.drawable.emblem_master);
+            }
         }
 
     }

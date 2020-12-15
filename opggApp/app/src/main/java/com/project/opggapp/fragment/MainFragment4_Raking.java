@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.project.opggapp.R;
 import com.project.opggapp.adapter.RakingTierListAdapter;
 import com.project.opggapp.model.RankData;
+import com.project.opggapp.task.IP;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,9 @@ public class MainFragment4_Raking extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main4_raking, container, false);
-
+        if(rankDataList==null){
+            return rootView;
+        }
         ImageView ivImage1 = rootView.findViewById(R.id.fRakingTier_iv_img1);
         ImageView ivImage2 = rootView.findViewById(R.id.fRakingTier_iv_img2);
         ImageView ivImage3 = rootView.findViewById(R.id.fRakingTier_iv_img3);
@@ -49,11 +52,11 @@ public class MainFragment4_Raking extends Fragment {
         TextView tvName4 = rootView.findViewById(R.id.fRakingTier_tv_name4);
         TextView tvName5 = rootView.findViewById(R.id.fRakingTier_tv_name5);
 
-        TextView tvTier1 = rootView.findViewById(R.id.fRakingTier_tv_tier1);
-        TextView tvTier2 = rootView.findViewById(R.id.fRakingTier_tv_tier2);
-        TextView tvTier3 = rootView.findViewById(R.id.fRakingTier_tv_tier3);
-        TextView tvTier4 = rootView.findViewById(R.id.fRakingTier_tv_tier4);
-        TextView tvTier5 = rootView.findViewById(R.id.fRakingTier_tv_tier5);
+        ImageView tvTier1 = rootView.findViewById(R.id.fRakingTier_iv_tier1);
+        ImageView tvTier2 = rootView.findViewById(R.id.fRakingTier_iv_tier2);
+        ImageView tvTier3 = rootView.findViewById(R.id.fRakingTier_iv_tier3);
+        ImageView tvTier4 = rootView.findViewById(R.id.fRakingTier_iv_tier4);
+        ImageView tvTier5 = rootView.findViewById(R.id.fRakingTier_iv_tier5);
 
         TextView tvPoint1 = rootView.findViewById(R.id.fRakingTier_tv_point1);
         TextView tvPoint2 = rootView.findViewById(R.id.fRakingTier_tv_point2);
@@ -61,21 +64,23 @@ public class MainFragment4_Raking extends Fragment {
         TextView tvPoint4 = rootView.findViewById(R.id.fRakingTier_tv_point4);
         TextView tvPoint5 = rootView.findViewById(R.id.fRakingTier_tv_point5);
 
-        //Glide.with(rootView).load(rankDataList.get(0).getProfileIconId()).into(ivImage1);
+        Glide.with(rootView).load(IP.urlProfile + rankDataList.get(0).getProfileIconId()+".png").circleCrop().into(ivImage1);
+        Glide.with(rootView).load(IP.urlProfile + rankDataList.get(1).getProfileIconId()+".png").circleCrop().into(ivImage2);
+        Glide.with(rootView).load(IP.urlProfile + rankDataList.get(2).getProfileIconId()+".png").circleCrop().into(ivImage3);
+        Glide.with(rootView).load(IP.urlProfile + rankDataList.get(3).getProfileIconId()+".png").circleCrop().into(ivImage4);
+        Glide.with(rootView).load(IP.urlProfile + rankDataList.get(4).getProfileIconId()+".png").circleCrop().into(ivImage5);
 
-        Log.e("MainFragment4_raking", rankDataList.toString());
+        tvName1.setText(rankDataList.get(0).getSummonerName());
+        tvName2.setText(rankDataList.get(1).getSummonerName());
+        tvName3.setText(rankDataList.get(2).getSummonerName());
+        tvName4.setText(rankDataList.get(3).getSummonerName());
+        tvName5.setText(rankDataList.get(4).getSummonerName());
 
-        tvName1.setText(rankDataList.get(0).getName());
-        tvName2.setText(rankDataList.get(1).getName());
-        tvName3.setText(rankDataList.get(2).getName());
-        tvName4.setText(rankDataList.get(3).getName());
-        tvName5.setText(rankDataList.get(4).getName());
-
-        tvTier1.setText(rankDataList.get(0).getTier());
-        tvTier2.setText(rankDataList.get(1).getTier());
-        tvTier3.setText(rankDataList.get(2).getTier());
-        tvTier4.setText(rankDataList.get(3).getTier());
-        tvTier5.setText(rankDataList.get(4).getTier());
+        tvTier1.setImageResource(R.drawable.emblem_challenger);
+        tvTier2.setImageResource(R.drawable.emblem_challenger);
+        tvTier3.setImageResource(R.drawable.emblem_challenger);
+        tvTier4.setImageResource(R.drawable.emblem_challenger);
+        tvTier5.setImageResource(R.drawable.emblem_challenger);
 
         tvPoint1.setText(rankDataList.get(0).getPoint() + " LP");
         tvPoint2.setText(rankDataList.get(1).getPoint() + " LP");
@@ -83,8 +88,9 @@ public class MainFragment4_Raking extends Fragment {
         tvPoint4.setText(rankDataList.get(3).getPoint() + " LP");
         tvPoint5.setText(rankDataList.get(4).getPoint() + " LP");
 
-        //rankDataList = (ArrayList<RankData>) rankDataList.subList(4, rankDataList.size());
-
+        ArrayList<RankData> subList = new ArrayList<>(rankDataList.subList(5, rankDataList.size()));
+        rankDataList.remove(0);
+        System.out.println(subList);
 
         recyclerView = rootView.findViewById(R.id.recyclerView);
 
@@ -93,26 +99,23 @@ public class MainFragment4_Raking extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         adapter = new RakingTierListAdapter();
-        adapter.setItems(rankDataList);
-        Log.e("MainFragment4_Raking", "랭킹 리스트 어댑터 관리수:" + adapter.getItemCount());
+        adapter.setItems(subList);
+        Log.e("MainFragment4_Raking", "랭킹-랭킹 리스트 어댑터 관리수:" + adapter.getItemCount());
 
         recyclerView.setAdapter(adapter);
-        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if (!recyclerView.canScrollVertically(-1)) {
-                    Log.e("MainFragment4_Raking", "젤위다");
-                } else if (!recyclerView.canScrollVertically(1)) {
-                    Log.e("MainFragment4_Raking", "젤밑이다");
-                } else {
-                    Log.e("MainFragment4_Raking", "??");
-                }
-            }
-        });
-
-
+//        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                if (!recyclerView.canScrollVertically(-1)) {
+//                    Log.e("MainFragment4_Raking", "젤위다");
+//                } else if (!recyclerView.canScrollVertically(1)) {
+//                    Log.e("MainFragment4_Raking", "젤밑이다");
+//                } else {
+//                    Log.e("MainFragment4_Raking", "??");
+//                }
+//            }
+//        });
 
         return rootView;
-        //return inflater.inflate(R.layout.fragment_main4_raking, container, false);
     }
 }

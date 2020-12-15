@@ -16,7 +16,7 @@ import com.example.opggProject.domain.Summon;
 public class MultiSearchService {
 
 	//api 바꿔주셈요~~~~~~~~~ PythonContoller에서도 바꿔주세요~~~~~~~~~
-	final String api_key = "RGAPI-9a7063c6-aa5f-458d-861c-eecabdcd54ae";
+	final String api_key = "RGAPI-9bde8fea-8858-4df7-9404-054a902b80ca";
 	private HttpEntity makeEntity() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Origin", "https://developer.riotgames.com");
@@ -40,14 +40,19 @@ public class MultiSearchService {
 	}
 	
 	public Summon multiSearchName(String name) {
-		System.out.println("summer"+name);
-		RestTemplate restTemplate = new RestTemplate();
-		HttpEntity entity = makeEntity();
-		URI url = URI.create("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name);
-		ResponseEntity response = restTemplate.exchange(url, HttpMethod.GET, entity, Summon.class);
-		
-		Summon summer = (Summon) response.getBody();
-		return summer;
+		try {
+			System.out.println("summer"+name);
+			RestTemplate restTemplate = new RestTemplate();
+			HttpEntity entity = makeEntity();
+			URI url = URI.create("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name);
+			ResponseEntity response = restTemplate.exchange(url, HttpMethod.GET, entity, Summon.class);
+			
+			Summon summer = (Summon) response.getBody();
+			return summer;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	

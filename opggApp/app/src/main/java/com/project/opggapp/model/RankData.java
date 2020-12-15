@@ -2,7 +2,7 @@ package com.project.opggapp.model;
 
 public class RankData {
     private int rno;
-    private String name;
+    private String summonerName;
     private String tier;
     private String profileIconId;
     private int point;
@@ -27,12 +27,12 @@ public class RankData {
         this.rno = rno;
     }
 
-    public String getName() {
-        return name;
+    public String getSummonerName() {
+        return summonerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSummonerName(String name) {
+        this.summonerName = name;
     }
 
     public String getTier() {
@@ -79,7 +79,7 @@ public class RankData {
     public String toString() {
         return "RankData{" +
                 "rno=" + rno +
-                ", name='" + name + '\'' +
+                ", SummonerName='" + summonerName + '\'' +
                 ", tier='" + tier + '\'' +
                 ", point=" + point +
                 ", win=" + win +

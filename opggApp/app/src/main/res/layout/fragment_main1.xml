@@ -64,9 +64,9 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/fMain1_cv_userSummoner"
-                android:visibility="gone"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="10dp"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:cardUseCompatPadding="true" >
@@ -94,14 +94,14 @@
                                 android:layout_gravity="right|bottom"
                                 android:background="@drawable/button_background"
                                 android:text="161"
+                                android:visibility="gone"
                                 android:textColor="#FFFFFF"
                                 android:textSize="15sp" />
 
                             <ImageView
                                 android:id="@+id/fMain1_iv_uIconSummoner"
                                 android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:src="@drawable/ahri" />
+                                android:layout_height="80dp" />
 
                         </FrameLayout>
 
@@ -116,7 +116,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
-                                android:text="준석이형님"
                                 android:textColor="#000000"
                                 android:textSize="23sp"
                                 android:textStyle="bold" />
@@ -130,15 +129,13 @@
                                     android:id="@+id/fMain1_iv_uTier"
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
-                                    android:layout_margin="10dp"
-                                    app:srcCompat="@drawable/emblem_challenger" />
+                                    android:layout_margin="10dp" />
 
                                 <TextView
                                     android:id="@+id/fMain1_tv_uTier"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="Challenger"
                                     android:textSize="15sp" />
 
                                 <TextView
@@ -154,7 +151,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="1,512 LP"
                                     android:textSize="15sp" />
                             </LinearLayout>
 
@@ -193,13 +189,12 @@
                             <ImageView
                                 android:id="@+id/fMain1_iv_m1Img"
                                 android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/ahri" />
+                                android:layout_height="50dp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="8dp"
                                 android:gravity="center"
                                 android:orientation="vertical">
 
@@ -207,14 +202,16 @@
                                     android:id="@+id/fMain1_tv_m1Win"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="50%"
-                                    android:textSize="17sp" />
+                                    android:textColor="#000000"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:id="@+id/fMain1_tv_m1KDA"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="3.67:1"
+                                    android:gravity="center"
+                                    android:textColor="#000000"
                                     android:textSize="10sp" />
                             </LinearLayout>
                         </LinearLayout>
@@ -229,28 +226,29 @@
                             <ImageView
                                 android:id="@+id/fMain1_iv_m2Img"
                                 android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/ahri" />
+                                android:layout_height="50dp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="8dp"
                                 android:gravity="center"
                                 android:orientation="vertical">
 
                                 <TextView
                                     android:id="@+id/fMain1_tv_m2Win"
+                                    android:textColor="#000000"
+                                    android:textStyle="bold"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="50%"
-                                    android:textSize="17sp" />
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:id="@+id/fMain1_tv_m2KDA"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="3.67:1"
+                                    android:gravity="center"
+                                    android:textColor="#000000"
                                     android:textSize="10sp" />
                             </LinearLayout>
                         </LinearLayout>
@@ -265,29 +263,30 @@
                             <ImageView
                                 android:id="@+id/fMain1_iv_m3Img"
                                 android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/ahri" />
+                                android:layout_height="50dp" />
 
                             <LinearLayout
                                 android:gravity="center"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="8dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
 
                                 <TextView
                                     android:id="@+id/fMain1_tv_m3Win"
+                                    android:textColor="#000000"
+                                    android:textStyle="bold"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textSize="17sp"
-                                    android:text="50%" />
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:id="@+id/fMain1_tv_m3KDA"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textSize="10sp"
-                                    android:text="3.67:1" />
+                                    android:gravity="center"
+                                    android:textColor="#000000"
+                                    android:textSize="10sp" />
                             </LinearLayout>
                         </LinearLayout>
 
