@@ -19,6 +19,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	// 해당 db 번호증가 전략을 따라감 (oracle:시퀀스, mysql:auto increment)
 	private int id;
 	private String username;
+	@Column(unique = true)
 	private String nickname;
 	private String password;
 	private String image;

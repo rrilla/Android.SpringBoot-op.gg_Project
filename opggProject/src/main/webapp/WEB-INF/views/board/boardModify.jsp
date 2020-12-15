@@ -218,7 +218,7 @@
 <script>
 	/* 취소 버튼 눌렀을 때 이동 */
 	function cancleButton() {
-		location.href = "/boardList";
+		location.href = "/boardList?page=" + ${page};
 	}
 </script>
 <script>

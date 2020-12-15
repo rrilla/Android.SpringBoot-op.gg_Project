@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/alert.jsp"%>
+
+
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 <script
@@ -84,6 +86,26 @@
 	font-size: 16px;
 	margin-left: 594px;
 }
+
+.comment_button {
+	background-color: #46cfa7;
+	color: white;
+	border: #46cfa7;
+	width: 90px;
+	padding: 10px;
+	margin-left: 776px;
+}
+
+.comment_delete {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	color: white;
+	background-color: #ff7f7f;
+	border: none;
+	padding: 7px 10px;
+	border-radius: 5px;
+}
 </style>
 <div class="board_container">
 	<div class="board_sign">
@@ -118,7 +140,8 @@
 
 				<div class="board_write_container" style="padding: 20px;">
 					<div class="write_input" style="margin-bottom: 10px;">
-						<input type="text" id="title" placeholder="제목"  value="${board.title }" readonly/>
+						<input type="text" id="title" placeholder="제목"
+							value="${board.title }" readonly />
 					</div>
 					<textarea id="summernote">${board.content }</textarea>
 				</div>
@@ -134,8 +157,91 @@
 				</div>
 			</c:if>
 		</div>
+		<div
+			style="border: 1px solid #dddfe4; margin-top: 10px; background-color: white; width: 900px;">
+			<div style="padding: 10px;">
+				<h2 style="font-size: 18px; display: inline;">댓글</h2>
+				<span style="color: #7b858e; font-size: 14px;">총 <span
+					style="color: #16ae81;">${commentList.totalElements }</span> 개
+				</span>
+			</div>
+			<c:if test="${not empty principal.username}">
+				<div style="padding: 24px 16px;">
+					<div
+						style="border: 1px solid #dddfe4; border-radius: 5px; position: relative;">
+						<textarea id="content" rows="4"
+							placeholder="주제와 무관한 댓글, 타인의 권리를 침해하거나 명예를 훼손하는 게시물은 별도의 통보 없이 제재를 받을 수 있습니다."
+							style="resize: none; border: none; width: 861px;"></textarea>
+						<div>
+							<button class="comment_button"
+								onClick="commentButton(${board.bno})">작성</button>
+						</div>
+					</div>
+				</div>
+			</c:if>
+			<c:forEach items="${commentList.content }" var="comment">
+				<div
+					style="border-top: 1px solid #dddfe4; padding: 12px 12px 12px 20px;">
+					<div style="width: 290px; line-height: 27px;">
+						<div style="font-size: 14px; color: #1e2022; padding-bottom: 5px;">
+							<span class="name"> <fmt:formatDate
+									value="${comment.writeDate }" pattern="yyyy-MM-dd" /></span> <span
+								style="color: #46cfa7"> ${comment.user.username } </span>
+						</div>
+						<div style="font-size: 14px; color: #98a0a7;">${comment.content }</div>
+					</div>
+					<c:if test="${comment.user.username == principal.username}">
+						<div style="width: 100%; position: relative;">
+							<button class="comment_delete"
+								onClick="commentDelete(${comment.cno})">삭제</button>
+						</div>
+					</c:if>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 </div>
+<script>
+	function commentButton(bno) {
+		const content = document.querySelector("#content").value;
+		if(!content) {
+			alert("내용이 비어있습니다!!");
+		} else {
+			const comment = {
+				content: content,
+			}
+			fetch("/comment/insert/" + bno, {
+				method: "POST",
+				body: JSON.stringify(comment),
+				headers: {
+					"Content-Type": "application/json;",
+				},
+			})
+			.then(res => res.text())
+			.then(res => {
+				if(res === "ok") {
+					location.reload();
+				} else {
+					alert("댓글 작성 실패!!!");
+				}
+			});
+		}		
+	}
+	
+	function commentDelete(cno) {
+		fetch("/comment/delete/" + cno, {
+			method: "DELETE",
+		})
+		.then(res => res.text())
+		.then(res => {
+			if(res === "ok") {
+				location.reload();
+			} else {
+				alert("댓글 삭제 실패!!!");
+			}
+		});
+	}
+</script>
 <script>
 	$('#summernote').summernote('disable');
 	$('#summernote').summernote(

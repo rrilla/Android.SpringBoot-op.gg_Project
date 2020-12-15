@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.opggProject.config.auth.PrincipalDetails;
 import com.example.opggProject.domain.board.Board;
+import com.example.opggProject.domain.comment.Comment;
 import com.example.opggProject.domain.user.User;
 import com.example.opggProject.service.BoardService;
+import com.example.opggProject.service.CommentService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,6 +37,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 	
 	private final BoardService boardService;
+	private final CommentService commentService;
 	
 	@GetMapping("/boardList") 
 	public  String board(Model model, @PageableDefault(sort = "bno", direction = Sort.Direction.DESC, size = 5) Pageable pageable) {
@@ -85,17 +89,21 @@ public class BoardController {
 		return "ok";
 	}
 	
-	@GetMapping("/board/detail/{bno}")
-	public String boardDetail(@PathVariable int bno, Model model) {
+	@GetMapping("/board/detail/{bno}/page={page}")
+	public String boardDetail(@PathVariable int bno, @PathVariable int page, Model model, @PageableDefault(direction = Direction.ASC, sort = "cno", size = 10) Pageable pageable) {
 		Board board = boardService.boardDetail(bno);
+//		Page<Comment> commentList = commentService.commentList(pageable);
 		model.addAttribute("board", board);
+		model.addAttribute("page", page);
+//		model.addAttribute("commentList", commentList);
 		return "/board/boardDetail";
 	}
 	
-	@GetMapping("/board/modify/{bno}")
-	public String boardModify(@PathVariable int bno, Model model) {
+	@GetMapping("/board/modify/{bno}/page={page}")
+	public String boardModify(@PathVariable int bno, @PathVariable int page, Model model) {
 		Board board = boardService.boardDetail(bno);
 		model.addAttribute("board", board);
+		model.addAttribute("page", page);
 		return "/board/boardModify";
 	}
 	

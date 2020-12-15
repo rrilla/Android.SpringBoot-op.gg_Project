@@ -106,8 +106,41 @@
 	padding: 7px 10px;
 	border-radius: 5px;
 }
+/* 다음 이전 링크 스타일*/
+.next_button, .prev_button {
+	text-decoration: none;
+	color: #7b858e;
+	font-size: 14px;
+	padding: 10px 5px 12px 13px;
+	background-color: white; 
+	border-radius: 5px; 
+	border: 1px solid #dddfe4;
+	margin-top: 10px;
+}
+.prev_button {
+	padding: 10px 13px 12px 5px;
+	margin-right: 10px;
+}
+.next_button img, .prev_button img {
+	widht: 24px;
+	height: 24px;
+}
+/* 댓글 스타일 */
+.comment_container {
+	border-top: 1px solid #dddfe4; 
+	padding: 12px 12px 12px 20px;
+}
+.comment_title_wrap {
+	width: 290px; 
+	line-height: 27px;
+}
+.comment_title {
+	 font-size: 14px; 
+	 color: #1e2022; 
+	 padding-bottom: 5px;	
+}
 </style>
-<div class="board_container">
+<div class="board_container" style="min-height: 1800px;">
 	<div class="board_sign">
 		<div class="board_sign_img"></div>
 		<div class="sign_content">
@@ -131,7 +164,7 @@
 	</div>
 
 	<div class='board_content'
-		style="max-width: 1044px; margin: 0 auto; height: 939px;">
+		style="max-width: 870px; margin: 0 auto; height: 939px;">
 		<div style="width: 900px; margin-top: -40px;">
 			<div class="content_header">
 				<div style="padding: 18px 0 17px 0;">
@@ -162,7 +195,7 @@
 			<div style="padding: 10px;">
 				<h2 style="font-size: 18px; display: inline;">댓글</h2>
 				<span style="color: #7b858e; font-size: 14px;">총 <span
-					style="color: #16ae81;">${commentList.totalElements }</span> 개
+					style="color: #16ae81;">${empty commentList.totalElements ? 0 : commentList.totalElements }</span> 개
 				</span>
 			</div>
 			<c:if test="${not empty principal.username}">
@@ -179,26 +212,25 @@
 					</div>
 				</div>
 			</c:if>
-			<c:forEach items="${commentList.content }" var="comment">
-				<div
-					style="border-top: 1px solid #dddfe4; padding: 12px 12px 12px 20px;">
-					<div style="width: 290px; line-height: 27px;">
-						<div style="font-size: 14px; color: #1e2022; padding-bottom: 5px;">
+			<c:forEach items="${board.comments }" var="comment">
+				<div class="comment_container">
+					<div class="comment_title_wrap">
+						<div class="comment_title">
 							<span class="name"> <fmt:formatDate
 									value="${comment.writeDate }" pattern="yyyy-MM-dd" /></span> <span
 								style="color: #46cfa7"> ${comment.user.username } </span>
 						</div>
-						<div style="font-size: 14px; color: #98a0a7;">${comment.content }</div>
+						<div class="comment_content" style="font-size: 14px; color: #98a0a7;">${comment.content }</div>
 					</div>
 					<c:if test="${comment.user.username == principal.username}">
 						<div style="width: 100%; position: relative;">
-							<button class="comment_delete"
-								onClick="commentDelete(${comment.cno})">삭제</button>
+							<button class="comment_delete" onClick="commentDelete(${comment.cno})">삭제</button>
 						</div>
 					</c:if>
 				</div>
-			</c:forEach>
+			</c:forEach>		
 		</div>
+		
 	</div>
 </div>
 <script>
@@ -220,7 +252,7 @@
 			.then(res => res.text())
 			.then(res => {
 				if(res === "ok") {
-					location.reload();
+					console.log(res);
 				} else {
 					alert("댓글 작성 실패!!!");
 				}
@@ -258,13 +290,13 @@
 </script>
 <script>
 	function modifyButton(bno) {
-		location.href = "/board/modify/" + bno;
+		location.href = "/board/modify/" + bno + "/page=" + ${page};
 	}
 </script>
 <script>
 	/* 목록 버튼 눌렀을 때 이동 */
 	function cancleButton() {
-		location.href = "/boardList";
+		location.href = "/boardList?page=" + ${page};
 	}
 </script>
 <script>

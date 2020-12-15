@@ -9,6 +9,6 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// 외부 경로 이미지 불러오기
-		registry.addResourceHandler("/summernoteShowImage/**").addResourceLocations("file:///C:/Users/admin/Desktop/이미지테스트/");
+		registry.addResourceHandler("/summernoteShowImage/**").addResourceLocations("file:///C:/Users/admin/Desktop/opgg 연동폴더/op.gg/images/");
 	}
 }

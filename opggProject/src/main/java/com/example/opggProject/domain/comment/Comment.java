@@ -40,6 +40,7 @@ public class Comment {
 	@ManyToOne
 	private User user;
 	
+	
 	@JoinColumn(name = "boardId")
 	@ManyToOne
 	private Board board;

@@ -482,6 +482,18 @@
 					<div
 						style="font-size: 15px; border-bottom: 1px solid #cdd2d2; background-color: #f2f2f2;">숙련도</div>
 					<div>
+						<div style="padding: 10px; border-bottom: 1px solid #cdd2d2; position: relative;">
+							<div
+								style="width: 46px; height: 46px; display: inline-block; border-radius: 50%; overflow: hidden; vertical-align: middle;">
+								<img 
+									src="//opgg-static.akamaized.net/images/lol/champion/Zed.png?image=c_scale,q_auto,w_46&v=1606405946" />
+							</div>
+							<div
+								style="width: 150px; padding-left: 7px; position: relative; display: inline-block; vertical-align: middle; font-size: 13px; color: #555e5e; font-weight: bold; height: 30px;">
+								<span>제드</span> <span
+									style="display: block; font-size: 12px; font-weight: normal;">1345686점</span>
+							</div>
+						</div>
 						<div style="padding: 10px;">
 							<div
 								style="width: 46px; height: 46px; display: inline-block; border-radius: 50%; overflow: hidden; vertical-align: middle;">
@@ -489,8 +501,8 @@
 									src="//opgg-static.akamaized.net/images/lol/champion/Zed.png?image=c_scale,q_auto,w_46&v=1606405946" />
 							</div>
 							<div
-								style="padding-left: 7px; position: relative; display: inline-block; vertical-align: middle; font-size: 13px; color: #555e5e; font-weight: bold; height: 30px;">
-								<span>제드</span> <span
+								style="width: 150px; padding-left: 7px; position: relative; display: inline-block; vertical-align: middle; font-size: 13px; color: #555e5e; font-weight: bold; height: 30px;">
+								<span style="padding-left: 20px;">트위스티드 페이트</span> <span
 									style="display: block; font-size: 12px; font-weight: normal;">1345686점</span>
 							</div>
 						</div>

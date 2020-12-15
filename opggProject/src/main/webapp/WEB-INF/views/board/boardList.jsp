@@ -115,7 +115,7 @@
 					<div style="line-height: 60px; color: #7b858e;">${board.bno}</div>
 					<div style="padding-left: 20px; width: 290px; line-height: 27px;">
 						<div style="font-size: 14px; color: #1e2022; padding-bottom: 5px;">
-							<a style="text-decoration: none; color: black;" href="/board/detail/${board.bno }">${board.title }</a>
+							<a style="text-decoration: none; color: black;" href="/board/detail/${board.bno }/page=${boardList.number}">${board.title }</a>
 						</div>
 						<div style="font-size: 14px; color: #98a0a7;">
 							<span><fmt:formatDate value="${board.writeDate }"
@@ -124,7 +124,7 @@
 						</div>				
 					</div>
 					<div style="width: 100%; position: relative;">
-						<a href="/board/detail/${board.bno }"><img src="${board.thumbnail }" class="thumbnail"/></a>
+						<a href="/board/detail/${board.bno }/page=${boardList.number}"><img src="${board.thumbnail }" class="thumbnail"/></a>
 					</div>
 				</div>
 				

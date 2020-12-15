@@ -73,7 +73,7 @@ public class UserController {
 		user.setPassword(encPassword);
 		userRepository.save(user);
 		System.out.println(user);
-		return "redirect:/user/loginForm";
+		return "redirect:/main";
 	}
 	
 	@GetMapping("/loginForm")
