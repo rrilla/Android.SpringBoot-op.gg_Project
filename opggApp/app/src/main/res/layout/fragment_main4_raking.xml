@@ -134,7 +134,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginRight="10dp"
-                            android:src="@drawable/ezreal" />
+                            android:src="@drawable/image_noimage" />
 
                         <TextView
                             android:id="@+id/fRakingTier_tv_name1"
@@ -152,15 +152,12 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/fRakingTier_tv_tier1"
+                        <ImageView
+                            android:id="@+id/fRakingTier_iv_tier1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:background="#FF4848"
-                            android:gravity="center"
-                            android:text="C1"
-                            android:textColor="#FFFFFF" />
+                            android:src="@drawable/image_nodata"
+                            android:layout_weight="3" />
 
                         <TextView
                             android:id="@+id/fRakingTier_tv_point1"
@@ -212,7 +209,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginRight="10dp"
-                            android:src="@drawable/ezreal" />
+                            android:src="@drawable/image_noimage" />
 
                         <TextView
                             android:id="@+id/fRakingTier_tv_name2"
@@ -230,15 +227,12 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/fRakingTier_tv_tier2"
+                        <ImageView
+                            android:id="@+id/fRakingTier_iv_tier2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:background="#FF4848"
-                            android:gravity="center"
-                            android:text="C1"
-                            android:textColor="#FFFFFF" />
+                            android:src="@drawable/image_nodata"
+                            android:layout_weight="3" />
 
                         <TextView
                             android:id="@+id/fRakingTier_tv_point2"
@@ -290,7 +284,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginRight="10dp"
-                            android:src="@drawable/ezreal" />
+                            android:src="@drawable/image_noimage" />
 
                         <TextView
                             android:id="@+id/fRakingTier_tv_name3"
@@ -308,15 +302,12 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/fRakingTier_tv_tier3"
+                        <ImageView
+                            android:id="@+id/fRakingTier_iv_tier3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:background="#FF4848"
-                            android:gravity="center"
-                            android:text="C1"
-                            android:textColor="#FFFFFF" />
+                            android:src="@drawable/image_nodata"
+                            android:layout_weight="3" />
 
                         <TextView
                             android:id="@+id/fRakingTier_tv_point3"
@@ -368,7 +359,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginRight="10dp"
-                            android:src="@drawable/ezreal" />
+                            android:src="@drawable/image_noimage" />
 
                         <TextView
                             android:id="@+id/fRakingTier_tv_name4"
@@ -386,15 +377,12 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/fRakingTier_tv_tier4"
+                        <ImageView
+                            android:id="@+id/fRakingTier_iv_tier4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:background="#FF4848"
-                            android:gravity="center"
-                            android:text="C1"
-                            android:textColor="#FFFFFF" />
+                            android:src="@drawable/image_nodata"
+                            android:layout_weight="3" />
 
                         <TextView
                             android:id="@+id/fRakingTier_tv_point4"
@@ -446,7 +434,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginRight="10dp"
-                            android:src="@drawable/ezreal" />
+                            android:src="@drawable/image_noimage" />
 
                         <TextView
                             android:id="@+id/fRakingTier_tv_name5"
@@ -464,15 +452,12 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/fRakingTier_tv_tier5"
+                        <ImageView
+                            android:id="@+id/fRakingTier_iv_tier5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:background="#FF4848"
-                            android:gravity="center"
-                            android:text="C1"
-                            android:textColor="#FFFFFF" />
+                            android:src="@drawable/image_nodata"
+                            android:layout_weight="3" />
 
                         <TextView
                             android:id="@+id/fRakingTier_tv_point5"

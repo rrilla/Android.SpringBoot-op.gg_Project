@@ -37,9 +37,9 @@ public class AddSummonerActivity extends AppCompatActivity {
                 EditText etSummoner = findViewById(R.id.addSummoner_et_summonerId);
                 String inputSummoner = etSummoner.getText().toString();
                 String result = checkSummoner(inputSummoner);
-                if(result.equals("no")){
+                if(result.equals("noSummoner")){
                     //없는 소환사
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                     builder.setMessage("'" + inputSummoner + "' 소환사가 존재하지 않습니다.");
                     builder.setPositiveButton("완료", null);
                     AlertDialog alertDialog = builder.create();
@@ -70,7 +70,7 @@ public class AddSummonerActivity extends AppCompatActivity {
     }
 
     private String checkSummoner(String inputSummoner) {
-        RestAPIComm comm = new RestAPIComm("app/checkSummoner?summoner="+inputSummoner);
+        RestAPIComm comm = new RestAPIComm("app/summarySummoner?summoner="+inputSummoner);
         String[] result = new String[2];
 
         try {
@@ -80,8 +80,8 @@ public class AddSummonerActivity extends AppCompatActivity {
             Toast.makeText(this, "서버 통신 실패", Toast.LENGTH_SHORT).show();
         }
         if(result[0].equals("ok")){
-            if(result[1].equals("no")){
-                return "no";
+            if(result[1].equals("noSummoner")){
+                return "noSummoner";
             }else{
                 return "ok";
             }

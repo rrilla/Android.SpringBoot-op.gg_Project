@@ -1,5 +1,6 @@
 package com.example.opggProject.service.app;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,10 +20,13 @@ import org.springframework.stereotype.Service;
 
 import com.example.opggProject.domain.board.Board;
 import com.example.opggProject.domain.board.BoardRepository;
+import com.example.opggProject.domain.champion.Champion;
+import com.example.opggProject.domain.champion.ChampionRepository;
 import com.example.opggProject.domain.rank.RankData;
 import com.example.opggProject.domain.rank.RankRepository;
 import com.example.opggProject.domain.user.User;
 import com.example.opggProject.domain.user.UserRepository;
+import com.example.opggProject.dto.app.ChampionDto;
 import com.example.opggProject.dto.app.JoinDto;
 import com.example.opggProject.dto.app.LoginDto;
 
@@ -35,6 +39,7 @@ public class AppService {
 	private final UserRepository userRepository;
 	private final BoardRepository boardRepository;
 	private final RankRepository rankRepository;
+	private final ChampionRepository championRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	private final AuthenticationManager authenticationManager;
 	
@@ -150,6 +155,43 @@ public class AppService {
 		}catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>("서버 - 랭크 데이터 조회 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+		}		
+	}
+
+	public ResponseEntity<?> championList(String orderBy) {
+		try {
+			ChampionDto championDto = new ChampionDto();
+			if(orderBy.equals("win")) {
+				championDto.setTopList(championRepository.mFindOnlyLaneWinRate("top"));
+				championDto.setJungleList(championRepository.mFindOnlyLaneWinRate("jungle"));
+				championDto.setMidList(championRepository.mFindOnlyLaneWinRate("mid"));
+				championDto.setBottomList(championRepository.mFindOnlyLaneWinRate("bottom"));
+				championDto.setSupList(championRepository.mFindOnlyLaneWinRate("sup"));
+			}else if(orderBy.equals("pick")){
+				championDto.setTopList(championRepository.mFindOnlyLanePickRate("top"));
+				championDto.setJungleList(championRepository.mFindOnlyLanePickRate("jungle"));
+				championDto.setMidList(championRepository.mFindOnlyLanePickRate("mid"));
+				championDto.setBottomList(championRepository.mFindOnlyLanePickRate("bottom"));
+				championDto.setSupList(championRepository.mFindOnlyLanePickRate("sup"));
+			}
+//			else if(orderBy.equals("ban")){
+//				championDto.setTopList(championRepository.mFindOnlyLaneBanRate("top"));
+//				championDto.setJungleList(championRepository.mFindOnlyLaneBanRate("jungle"));
+//				championDto.setMidList(championRepository.mFindOnlyLaneBanRate("mid"));
+//				championDto.setBottomList(championRepository.mFindOnlyLaneBanRate("bottom"));
+//				championDto.setSupList(championRepository.mFindOnlyLaneBanRate("sup"));
+//			}
+			else {
+				championDto.setTopList(championRepository.mFindOnlyLaneTier("top"));
+				championDto.setJungleList(championRepository.mFindOnlyLaneTier("jungle"));
+				championDto.setMidList(championRepository.mFindOnlyLaneTier("mid"));
+				championDto.setBottomList(championRepository.mFindOnlyLaneTier("bottom"));
+				championDto.setSupList(championRepository.mFindOnlyLaneTier("sup"));
+			}
+			return new ResponseEntity<ChampionDto>(championDto, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("서버 - 챔피언 데이터 조회 실패", HttpStatus.CREATED);
 		}		
 	}
 	

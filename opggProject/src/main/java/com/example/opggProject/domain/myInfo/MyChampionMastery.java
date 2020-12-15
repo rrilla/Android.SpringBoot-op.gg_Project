@@ -7,4 +7,5 @@ public class MyChampionMastery {
 
 	private String championId;
 	private String championPoints;
+	private String englishName;
 }

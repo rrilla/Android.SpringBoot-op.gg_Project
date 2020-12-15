@@ -63,9 +63,52 @@ public class AppController {
 		return appService.boardList();
 	}
 	
+	//소환사 이름받고 소환사 상세정보 리턴
+	//아디 없을시 no리턴
+	@PostMapping("app/detailSummoner")
+	public ResponseEntity<?> detailSummoner(
+			@RequestParam("summoner") String summoner) {
+		
+		System.out.println(summoner);
+		return new ResponseEntity<String>("ok", HttpStatus.OK);
+		//return new ResponseEntity<String>("no", HttpStatus.OK);
+	}
+	
+	//챔프목록 리스트
+	@PostMapping("app/championList")
+	public ResponseEntity<?> championList(
+			@RequestParam("orderBy") String orderBy) {
+		return appService.championList(orderBy);
+		//return new ResponseEntity<String>("ok", HttpStatus.OK);
+		//return new ResponseEntity<String>("no", HttpStatus.OK);
+	}
+		
+	//ranking 데이터 조회 - 랭킹
+	@PostMapping("app/rakingR")
+	public ResponseEntity<?> rakingR(
+			@PageableDefault(size = 200, sort = "rno", direction = Direction.ASC ) Pageable pageable) {
+		return appService.rankList(pageable);
+		//return new ResponseEntity<String>("no", HttpStatus.OK);
+	}
+	
+	//ranking 데이터 조회 - 레벨
+	@PostMapping("app/rakingL")
+	public ResponseEntity<?> rakingL(
+			@PageableDefault(size = 200, sort = "level", direction = Direction.DESC ) Pageable pageable) {
+		return appService.rankList(pageable);
+		//return new ResponseEntity<String>("no", HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	//메인 - 소환사 요약 
 	//소환사 이름받고 소환사 요약정보 리턴
-	@PostMapping("app/summarySummoner")
+	//@PostMapping("app/summarySummoner")
 	public ResponseEntity<?> summarySummoner(
 			@RequestParam("summoner") String summoner) {
 		
@@ -93,29 +136,6 @@ public class AppController {
 		return new ResponseEntity<String>("ok", HttpStatus.OK);
 		//return new ResponseEntity<String>("no", HttpStatus.OK);
 	}
-	
-	//소환사 이름받고 소환사 상세정보 리턴
-	//아디 없을시 no리턴
-	@PostMapping("app/detailSummoner")
-	public ResponseEntity<?> detailSummoner(
-			@RequestParam("summoner") String summoner) {
-		
-		System.out.println(summoner);
-		return new ResponseEntity<String>("ok", HttpStatus.OK);
-		//return new ResponseEntity<String>("no", HttpStatus.OK);
-	}
-	
-	//ranking 데이터 조회
-	@PostMapping("app/raking")
-	public ResponseEntity<?> raking(
-			@PageableDefault(size = 50, sort = "rno", direction = Direction.ASC ) Pageable pageable) {
-		return appService.rankList(pageable);
-		//return new ResponseEntity<String>("no", HttpStatus.OK);
-	}
-	
-	
-	
-	
 	
 	
 	@GetMapping("app/test")

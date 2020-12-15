@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.project.opggapp.R;
 import com.project.opggapp.model.RankData;
+import com.project.opggapp.model.dto.ChampionDto;
 import com.project.opggapp.task.RestAPIComm;
 
 import org.json.JSONArray;
@@ -33,46 +34,14 @@ public class MainFragment4 extends Fragment {
     Fragment champion = null;
     Fragment level = null;
 
-    private ArrayList<RankData> rankDataList;
+    private Gson gson = new Gson();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main4, container, false);
 
-        RestAPIComm comm = new RestAPIComm("app/raking?page=0");
-        String[] result = new String[2];
-        Gson gson = new Gson();
-
-        try {
-            result = comm.execute().get();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(getContext(), "서버 통신 실패", Toast.LENGTH_SHORT).show();
-        }
-        if(result[0].equals("ok")){
-            Toast.makeText(getContext(), "기능 성공", Toast.LENGTH_SHORT).show();
-
-
-
-            // 가장 큰 JSONObject를 가져옵니다.
-            JSONObject jObject = null;
-            JSONArray jArray = null;
-            try {
-                jObject = new JSONObject(result[1]);
-                jArray = jObject.getJSONArray("content");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            rankDataList = gson.fromJson(String.valueOf(jArray), new TypeToken<ArrayList<RankData>>() {
-            }.getType());
-            Log.e("MainFragment4", "데이터 - " + rankDataList);
-        }else{
-            Toast.makeText(getContext(), "기능 실패 - " + result[1], Toast.LENGTH_SHORT).show();
-        }
-
-        raking = new MainFragment4_Raking(rankDataList);
+        raking = new MainFragment4_Raking(getDate("app/rakingR?page=0"));
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fMain4_linearLayout, raking).commit();
 
         tab1 = rootView.findViewById(R.id.fMain4_raking_tab1);
@@ -134,7 +103,7 @@ public class MainFragment4 extends Fragment {
                 tab2.setTextColor(Color.parseColor("#808080"));
 
                 if(level == null){
-                    level = new MainFragment4_Level();
+                    level = new MainFragment4_Level(getDate("app/rakingL?page=0"));
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fMain4_linearLayout, level).commit();
                     Log.e("test", "level 프래그먼트 생성");
                 }else{
@@ -145,6 +114,32 @@ public class MainFragment4 extends Fragment {
         });
 
         return rootView;
-        //return inflater.inflate(R.layout.fragment_main4, container, false);
+    }
+
+    private ArrayList<RankData> getDate(String reqUrl) {
+        RestAPIComm comm = new RestAPIComm(reqUrl);
+        String[] result = new String[2];
+        try {
+            result = comm.execute().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "서버 통신 실패", Toast.LENGTH_SHORT).show();
+        }
+        if(result[0].equals("ok")){
+            Toast.makeText(getContext(), "기능 성공", Toast.LENGTH_SHORT).show();
+            JSONArray jArray = null;
+            try {
+                JSONObject jObject = new JSONObject(result[1]);
+                jArray = jObject.getJSONArray("content");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Log.e("MainFragment4", "데이터 - " + result[1]);
+            return gson.fromJson(String.valueOf(jArray), new TypeToken<ArrayList<RankData>>() {
+            }.getType());
+        }else{
+            Toast.makeText(getContext(), "기능 실패 - " + result[1], Toast.LENGTH_SHORT).show();
+        }
+        return null;
     }
 }
