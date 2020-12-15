@@ -12,15 +12,16 @@ public class GameInfo {
    private String bluebaron;
    private String bluedragone;
    private String blueResult;
-   private int blueKill;
+   private double blueKill;
    private int blueGold;
    
    private String redTower;
    private String redbaron;
    private String reddragone;
    private String redResult;
-   private int redKill;
+   private double redKill;
    private int redGold;
    
+   private InGameMyInfo inGameMyInfo;
    private List<GameSummoner> gameSummonerList;
 }
