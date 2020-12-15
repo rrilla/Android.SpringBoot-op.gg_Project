@@ -34,6 +34,7 @@ public class Champion {
    private String story;
    private float winRate;
    private float pickRate;
+   private float banRate;
    private int tier;
    private String englishName;
 }
