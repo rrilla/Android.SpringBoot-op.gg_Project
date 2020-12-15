@@ -26,7 +26,7 @@ public class RankData {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int rno;
-   private String name;
+   private String summonerName;
    private String tier;
    private String profileIconId;
    private int point;
