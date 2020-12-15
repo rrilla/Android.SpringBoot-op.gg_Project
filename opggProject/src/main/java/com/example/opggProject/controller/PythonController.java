@@ -376,7 +376,7 @@ public class PythonController {
 		String[] token = abc.split(",");
 		for (int i = 0; i < token.length; i = i + 6) {
 			RankData rank = new RankData();
-			rank.setName(token[i].replace(" ", "").replace("[", ""));
+			rank.setSummonerName(token[i].replace(" ", "").replace("[", ""));
 			rank.setTier(token[i + 1].replace(" ", ""));
 			rank.setPoint(Integer.parseInt(token[i + 2].replace(" ", "")));
 			rank.setWin(Integer.parseInt(token[i + 3].replace(" ", "")));
