@@ -162,7 +162,7 @@ public class MainFragment1 extends Fragment {
             Glide.with(this).load(R.drawable.image_noimage).into(ivEmblem);
         }
         tvName.setText(myInfo.getSummonerName());
-        tvTier.setText(myInfo.getTier());
+        tvTier.setText(myInfo.getTier() + " " + myInfo.getRank());
         tvPoint.setText(myInfo.getLeaguePoints() + " LP");
         btnLevel.setText(myInfo.getSummonerLevel().toString());
         btnLevel.setVisibility(View.VISIBLE);

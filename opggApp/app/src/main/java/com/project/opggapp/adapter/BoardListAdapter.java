@@ -70,7 +70,7 @@ public class BoardListAdapter extends RecyclerView.Adapter<BoardListAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvWriter;
+        TextView tvTitle, tvWriter, tvDate;
         ImageView ivWriterImage, ivThumbnail;
         View view;
 
@@ -79,6 +79,7 @@ public class BoardListAdapter extends RecyclerView.Adapter<BoardListAdapter.View
             this.view = itemView;
 
             tvTitle = itemView.findViewById(R.id.iBoard_tv_title);
+            tvDate = itemView.findViewById(R.id.iBoard_tv_date);
             tvWriter = itemView.findViewById(R.id.iBoard_tv_writer);
             ivWriterImage = itemView.findViewById(R.id.iBoard_iv_writerImage);
             ivThumbnail = itemView.findViewById(R.id.iBoard_iv_thumbnail);
@@ -96,6 +97,7 @@ public class BoardListAdapter extends RecyclerView.Adapter<BoardListAdapter.View
 
         public void setItem(Board item) {
             tvTitle.setText(item.getTitle());
+            tvDate.setText(item.getDate());
             if(item.getUser() != null) {
                 tvWriter.setText(item.getUser().getNickname());
             }

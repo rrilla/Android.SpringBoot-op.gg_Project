@@ -3,6 +3,8 @@ package com.project.opggapp.activity;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Build;
@@ -16,10 +18,18 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.project.opggapp.R;
+import com.project.opggapp.adapter.BoardListAdapter;
+import com.project.opggapp.adapter.CommentListAdapter;
+import com.project.opggapp.listener.OnBoardListClickListener;
+import com.project.opggapp.listener.OnCommentListClickListener;
 import com.project.opggapp.model.Board;
+import com.project.opggapp.model.Comment;
 import com.project.opggapp.model.User;
+
+import java.util.ArrayList;
 
 public class DetailBoardActivity extends AppCompatActivity {
 
@@ -48,13 +58,12 @@ public class DetailBoardActivity extends AppCompatActivity {
         TextView tvCountComment2 = findViewById(R.id.detailBoard_tv_countComment2);
         TextView tvCountLike = findViewById(R.id.detailBoard_tv_countLike);
         tvTitle.setText(selectBoard.getTitle());
-        tvDateWrite.setText(selectBoard.getWriteDate().toString() + "　|　");
+        tvDateWrite.setText(selectBoard.getDate() + "　|　");
         tvWriterNickname.setText(selectBoard.getUser().getNickname());
         //tvCountView.setText();
         //tvCountComment.setText();
         //tvCountComment2.setText();
         //tvCountLike.setText();
-
 
 
         //WebView셋팅 시작
@@ -72,6 +81,17 @@ public class DetailBoardActivity extends AppCompatActivity {
 //        web.setBackgroundColor(0);  //흰색
         web.loadData(boardContent, "text/html", "UTF-8");
         //WebView셋팅 끝
+
+
+//        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+//        //리사이클러뷰에 설정할 레이아웃 매니저 - 방향세로로 설정함.
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+//        recyclerView.setLayoutManager(layoutManager);
+//        CommentListAdapter adapter = new CommentListAdapter();
+//        adapter.setItems((ArrayList<Comment>) selectBoard.getComments());
+//        Log.d("DetailBoardActivity","Comment List갯수(어댑터관리 아이템수) : " + adapter.getItemCount());
+//
+//        recyclerView.setAdapter(adapter);
 
     }
 

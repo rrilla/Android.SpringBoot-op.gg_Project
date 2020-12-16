@@ -1,11 +1,16 @@
+import sys
+sys.path.append('C:\ProgramData\Anaconda3\Lib\site-packages')
 import requests
 import time
-#import java.util.ArrayList as ArrayList
-def matchInfo(accountId,api):
+import java.util.ArrayList as ArrayList
+import java.util.List
+
+arr = ArrayList()
+def matchInfo(accountId,encId,api):
     api_key = api
-    
     account = ""
     id=""
+    encId = encId
     name=""
     level=""
     accountId = accountId
@@ -25,12 +30,65 @@ def matchInfo(accountId,api):
         "X-Riot-Token": api_key
 
     }
+    URL = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/"+encId
+    res = requests.get(URL, headers=headers)
+    data = res.json()
+    if data[0]['queueType'] == 'RANKED_SOLO_5x5':
+        if 2<=len(data):
+            arr.add('soloentire')
+            for i in range(0,len(data)):
+                arr.add(data[i]['tier'])
+                arr.add(data[i]['rank'])
+                arr.add(data[i]['leaguePoints'])
+                arr.add(data[i]['wins'])
+                arr.add(data[i]['losses'])
+        else :
+            arr.add('solo')
+            for i in range(0,len(data)):
+                arr.add(data[i]['tier'])
+                arr.add(data[i]['rank'])
+                arr.add(data[i]['leaguePoints'])
+                arr.add(data[i]['wins'])
+                arr.add(data[i]['losses'])
+    elif data[0]['queueType'] == 'RANKED_FLEX_SR':
+        if 2<=len(data):
+            arr.add('freeentire')
+            for i in range(0,len(data)):
+                arr.add(data[i]['tier'])
+                arr.add(data[i]['rank'])
+                arr.add(data[i]['leaguePoints'])
+                arr.add(data[i]['wins'])
+                arr.add(data[i]['losses'])
+        else :
+            arr.add('free')
+            for i in range(0,len(data)):
+                arr.add(data[i]['tier'])
+                arr.add(data[i]['rank'])
+                arr.add(data[i]['leaguePoints'])
+                arr.add(data[i]['wins'])
+                arr.add(data[i]['losses'])
+    
+    URL = "https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/"+encId
+    res = requests.get(URL, headers=headers)
+    data = res.json()
+    for i in range(0,7):
+        if len(data) <= i:
+            break
+        print(data[i]['championId'])
+        print(data[i]['championPoints'])
+        arr.add(data[i]['championId'])
+        arr.add(data[i]['championPoints'])
+    arr.add("finish")
     URL = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/"+accountId
     res = requests.get(URL, headers=headers)
     
     if res.status_code == 200:
         data = res.json()
-        for i in range(0,1):
+        for i in range(0,10):
+            redgoldsum = 0
+            redkillsum = 0
+            bluegoldsum = 0
+            bluekillsum = 0
             if len(data['matches']) <= i:
                 break
             gameId = data['matches'][i]['gameId']
@@ -38,102 +96,110 @@ def matchInfo(accountId,api):
             res = requests.get(URL, headers=headers)
 
             data2 = res.json()
-            
-            # 자랭 440 일반 430 칼바람 450 솔랭 420
+            # freerank 440 nomal 430 wind 450 solo 420
             if data2['queueId'] == 440:
-                queue = '자유 5:5 랭크'
+                queue = 'freerank'
             elif data2['queueId'] == 430:
-                queue = '일반'
+                queue = 'normal'
             elif data2['queueId'] == 450:
-                queue = '무작위 총력전'
+                queue = 'random'
             else:
-                queue = '솔랭'
-                
+                queue = 'solo'
             for i in range(0,len(data2['participantIdentities'])):
                 if data2['participantIdentities'][i]['player']['accountId'] == accountId:
                     participantId = data2['participantIdentities'][i]['participantId']
             print(participantId)
             print(queue)
-            
-            print('gameId : ' , gameId)
-            print("------블루팀------")
-            print("타워 : ",data2['teams'][0]['towerKills'])
-            print("바론 : ",data2['teams'][0]['baronKills'])
-            print("드래곤 : ",data2['teams'][0]['dragonKills'])
-            print("")
-            print("")
-            
-            for i in range(0,5):
+            arr.add(participantId)
+            arr.add(queue)
+
+            for i in range(0,10):
+                print(data2['participants'][i]['stats']['champLevel'],"level")
+                arr.add(data2['participants'][i]['stats']['champLevel'])
+                
+                print(data2['participants'][i]['championId'],"cham")
+                arr.add(data2['participants'][i]['championId'])
+                
+                print("spell : ",data2['participants'][i]['spell1Id'], data2['participants'][i]['spell2Id'])
+                arr.add(data2['participants'][i]['spell1Id'])
+                arr.add(data2['participants'][i]['spell2Id'])
+                
                 print(data2['participantIdentities'][i]['player']['summonerName'])
+                arr.add(data2['participantIdentities'][i]['player']['summonerName'])
+                
                 print(data2['participants'][i]['stats']['kills'],"/",data2['participants'][i]['stats']['deaths'],"/",data2['participants'][i]['stats']['assists'])
-                print("라인 : ",data2['participants'][i]['timeline']['lane'])
-                print("스펠 : ",data2['participants'][i]['spell1Id'], data2['participants'][i]['spell2Id'])
-                print("총데미지 : " , data2['participants'][i]['stats']['totalDamageDealt'])
-                print("챔피언데미지 : " , data2['participants'][i]['stats']['totalDamageDealtToChampions'])
-                print("받은피해 : " , data2['participants'][i]['stats']['totalDamageTaken'])
+                arr.add(data2['participants'][i]['stats']['kills'])
+                arr.add(data2['participants'][i]['stats']['deaths'])
+                arr.add(data2['participants'][i]['stats']['assists'])
+                #print("line : ",data2['participants'][i]['timeline']['lane'])
+                
+                print("total : " , data2['participants'][i]['stats']['totalDamageDealt'])
+                print("champDamage : " , data2['participants'][i]['stats']['totalDamageDealtToChampions'])
+                #print("hit : " , data2['participants'][i]['stats']['totalDamageTaken'])
+
+                arr.add(data2['participants'][i]['stats']['totalDamageDealt'])
+                arr.add(data2['participants'][i]['stats']['totalDamageDealtToChampions'])
+                arr.add(data2['participants'][i]['stats']['totalDamageTaken'])
+                print("gold : " , data2['participants'][i]['stats']['goldEarned'])
+
+                arr.add(data2['participants'][i]['stats']['goldEarned'])
+                
+                print("vision : " , data2['participants'][i]['stats']['visionWardsBoughtInGame'])
+                #print(" : " , data2['participants'][i]['stats']['wardsPlaced'])
+                #print(" : " , data2['participants'][i]['stats']['wardsKilled'])
+
+                arr.add(data2['participants'][i]['stats']['visionWardsBoughtInGame'])
+                #summeronInfo['wardplace'] = data2['participants'][i]['stats']['wardsPlaced']
+                #summeronInfo['wardkill'] = data2['participants'][i]['stats']['wardsKilled']
+                
                 print("cs : " , data2['participants'][i]['stats']['totalMinionsKilled']+data2['participants'][i]['stats']['neutralMinionsKilled'])
-                print("골드 획득량 : " , data2['participants'][i]['stats']['goldEarned'])
-                print("와드설치 : " , data2['participants'][i]['stats']['wardsPlaced'])
-                bluegoldsum = bluegoldsum + data2['participants'][i]['stats']['goldEarned']
-                bluekillsum = bluekillsum + data2['participants'][i]['stats']['kills']
-                        
+
+                arr.add(data2['participants'][i]['stats']['totalMinionsKilled']+data2['participants'][i]['stats']['neutralMinionsKilled'])
+                
+                if i<=4:
+                    bluegoldsum = bluegoldsum + data2['participants'][i]['stats']['goldEarned']
+                    bluekillsum = bluekillsum + data2['participants'][i]['stats']['kills']
+                else:
+                    redgoldsum = redgoldsum + data2['participants'][i]['stats']['goldEarned']
+                    redkillsum = redkillsum + data2['participants'][i]['stats']['kills']
 
                 for j in range(0,7):
-                    print("아이템(칸별로) :" , data2['participants'][i]['stats']['item'+str(j)])
-
-                for k in range(0,6):
-                    print("룬(차례대로) : ", data2['participants'][i]['stats']['perk'+str(k)])
-                    
-                print("")
-                print("")
-
-            print("블루팀 총 킬 : " , bluekillsum)
-            print("블루침 골드 : " , bluegoldsum)
-                
-
-            print("------레드팀------")
-            print("타워 : ",data2['teams'][1]['towerKills'])
-            print("바론 : ",data2['teams'][1]['baronKills'])
-            print("드래곤 : ",data2['teams'][1]['dragonKills'])
-
-            print("")
-            print("")
-            print("")
-
-            for i in range(5,10):
-                print(data2['participantIdentities'][i]['player']['summonerName'])
-                print(data2['participants'][i]['stats']['kills'],"/",data2['participants'][i]['stats']['deaths'],"/",data2['participants'][i]['stats']['assists'])
-                print("레벨 : ", data2['participants'][i]['stats']['champLevel'])
-                print("라인 : ",data2['participants'][i]['timeline']['lane'])
-                print("스펠 : ",data2['participants'][i]['spell1Id'], data2['participants'][i]['spell2Id'])
-                print("총데미지 : " , data2['participants'][i]['stats']['totalDamageDealt'])
-                print("챔피언데미지 : " , data2['participants'][i]['stats']['totalDamageDealtToChampions'])
-                print("받은피해 : " , data2['participants'][i]['stats']['totalDamageTaken'])
-                print("cs : " , data2['participants'][i]['stats']['totalMinionsKilled']+data2['participants'][i]['stats']['neutralMinionsKilled'])
-                print("골드 획득량 : " , data2['participants'][i]['stats']['goldEarned'])
-                print("제어와드 : " , data2['participants'][i]['stats']['visionWardsBoughtInGame'])
-                print("와드 설치 : " , data2['participants'][i]['stats']['wardsPlaced'])
-                print("와드 제거 : " , data2['participants'][i]['stats']['wardsKilled'])
-                redgoldsum = redgoldsum + data2['participants'][i]['stats']['goldEarned']
-                redkillsum = redkillsum + data2['participants'][i]['stats']['kills']           
-                for j in range(0,7):
-                    print("아이템(칸별로) :" , data2['participants'][i]['stats']['item'+str(j)])
-                for k in range(0,6):
-                    print("룬(차례대로) : ", data2['participants'][i]['stats']['perk'+str(k)])
-                
-                print("")
-                print("")
-
+                    print("item :" , data2['participants'][i]['stats']['item'+str(j)])
+                    arr.add(data2['participants'][i]['stats']['item'+str(j)])
+                arr.add(data2['participants'][i]['stats']['perk0'])
             
-            print("레드팀 총 킬 : " , redkillsum)
-            print("레드팀 골드 : " , redgoldsum)    
-            print("-----------------------------------")
-            print("")
-            print("")
+            print("result : ", data2['teams'][0]['win'])
+            print("tower : ",data2['teams'][0]['towerKills'])
+            print("baron : ",data2['teams'][0]['baronKills'])
+            print("dragoe : ",data2['teams'][0]['dragonKills'])
+            arr.add(data2['teams'][0]['win'])
+            arr.add(data2['teams'][0]['towerKills'])
+            arr.add(data2['teams'][0]['baronKills'])
+            arr.add(data2['teams'][0]['dragonKills'])            
+
+            print("blueKill : " , bluekillsum)
+            print("blueGold : " , bluegoldsum)
+
+            arr.add(bluekillsum)
+            arr.add(bluegoldsum)
+            
+            print("tower : ",data2['teams'][1]['win'])
+            print("tower : ",data2['teams'][1]['towerKills'])
+            print("baron : ",data2['teams'][1]['baronKills'])
+            print("dragon : ",data2['teams'][1]['dragonKills'])
+
+            arr.add(data2['teams'][1]['win'])
+            arr.add(data2['teams'][1]['towerKills'])
+            arr.add(data2['teams'][1]['baronKills'])
+            arr.add(data2['teams'][1]['dragonKills'])
+
+            print("redkill : " , redkillsum)
+            print("redgold : " , redgoldsum)
+            arr.add(redkillsum)
+            arr.add(redgoldsum)
 
     else:
-        print("data가 없습니다")
+        print("no data")
 
-    
-#accountId 넣어주세요. 
-matchInfo("JT6leNtKT9rcEXgzS7PR4SV_FO8NDIFWV_OEP2aksJ-OGmo")
+
+    return arr

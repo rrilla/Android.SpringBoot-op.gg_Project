@@ -23,7 +23,7 @@ def champion(api):
     page = 1
     sum = 0
     i = 1
-    tier = "CHALLENGER"
+    tier = "GRANDMASTER"
     while True:
         URL = "https://kr.api.riotgames.com/lol/league-exp/v4/entries/RANKED_SOLO_5x5/"+tier+"/I?page="+str(i)
         res = requests.get(URL, headers=headers)
@@ -37,6 +37,7 @@ def champion(api):
             break
         for j in range(0,len(data)):
             print(data[j]['summonerName'])
+            arr.add("name")
             arr.add(data[j]['summonerName'])
             id = data[j]['summonerId']
             URL2 = "https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/"+id
@@ -49,11 +50,9 @@ def champion(api):
             if res2.status_code == 404:
                 continue
             data2 = res2.json()
-            arr.add("champion")
             for k in range(0,5):
                 if len(data2) <= k:
                     break
-                print(k+1,"championMastery")
                 print(data2[k]['championId'])
                 print(data2[k]['championPoints'])
                 arr.add(data2[k]['championId'])

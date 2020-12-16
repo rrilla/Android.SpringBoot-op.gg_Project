@@ -53,7 +53,7 @@ def multiSearch(api,accountId,encId):
         res = requests.get(URL, headers=headers)
         data = res.json()
         for i in range(0, len(data['matches'])):
-            if(i>=11):
+            if(i>=10):
                 break
             if(data['matches'][i]['queue'] != 420):
                 continue

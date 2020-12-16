@@ -130,7 +130,6 @@ public class MainFragment3 extends Fragment {
         rbTier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("asfd","실행됨");
                 changeDate("tier");
                 adapter.deleteItem();
                 adapter.setItems((ArrayList<Champion>) championDto.getTopList());

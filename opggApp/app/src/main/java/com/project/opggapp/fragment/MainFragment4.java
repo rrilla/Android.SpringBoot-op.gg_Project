@@ -126,7 +126,7 @@ public class MainFragment4 extends Fragment {
             Toast.makeText(getContext(), "서버 통신 실패", Toast.LENGTH_SHORT).show();
         }
         if(result[0].equals("ok")){
-            Toast.makeText(getContext(), "기능 성공", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "기능 성공", Toast.LENGTH_SHORT).show();
             JSONArray jArray = null;
             try {
                 JSONObject jObject = new JSONObject(result[1]);

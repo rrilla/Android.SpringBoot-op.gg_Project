@@ -1,9 +1,436 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.DetailSummonerActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="170dp"
+                android:layout_height="170dp">
+
+                <ImageView
+                    android:id="@+id/detailSummoner_iv_profile"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ahri" />
+
+                <Button
+                    android:id="@+id/detailSummoner_btn_level"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center|bottom"
+                    android:background="@drawable/button_background"
+                    android:text="161"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/detailSummoner_tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="left"
+                android:text="TextView"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#81B5E2"
+                    android:text="전적갱신"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/detailSummoner_iv_bookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/icon_favorites2" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/detailSummoner_iv_tier1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/emblem_bronze" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/detailSummoner_tv_rank1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="솔로랭크" />
+
+                <TextView
+                    android:id="@+id/detailSummoner_tv_tier1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="challner"
+                    android:textColor="#1F8ECD"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/detailSummoner_tv_tierPoint1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="점수" />
+
+                <TextView
+                    android:id="@+id/detailSummoner_tv_score1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="승패" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/detailSummoner_iv_tier2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/emblem_bronze" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/detailSummoner_tv_rank2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="솔로랭크" />
+
+                <TextView
+                    android:id="@+id/detailSummoner_tv_tier2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="challner"
+                    android:textColor="#1F8ECD"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/detailSummoner_tv_tierPoint2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="점수" />
+
+                <TextView
+                    android:id="@+id/detailSummoner_tv_score2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="승패" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#C0D4E2"
+        android:padding="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:text="숙련도"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/detailSummoner_iv_most1"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/detailSummoner_tv_champ1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/detailSummoner_tv_point1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/detailSummoner_iv_most2"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/detailSummoner_tv_champ2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/detailSummoner_tv_point2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/detailSummoner_iv_most3"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/detailSummoner_tv_champ3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/detailSummoner_tv_point3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/detailSummoner_iv_most4"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/detailSummoner_tv_champ4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/detailSummoner_tv_point4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/detailSummoner_iv_most5"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/detailSummoner_tv_champ5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/detailSummoner_tv_point5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/detailSummoner_iv_most6"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/detailSummoner_tv_champ6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/detailSummoner_tv_point6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
