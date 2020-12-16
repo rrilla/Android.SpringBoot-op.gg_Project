@@ -4,6 +4,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal" var="principal" />
@@ -129,7 +130,7 @@ body, html {
 	border: none;
 	border-radius: 4px;
 	line-height: 26px;
-	margin-left: 900px;
+	margin-left: 600px;
 }
 </style>
 </head>
@@ -140,19 +141,21 @@ body, html {
 			<c:when test="${empty principal}">
 				<ul class="category">
 					<li><a id="category_main" href="/main">집에있자</a></li>
-					<li><a id="category_ranking" href="/ladder">랭킹</a></li>
+					<li><a id="category_champion" href="/champ">챔피언 분석</a></li>
+					<li><a id="category_ranking" href="/ranking">랭킹</a></li>
 					<li><a id="category_multi" href="/multi">멀티서치</a></li>
-					<li><a id="category_community" href="/board">커뮤니티</a></li>
+					<li><a id="category_community" href="/boardList">커뮤니티</a></li>
 					<li><button class="loginButton" onClick="loginButton()">로그인</button></li>
 				</ul>
 			</c:when>
 
 			<c:otherwise>
 				<ul class="category">
-					<li><a id="category_main" href="/main" style="">집에있자</a></li>
-					<li><a id="category_ranking" href="/ladder">랭킹</a></li>
+					<li><a id="category_main" href="/main">집에있자</a></li>
+					<li><a id="category_champion" href="/champ">챔피언 분석</a></li>
+					<li><a id="category_ranking" href="/ranking">랭킹</a></li>
 					<li><a id="category_multi" href="/multi">멀티서치</a></li>
-					<li><a id="category_community" href="/board">커뮤니티</a></li>
+					<li><a id="category_community" href="/boardList">커뮤니티</a></li>
 					<li><button class="loginButton" onClick="logoutButton()">로그아웃</button></li>
 <!-- 					<li><a href="/logout"><button class="loginButton" >로그아웃</button></a></li> -->
 				</ul>

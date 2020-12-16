@@ -4,6 +4,8 @@ import com.project.opggapp.task.IP;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class Board implements Serializable {
     private int bno;
@@ -12,6 +14,15 @@ public class Board implements Serializable {
     private String content;
     private Timestamp writeDate;
     private User user;
+    private List<Comment> comments;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public String getUrlThumbnail() {
         return IP.serverUrl + thumbnail;
@@ -63,6 +74,12 @@ public class Board implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getDate() {
+        Timestamp time = this.getWriteDate();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(time);
     }
 
     @Override

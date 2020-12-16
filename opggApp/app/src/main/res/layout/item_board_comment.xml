@@ -42,7 +42,7 @@
                     android:id="@+id/iComment_countLike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="추천수"
+                    android:text=""
                     android:textSize="15sp" />
             </LinearLayout>
 

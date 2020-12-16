@@ -72,6 +72,11 @@
 	widht: 24px;
 	height: 24px;
 }
+.thumbnail {
+	width: 93px;
+	height: 60px;
+	float: right;
+}
 </style>
 <div class="board_container">
 	<div class="board_sign">
@@ -97,7 +102,6 @@
 			<div class="content_header">
 				<div style="padding: 18px 0 17px 0;">
 					<h3 style="padding-left: 20px;">게시판</h3>
-					<div></div>
 					<c:if test="${not empty principal.username}">
 						<a href="/board/write" style="position: absolute; right: 17px; top: 13px;">
 							<img src="https://talk.op.gg/images/icon-write@2x.png" style="width: 30px;"/>
@@ -108,17 +112,22 @@
 		
 			<c:forEach var="board" items="${boardList.content}">
 				<div class="board_list">
-					<div style="line-height: 45px; color: #7b858e;">${board.bno}</div>
-					<div style="padding-left: 20px;">
+					<div style="line-height: 60px; color: #7b858e;">${board.bno}</div>
+					<div style="padding-left: 20px; width: 290px; line-height: 27px;">
 						<div style="font-size: 14px; color: #1e2022; padding-bottom: 5px;">
-							<a style="text-decoration: none; color: #7b858e; " href="/board/detail/${board.bno }">${board.title }</a>
+							<a style="text-decoration: none; color: black;" href="/board/detail/${board.bno }">${board.title }</a>
 						</div>
 						<div style="font-size: 14px; color: #98a0a7;">
-							<span>${board.writeDate }</span>
+							<span><fmt:formatDate value="${board.writeDate }"
+									pattern="yyyy-MM-dd" /></span>
 							<span class="board_writer">${board.user.username }</span>
-						</div>
+						</div>				
+					</div>
+					<div style="width: 100%; position: relative;">
+						<a href="/board/detail/${board.bno }"><img src="${board.thumbnail }" class="thumbnail"/></a>
 					</div>
 				</div>
+				
 			</c:forEach>
 			
 			<div style="text-align: center; margin-top: 20px;">
